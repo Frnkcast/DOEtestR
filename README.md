@@ -178,6 +178,8 @@ de la variable respuesta.
   - Indicar al final de cada operación, donde encontrar el archivo o
     tabla generada. Aunque suene redundante, para fines de debug.
 
+    - *Implementado. 25/02/2025 11:40 PM*
+
     - O, al final de la interfaz, dar un resumen de lo que se generó
       (examen y resultados) y donde estan localizados.
 
@@ -187,8 +189,16 @@ de la variable respuesta.
     pregunta de “Se entendio? S/N?” o “Presiona <ENTER> para continuar”,
     y no liberar el archivo hasta entonces.
 
+    - *Implementado. 25/02/2025 11:40 PM*
+
   - Pausar la interfaz en momentos importantes para dar tiempo al
     usuario de ver lo que se esta haciendo.
+
+  - Permitir seleccionar abiertamente los temas (Opcion 3 en la interfaz
+    doeExam()), y armar un examen más personalizado.
+
+  - Nuevos enunciados de escenario para los temas de Anova 1F, 1F+B y
+    2^k. ¿Permitir al usuario importar nuevos escenarios?
 
 - Errores detectados:
 
@@ -265,10 +275,19 @@ de la variable respuesta.
     guarda en una lista dentro de la tabla. Rebuscado? Algo, pero util.
 - FALTA: Corregir la ortografía, artefactos de texto (≠, } , \$), ver la
   forma de implementar los subscripts.
-  - HTML Entities.
 
 ## Ejemplo de Uso
 
 doeExam() y doePractice() llaman a interfaces de texto para ayudar en la
 generación del examen. Solo se debe especificar el tipo de problemas y
 el número de preguntas a generar por tema.
+
+``` r
+library(DOEtestR)
+
+DOEtestR::doeExam()
+## 1. Se generan las carpetas
+## 2. Se pregunta el tipo de examen (Seleccion del tema)
+## 3. Se genera el directorio, preguntando el numero de sets de datos y preguntas a generar por tema
+## 4. Se ensambla el examen y la hoja de soluciones. Se exportan los archivos y se muestran al usuario.
+```
