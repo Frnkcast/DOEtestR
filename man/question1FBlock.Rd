@@ -21,6 +21,7 @@ question1FBlock(DB, Q, format = "HTML", lang = "Esp", silent = T)
 Una tabla de datos, se guarda en un archivo, y se puede asignar a un objeto
 }
 \description{
+Ver 2.2.1 - Ajustes menores
 Ver 2.2 - Integración al Directorio
 Ver 2.1 - Integracion del idioma con tablas externas
 Ver 2.0 - Solo HTML

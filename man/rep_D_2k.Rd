@@ -4,7 +4,7 @@
 \alias{rep_D_2k}
 \title{Diseño 2^k: Reporte de sets de datos}
 \usage{
-rep_D_2k(DB, out)
+rep_D_2k(DB)
 }
 \arguments{
 \item{DB}{Tabla de datos muestrales}

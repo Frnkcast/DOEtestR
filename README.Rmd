@@ -18,10 +18,18 @@ knitr::opts_chunk$set(
 # DOEtestR
 
 <!-- badges: start -->
-<!-- badges: end -->
-Version 2.0.1
 
-Este paquete (doe.testR) contiene funciones para generar ejercicios y examenes para un curso de Diseño de Experimentos. En la versión actual, contiene las funcionalidades para desarrollar ejercicios de Media Muestral, Prueba de Hipotesis para comparación de medias, Anova de 1 Factor y Pruebas Post-Hoc. Incluye desarrollo de un sistema de directorio de tablas relacionales para el manejo de todos los ejercicios y examenes desarrollados. Para la version 2.0.0 se diseñó un Command Line Interface para facilitar el uso de la libreria - para usarla, se llama a la variable ´doeExam()´.
+<!-- badges: end -->
+
+Version 2.2,1
+
+Este paquete (doe.testR) contiene funciones para generar ejercicios y examenes para un curso de Diseño de Experimentos. En la versión actual, contiene las funcionalidades para desarrollar ejercicios de Media Muestral, Prueba de Hipotesis para comparación de medias, Anova de 1 Factor y Pruebas Post-Hoc. Incluye desarrollo de un sistema de directorio de tablas relacionales para el manejo de todos los ejercicios y examenes desarrollados.
+
+-   Para la version 2.0.0 se diseñó una Interfaz de Texto en Consola para facilitar el uso de la libreria - para usarla, se llama a la funcion ´doeExam()´.
+
+-   Para la version 2.1.0 se tiene ahora un modo para armar ejercicios de un solo tema - a esta modalidad se le llama con la funcion ´doePractice()´,
+
+-   Para la version 2.2.0, se incluyen los temas de Anova con Bloque y Diseño 2\^k. Se corrigen errores.
 
 ## Instalación
 
@@ -36,42 +44,48 @@ pak::pak("Frnkcast/DOEtestR")
 
 ### Definiciones iniciales
 
-Para realizar mejor la labor, se debe explicar el razonamiento detrasdel generador de preguntas. Se tienen contemplados 5 diferentes modulos,
-dependiendo del tema a tratar: 
+Para realizar mejor la labor, se debe explicar el razonamiento detrasdel generador de preguntas. Se tienen contemplados 5 diferentes modulos, dependiendo del tema a tratar:
 
-- Estimaciones para medias muestrales 
-- Pruebas de hipotesis sobre media y varianza 
-- ANOVA de 1 Factor 
-- Pruebas Post Hoc de 1 Factor 
-- Diseños de 1 Factor con Bloque o 2 Factores
-- Diseños 2\^k
+-   Estimaciones para medias muestrales
+-   Pruebas de hipotesis sobre media y varianza
+-   ANOVA de 1 Factor
+-   Pruebas Post Hoc de 1 Factor
+-   Diseños de 1 Factor con Bloque o 2 Factores
+-   Diseños 2\^k
 
-El pipeline es el siguiente: 
+El pipeline es el siguiente:
 
-1. Se genera una población para el problema, y se guarda dentro de una base de datos, asignando una clave unica a cada población. 
-2. Se genera una serie de problemas a partir de la base de dato de las poblaciones generadas, se asigna una clave unica según el tema y el tipo de problema. 
-3. Se elabora una lista de enunciados de problema, se adapta a un formato, que puede ser de dos
-tipos: HTML para aplicar en CANVAS, o LaTeX para aplicar en papel.
+1.  Se genera una población para el problema, y se guarda dentro de una base de datos, asignando una clave unica a cada población.
+2.  Se genera una serie de problemas a partir de la base de dato de las poblaciones generadas, se asigna una clave unica según el tema y el tipo de problema.
+3.  Se elabora una lista de enunciados de problema, se adapta a un formato, que puede ser de dos tipos: HTML para aplicar en CANVAS, o LaTeX para aplicar en papel.
 
-Ejemplo de Codigo indicador: "1k05A11" 
+Ejemplo de Codigo indicador: "1k05A11"
 
-Decodificado, significa: 
+Decodificado, significa:
 
-- "1", Primer problema generado 
-- "k", Problema del tipo 2\^k 
-- "05", id del enunciado del caso problema, de una base de datos de Enunciados 
-- "A", tipo de Problema (Media muestal, prueba de Hipotesis, Anova de un factor, etc)
-- "11", id de los datos del Problema (Población), de la base de datos de sets de atos muestrales del tema
+-   "1", Primer problema generado
+-   "k", Problema del tipo 2\^k
+-   "05", id del enunciado del caso problema, de una base de datos de Enunciados
+-   "A", tipo de Problema (Media muestal, prueba de Hipotesis, Anova de un factor, etc)
+-   "11", id de los datos del Problema (Población), de la base de datos de sets de atos muestrales del tema
+
+### Interfaces doeExam() y doePractice()
+
+1.  La interfaz genera una serie de carpetas de trabajo, con una raiz en la ubicación del proyecto actual. Se puede cambiar esta carpeta usando el paquete 'here'.
+2.  DOEtestR trabaja generando tablas relacionales, donde cada tema produce 2 tipos de tablas: Sets de datos, y Sets de problemas. A partir de la selección de datos, problemas y temas, doeExam() crea un examen. Para mantener un orden interno de las tablas generadas, se tiene una base de datos maestra denominada "Directorio".
+3.  Si se esta iniciando la construccion de un examen por primera vez, doeExam() llama a funciones internas para poblar el Directorio con tablas de problemas. Se puede elegir el número de sets de datos y el numero de problemas a generar por tema, para tener un banco de preguntas tan extenso como se desee. Si ya existen las tablas requeridas, se usan estas a modo de banco de preguntas.
+4.  Una vez seleccionados los problemas, se ensamblan los enunciados de un examen, y se genera un archivo de texto con los enunciados en el formato especificado (LaTeX o HTML).
+    1.  NOTA!! doeExam() solo ensambla los enunciados con el formato deseado, más no tiene un template para el examen en general. Sin embargo, basta con extraer los enunciados del archivo de texto para usarse.
+5.  Adicionalmente, doeExam() y doePractice() generan un archivo de reporte, con las soluciones a los problemas seleccionados para el examen.
 
 ### Tema 1. Medias Muestrales
 
-Los problemas que se busca generar son del tipo donde a los alumnos se les explica que tienen una muestra de tamaño "n" proveniente de una población normal. Se le pide que con la información provista puedan determinar el tipo de distribución a utilizar, y el resultado. Los tipos de problema son: 
+Los problemas que se busca generar son del tipo donde a los alumnos se les explica que tienen una muestra de tamaño "n" proveniente de una población normal. Se le pide que con la información provista puedan determinar el tipo de distribución a utilizar, y el resultado. Los tipos de problema son:
 
-- p: Se pide la probabilidad de obtener un valor mayor/menor que un valor "q"
-- q: Se pide obtener el valor "q" a partir de una condición de probabilidad dada
-- m: Se pide que se calcule la media poblacional dada la información, y una probabilidad ya
-calculada.
-- s: Se pide que se calcule la varianza poblacional dada la información, y una probabilidad ya calculada
+-   p: Se pide la probabilidad de obtener un valor mayor/menor que un valor "q"
+-   q: Se pide obtener el valor "q" a partir de una condición de probabilidad dada
+-   m: Se pide que se calcule la media poblacional dada la información, y una probabilidad ya calculada.
+-   s: Se pide que se calcule la varianza poblacional dada la información, y una probabilidad ya calculada
 
 1.  Se genera aleatoreamente los parametros de una población normal (media y varianza), y un valor para el tamaño de muestra
 2.  Se simula la generación de una muestra de tamaño n a partir de la cual se obtienen los estimadores muestrales (media y varianza)
@@ -83,13 +97,85 @@ Los problemas que se busca generar son de 2 tipos, dependiendo del numero de mue
 
 ### Tema 3. Anova de 1 Factor
 
-Los problemas que se busca generar son del tipo en el que se plantea una situación, donde se proporcionan los datos de un experimento con A niveles/grupos, y B replicas. Se solicita el calculo del ANOVA para verificar si la variable experimental tiene un efecto significativo o no. 2 Tipos de problemas: 
+Los problemas que se busca generar son del tipo en el que se plantea una situación, donde se proporcionan los datos de un experimento con A niveles/grupos, y B replicas. Se solicita el calculo del ANOVA para verificar si la variable experimental tiene un efecto significativo o no. 2 Tipos de problemas:
 
-1. Se proporciona una tabla de ANOVA incompleta, y se debe de completar. 
-2. Se solicita el procedimiento completo del ANOVA
+1.  Se proporciona una tabla de ANOVA incompleta, y se debe de completar.
+2.  Se solicita el procedimiento completo del ANOVA
+3.  Se proporciona la tabla ANOVA completa, y se solicita realizar una prueba Post Hoc (Fisher o Tukey)
 
+### Tema 4. Anova de 1 Factor con Bloque
 
-## Example
+Similar al Anova de 1 Factor, y a modo de introducción para el manejo de multiples variables, se genera una tabla de datos y se asigna un escenario con definición para las variables Factor (A) y Bloque (B). Se solicita realizar un analisis ANOVA de los datos considerando el bloque, y se pide contrastar el resultado contra un segundo analisis donde el bloque es ignorado.
 
-This is a basic example which shows you how to solve a common problem:
+### Tema 5. Diseños 2\^k
 
+Para este ejercicio, se genera una matriz de diseño siguiendo un diseño 2\^k, usando 3 variables, y se rellena con datos. Se asigna un escenario para definir las variables y sus niveles. Para el analisis, se solicita realizar el correspondiente ANOVA, asi como tambien un analisis de regresión sencillo, para obtener un modelo de regresión abreviado con el cual poder hacer una inferencia sobre el mayor y el menor valor estimado de la variable respuesta.
+
+## Notas de Desarrollo y Cambios
+
+#### 02/25/2024
+
+-   Revisión general del funcionamiento para actualizar el GitHub con la implementacion de los temas del 2do parcial.
+
+-   Sugerencias:
+
+    -   Indicar al final de cada operación, donde encontrar el archivo o tabla generada. Aunque suene redundante, para fines de debug.
+
+        -   O, al final de la interfaz, dar un resumen de lo que se generó (examen y resultados) y donde estan localizados.
+
+    -   Cuando se genera un examen o ejercicio del tema de Anova de 1 Factor (A), la interfaz debe detenerse para que el usuario pueda revisar el aviso sobre la necesidad de ajustar los enunciados generados. Hacer pregunta de "Se entendio? S/N?" o "Presiona <ENTER> para continuar", y no liberar el archivo hasta entonces.
+
+    -   Pausar la interfaz en momentos importantes para dar tiempo al usuario de ver lo que se esta haciendo.
+
+-   Errores detectados:
+
+    -   Si se tiene ya existente y poblada la carpeta tablas, pero no se encuentran una tabla de un tema particular - el genExam() tratará de pedir el nombre de una tabla, diciendo que hay más de una tabla con un nombre similar. Ej. Habiendo anteriormente armado examenes de 2do Parcial (MHBK), se pidió hacer un examen de 1er Parcial (MHA). Al no existir tablas para A, el programa reconoce que no encontró tablas del tema, pero en vez de generar las tablas faltantes, busca en el directorio.
+
+        -   Corregido. 25/02/2025 11:40 PM
+
+#### 03/10/2024
+
+-   Ya se cuenta con la implementacion de Anova con Bloques y Diseños 2\^k. Falta solo ajustar detalles y ver como resolver casos donde los datos de entrada no son los correctos.
+
+    -   Sugerencias:
+
+        -   Cuando se piden mas preguntas de las que hay en la tabla de preguntas
+
+            -   Generar nueva tabla de preguntas y usarla - poblarDirectorio()
+
+        -   Cuando no existen preguntas de una tabla particular para el examen.
+
+            -   Generar la nueva tabla. Ej. En el examen 2 se generan preguntas del tema 1 y 2, pero no del tema 3. Si se pide realizar un examen de 1er parcial y no se pobla el directorio, no habrá tablas para usar.
+
+    -   Ahorita lo urgente es terminar de armar el examen 2: 2 problemas de pruebas de hipotesis? 1 de anova con bloque? 1 con anova 2\^3?
+
+#### 01/10/2024
+
+-   Se probó que funciona. Se uso para generar examenes de prueba + solucionario. Commit a GitHub.
+
+-   Sugerencias futuras:
+
+    1.  Añadir generadores para Temas 2\^k
+
+    2.  Manejo de graficos:
+
+        1.  Area bajo la curva para Dist Muestrales y Pruebas de Hipotesis
+
+#### 27/09/2024
+
+-   Commit inicial a Github con la version 2.0.1
+
+#### 25/09/2024
+
+-   Falta compilar el paquete, pero ya se probó que funciona. Se hicieron mas ajustes al CLI y ya se tiene una interfaz lo suficientemente robusta.
+    -   Casos de error que se busca evitar: Carpetas existentes pero vacias (Directorio vacio).
+    -   Placeholders para los temas del 2do parcial
+    -   Se escribió un anuncio con instrucciones para preparar los problemas de Anova
+-   Se separó el ensamblador de enunciados del examen en su propia funcion (ensamblarExamen()), para que las tablas de examenes no esten encadenadas a un solo idioma - sino que la decisión del idioma y el formato de salida se puedan dar despues.
+    -   Respecto al idioma, se cambió la forma de implementar la seleccion del idioma para el enunciado de los problemas. Ya los generadores de preguntas guardan ambos enunciados (z_Esp y z_Eng) simultaneamente, y el generador de tabla de examen los junta dentro de una tibble y guarda en una lista dentro de la tabla. Rebuscado? Algo, pero util.
+-   FALTA: Corregir la ortografía, artefactos de texto (≠, } , \$), ver la forma de implementar los subscripts.
+    -   HTML Entities.
+
+## Ejemplo de Uso
+
+doeExam() y doePractice() llaman a interfaces de texto para ayudar en la generación del examen. Solo se debe especificar el tipo de problemas y el número de preguntas a generar por tema.

@@ -1,6 +1,7 @@
 #### INTERFAZ DE USUARIO PARA GENERAR EXAMENES ---------------------------
 #' Interfaz de usuario: Generador de Examenes de Diseño de Experimentos
 #'
+#' Ver 1.3.1 - Ajustado, ahora examen 2 incluye preguntas de M, H, B y K.
 #' Ver 1.3.0 - Se incorporan el framework para trabajar con los temas B y K, falta probarlo
 #' Ver 1.2.0 - poblarDirectorio cambio, ahora se debe llamar cada vez que se use un tema nuevo. Los temas son definidos por el parcial
 #' Ver 1.1.0 - Correccion para los casos donde el directorio existe, pero esta vacio
@@ -87,6 +88,7 @@ doeExam <- function(){
     optablas <- 1 #Se fuerza la opción 1. Protección contra posibles errores
   }
 
+  ## TODO: Incorporar la opcion de elegir los temas del examen libremente.
   cli::cat_line()
   opparcial <- menu(c("Primer parcial", "Segundo parcial"),
                     title = s.note("¿Qué examen se generará?"))
@@ -112,15 +114,17 @@ doeExam <- function(){
       ## Hay que llamar a la función: genExamen(). Darle un query desde aqui!
     }
 
-  ###TODO - Para una version futura, añadir  funciónes para examen Parcial 2
+  
   }else if(opparcial == 2){
     if(optablas == 1){
-      cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR Version 2.0.0}, no tiene preparadas funciones para armar un examen de 2do Parcial."))
+      #cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR Version 2.0.0}, no tiene preparadas funciones para armar un examen de 2do Parcial."))
     #cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura."))
-      stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
+      #stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
       
-      #poblarDirectorio(tema = 4,aislado = TRUE) #Se generan tablas para el tema 4 - Anova 1F+Bloque
-      #poblarDirectorio(tema = 5,aislado = FALSE) #Se generan tablas para el tema 5 - Diseños 2k
+      poblarDirectorio(tema = 1,aislado = TRUE) #Se generan tablas para el tema 1 - Dist. Muestral
+      poblarDirectorio(tema = 2,aislado = FALSE) #Se generan tablas para el tema 2 - Prueb.Hipotesis
+      poblarDirectorio(tema = 4,aislado = FALSE) #Se generan tablas para el tema 4 - Anova 1F+Bloque
+      poblarDirectorio(tema = 5,aislado = FALSE) #Se generan tablas para el tema 5 - Diseños 2k
       #describirDirectorio() #Describir el nuevo directorio
       # Solo el primero recibe aislado = TRUE, para iniciar un Directorio temporal. 
       
@@ -168,6 +172,7 @@ doeExam <- function(){
 ### FUNCION PARA ARMAR NUEVAS TABLAS PARA UN DIRECTORIO ---------------
 #' Crear tablas para un Directorio.
 #'
+#' Ver 2.1.0 - Implementando tameas 4 y 5
 #' Ver 2.0.0 - Ajuste mayor: Ahora se genera tabla tema por tema. Se debe llamar a la función otra vez si se desea un tema distinto. 
 #' Ver 1.0.0 - Inicial, se generan todas las tablas de temas del parcial
 #'
@@ -241,15 +246,34 @@ poblarDirectorio <- function(tema = NULL, aislado = FALSE){
       
     ## Despues de cada función, se actualiza el directorio con la nueva tabla
     ## SOLAMENTE CON LAS TABLAS GENERADAS AQUI! NO SE RECONSTRUYE!
-    }else if(tema == 4 | tema == 5){
-  ##else if (parcial == 2){ #Ver 1.0.0
-    #B <- readline("Cuantos de 1F Anova con Bloque?")
+    }else if(tema == 4){
+      cli::cli_h3("Del tema Anova 1F + Bloque")
+      B1 <- readline("Cuantos sets de datos muestrales de desea generar? ")
+      B1_tabla <- gen1FBlock(B1) ## Generación de sets de datos
+      cli::cli_alert_success("Se construyó la tabla {.val {attr(B1_tabla,'DBname')}}")
+      B2 <- readline("Cuantos sets de preguntas de desea generar? ")
+      B2_tabla <- question1FBlock(B1_tabla, B2) ## Generación de preguntas
+      cli::cli_alert_success("Se construyó la tabla {.val {attr(B2_tabla,'DBname')}}")
+      
+    }else if(tema == 5){
+      cli::cli_h3("Del tema Diseño 2^k")
+      K1 <- readline("Cuantos sets de datos muestrales de desea generar? ")
+      K1_tabla <- gen2k(K1) ## Generación de sets de datos
+      cli::cli_alert_success("Se construyó la tabla {.val {attr(K1_tabla,'DBname')}}")
+      K2 <- readline("Cuantos sets de preguntas de desea generar? ")
+      K2_tabla <- question2k(K1_tabla, K2) ## Generación de preguntas
+      cli::cli_alert_success("Se construyó la tabla {.val {attr(K2_tabla,'DBname')}}")
+      
+    }
+      
+      #}else if(tema == 4 | tema == 5){
+      #B <- readline("Cuantos de 1F Anova con Bloque?")
     #K <- readline("Cuantos de Diseños 2^k?")
 
-    
-      cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR} Ver 2.0.0, No tienen preparadas funciones para armar un examen de 2do Parcial"))
-      stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
-  }
+    ##---- Cuano no se tenian los temas 4 y 5, se entraba en panico
+      #cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR} Ver 2.0.0, No tienen preparadas funciones para armar un examen de 2do Parcial"))
+     # stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
+  #}
 
   cli::cat_line()
   if (aislado == TRUE){
@@ -265,7 +289,7 @@ poblarDirectorio <- function(tema = NULL, aislado = FALSE){
 #### INTERFAZ DE USUARIO PARA GENERAR EJERCICIOS DE PRACTICA ---------------------------
 #' Interfaz de usuario: Generador de Ejercicios de Diseño de Experimentos
 #'
-#'
+#' Ver 0.2.0 - Incorporando temas del Parcial 2
 #' Ver 0.1.0 - Versión inicial.
 #'
 #' @return
@@ -359,17 +383,17 @@ doePractice <- function(){
   
   if(optablas == 1){
     cli::cli_alert_info("Se procederá a generar tablas para todos los temas.")
-    if(optema == 4 | optema == 5){
+    
+    ##--- Cuando no se habia implementado los temas 4 y 5
+    #if(optema == 4 | optema == 5){
       ###TODO - Para una version futura, añadir  funciónes para examen Parcial 2
-      cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR Version 2.0.0}, no tiene preparadas funciones para armar problemas de este tema."))
-      #cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura."))
-      stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
-      
-    }else {
+     #cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR Version 2.0.0}, no tiene preparadas funciones para armar problemas de este tema."))
+     #stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
+      #}else {
       ## Temas del primer parcial
+      
       poblarDirectorio(optema,aislado = TRUE)
-      ## Ya no es por parcial, sino por tema!
-    }
+      #}
 
     describirDirectorio()
   }else if(optablas == 2){
@@ -394,6 +418,7 @@ doePractice <- function(){
   ### Independiente del tema, se llamara a la función aglomerante genPractica()
   #Examen <- genExamen(parcial = opparcial, lang = lang, format = format)
   Practica <- genPractica(tema = optema, lang = lang, format = format)
+  
   cli::cat_line()
   cli::cli_alert_success(s.succ("Los problemas se generaron con éxito. Saliendo de la applicación."))
   
@@ -401,3 +426,14 @@ doePractice <- function(){
   
   return(Practica)
 }
+
+
+#dirCarpeta <- function(){
+#  cli::cli_text("La carpeta raiz esta ubicada en: \n {.path {here::here()}}\n")
+#  cambio <- menu(c("Si", "No"), title = "¿Se desea cambiar la ubicación de la carpeta raíz?")
+#  if(cambio == "Si"){
+#    path <- readline("Inserte el PATH de la carpeta que se desea usar: ")
+#    path <- gsub("\\\\", "/", path)
+#    here::set_here(path)
+#  }
+#  }

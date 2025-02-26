@@ -14,5 +14,6 @@ metadataDB(Data, Tema, Cont)
 \item{Cont}{Tipo de tabla: Datos muestrales, Preguntas, Examen, etc.}
 }
 \description{
+V2.1 -
 V2 - Ahora la función loopea si detecta que se generaron id's repetidos en el Directorio
 }

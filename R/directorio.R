@@ -111,7 +111,7 @@ resetDirectorio <- function(){
 #' @examples
 describirDirectorio <- function(){
   ##usar filter y nrow para contabilizar los elementos que hay por tema, tipo e idioma (examen)
-  message("En el Directorio ubicado en:\n", here::here("doetest_out","tablas"),"\n")
+  message("En el Directorio ubicado en:\n", here::here("doetest_out","tablas"),"\n\n")
   ## Conteo por temas
   for(i in 1:length(unique(Directorio$Tema))){
     n <- Directorio %>% dplyr::filter(Tema == unique(Directorio$Tema)[i]) %>% nrow()

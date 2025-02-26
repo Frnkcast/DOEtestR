@@ -21,6 +21,8 @@ question2k(DB, Q, format = "HTML", lang = "Esp", silent = T)
 Una tabla de datos, se guarda en un archivo, y se puede asignar a un objeto
 }
 \description{
+Ver 2.2.2 - Se incluye la tabla de anova en el enunciado - se debe eliminar todo menos el SST
+Ver 2.2.1 - Cambios menores
 Ver 2.2.0 - Integración del directorio
 Ver 2.1.0 - Incorporacion de idioma
 Ver 2.0.0 - Inicial

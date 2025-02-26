@@ -7,5 +7,6 @@
 doePractice()
 }
 \description{
+Ver 0.2.0 - Incorporando temas del Parcial 2
 Ver 0.1.0 - Versión inicial.
 }

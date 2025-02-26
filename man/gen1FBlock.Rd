@@ -13,6 +13,8 @@ gen1FBlock(r)
 Una tabla de datos, se guarda en un archivo, y se puede asignar a un objeto
 }
 \description{
+Ver 2.1.3 - La generacion se repite hasta que se genera un set donde el anova con bloque da significativo.
+Ver 2.1.2 - Cambios menores
 Ver 2.1.1 - Cambios menores para importar funciones externas
 Ver 2.1 - Incluye integracion al directorio.
 }
