@@ -72,6 +72,11 @@ parsearQuery <- function(query){
     ## Posibles resultados
     if(length(query_nombre) == 0){ #No encontró match, regreso characer(0)
       cat("No se encontró la tabla. Intente otra vez. \n")
+      
+      ###!! Aqui el codigo se rompe! Si se llama a parsearQuery y no existe la tabla, se necesita una forma de forzar a armar la tabla!
+          ## Se debe atrapar el error desde antes. 
+            ## Ya quedó.
+  
       #¿Como regresar al inicio? Pedir una nueva query y volver al inicio del parseo
       query <-  readline("Ingresa un ID valido para buscar en el Directorio: ")
     }else if (length(query_nombre) > 1) { #Hay más de 2 nombres, se debe elegir uno.
@@ -123,6 +128,8 @@ importDB <- function(query){
 #### Generar metadatos genericos para la base de datos-----------------------
 #' Generar metadatos genericos para la base de datos
 #'
+#' V2.2 - Actualizado para funcionar tambien para examenes de practica
+#' V2.1 - Incluye ahora para los temas de Anova con Bloque y Diseño 2k
 #' V2 - Ahora la función loopea si detecta que se generaron id's repetidos en el Directorio
 #'
 #' @param Data Tabla de datos a la cual generar los metadatos
@@ -202,6 +209,8 @@ metadataDB <- function(Data,Tema,Cont){
   }else if (Cont == "data"){
     #attr(Data, "Elementos") <- unlist(Data$id, use.names = FALSE)
     attr(Data, "Elementos") <- NA
+  }else if (Cont == "prac"){
+    attr(Data, "Elementos") <- paste(Data$Code, collapse = ", ")
   }
   return(Data)
 }

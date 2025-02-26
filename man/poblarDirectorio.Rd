@@ -12,6 +12,7 @@ poblarDirectorio(tema = NULL, aislado = FALSE)
 \item{aislado}{Flag para saber si se genera un Directorio temporal o no.}
 }
 \description{
+Ver 2.1.0 - Implementando tameas 4 y 5
 Ver 2.0.0 - Ajuste mayor: Ahora se genera tabla tema por tema. Se debe llamar a la función otra vez si se desea un tema distinto.
 Ver 1.0.0 - Inicial, se generan todas las tablas de temas del parcial
 }

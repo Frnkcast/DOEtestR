@@ -13,6 +13,7 @@ gen2k(r)
 Una tabla de datos, se guarda en un archivo, y se puede asignar a un objeto
 }
 \description{
+Ver 2.1.1 - Ajustes menores
 Ver 2.1.0 - Integración del directorio
 Ver 2.0.0 - Inicial
 }

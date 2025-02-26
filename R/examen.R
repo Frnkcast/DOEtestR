@@ -1,8 +1,10 @@
 ### Generador de Examen ----------------------------------------
 #' Generador de Examen
 #'
-#' Version 2.9.0 - Se incorporan el framework para trabajar con los temas B y K
-#' Version 2.8.0 - Correccion del idioma y los problemas con el orden de los enunciados
+#' Version 2.8.2 - Se corrige un error para cuando el directorio no tiene una tabla de un tema en particular.
+#' Version 2.8.1 - Cambios menores para Quality of Life. Se añaden pausas en la interfaz para el usuario.
+#' Version 2.8.0 - Se incorporan el framework para trabajar con los temas B y K
+#' Version 2.7.5 - Correccion del idioma y los problemas con el orden de los enunciados
 #' Version 2.7.4 - Se separa el ensamblador para facilitar el trabajar con la tabla y poder regenerar el formato sin tener que regenerar la tabla
 #' Version 2.7.3 - Correccion para que no se repitan los problemas de ANOVA.
 #' Version 2.7.2 - Correcciones menores de formato para cli
@@ -61,16 +63,18 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
     query <- paste0("M",M,"-H",H,"-A",A)
 
   }else if (parcial == 2){
-    cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR} Ver 2.0.0, No tienen preparadas funciones para armar un examen de 2do Parcial"))
+    #cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR} Ver 2.0.0, No tienen preparadas funciones para armar un examen de 2do Parcial"))
     #cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura."))
-    stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
-
-    #B <- readline("Cuantos de 1F Anova con Bloque? ")
-    #K <- readline("Cuantos de Diseños 2^k? ")
-    #query <- paste0("B",B,"-K",K)
+    #stop(cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE)
+  
+    M <- readline("Cuantos problemas de Media Muestral? ")
+    H <- readline("Cuantos problemas de Prueba de Hipotesis? ")
+    B <- readline("Cuantos de 1F Anova con Bloque? ")
+    K <- readline("Cuantos de Diseños 2^k? ")
+    query <- paste0("M",M,"-H",H,"-B",B,"-K",K)
   }
 
-  query_split <- stringr::str_split_1(query,"-")
+  query_split <- stringr::str_split_1(query,"-") ### ESTA MARCANDO ERROR AQUI!!!
     ##Esto esta muy rebuscado... mejor simplemente una lista.
 
   ###-------------- Generador del Examen
@@ -96,6 +100,7 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
 
     }else if (query_tema == "A"){
       ## Buscar la tabla para anova 1F
+      avisoA1 <- TRUE
       query_selec <- Directorio %>%
         dplyr::filter(Tema == "Anova de 1 Factor" &
                         Cont == "Preguntas formuladas") %>%
@@ -116,11 +121,31 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
         dplyr::slice_sample(n = 1) #Regresa un registro del directorio
       query_selec_Anova <- query_selec
       }
-
+  
     ##--- Obtener la tabla
+        ##Aqui se rompe el codigo si no hay un codigo correcto. Si no existen tablas de un tema, query_select estara vacio (nrow = 0). Por tanto, al llamar a importDB, quien llamara a parsearQuery, quien no sabra que hacer.
+        #se necesita una forma de forzar a armar la tabla!
+            ## Ya quedó?
+    ### Caso de Error: No se encontró la tabla del tema en el directorio -------------------
+    if(nrow(query_selec)==0){
+      cli::cli_alert_warning(" {s.warn('Error!')} No se tiene una tabla en el Directorio para este tema. Se procederá a generar antes de continuar con el ensamblado del examen. \n")
+      query_tema2 <- dplyr::case_when(query_tema == "M" ~ 1, query_tema == "H" ~ 2,
+                                      query_tema == "A" ~ 3, query_tema == "B" ~ 4,
+                                      query_tema == "K" ~ 5)
+      poblarDirectorio(tema = query_tema2,aislado = TRUE) #Con aislado == TRUE, se reinicia temporalmente el Directorio. Solo tendrá 2 tablas: La de Datos y la de Preguntas del tema en cuestion.
+      query_selec <- Directorio %>%
+        dplyr::filter(Cont == "Preguntas formuladas") #Regresa del directorio truncado la fila perteneciente a la tabla de preguntas.
+      if(query_tema == "A" | query_tema == "B"  | query_tema == "K" ){
+        query_selec_Anova <- query_selec
+        }
+      resetDirectorio() #Reinicia el directorio, se cierra esta interaccion.
+      cli::cli_alert_success(" {s.warn('Error corregido con éxito!')} Se procede con la generacion del examen")
+    }  
+    
     query_path <- paste0(query_selec$DBname,".RDS") #Path del archivo de la tabla
     query_out <- importDB(query_path) ##Importa desde nuevo la tabla desde el archivo. Evita el problema de los nombres de las tablas como variable.
 
+    
     ## v2.7 - Mensaje de la tabla que se esta usando.
     c_tema <- dplyr::case_when(query_tema == "A" ~ "Anova de 1 Factor",
                         query_tema == "M" ~ "Media Muestral",
@@ -232,29 +257,36 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
 
   ensamblarExamen(Exam, format, lang) ##Separar el ensamblador de la función de generación de tabla, de tal forma que se puedan regenerar los enunciados a partir de la misma tabla de examen.
 
-
-
   Exam_pkm <- stringr::str_split_1(attr(Exam,'id_pokemon'), pattern = "_")[3]
-
-  cli::cli_alert_success("El examen {.val {attr(Exam,'DBname')}}, con apodo {.val {Exam_pkm}}, ha sido generado con éxito.")
+  Exam_loc <- paste0(attr(Exam,'DBname'),".txt")
+  Exam_rep_loc <- paste0(attr(Exam,'DBname'),"_RES.txt")
+  
+  cli::cli_alert_success("El examen {.val {attr(Exam,'DBname')}}, con apodo {.val {Exam_pkm}}, ha sido generado con éxito y se guardó en: \n")
+  cli::cli_text("{.path{here::here('doetest_out', Exam_loc)}} \n\n")
   cli::cat_line()
 
-  #TODO: Que solo aparezca cuando se usan Anovas de 1 Factor.
-  ### Warning! Se deben hacer ajustes!
-  cli::cli_alert_warning(" {s.warn('NOTA!')} Los problemas del tema ANOVA 1F estan configurados para ser de tres tipos (recursivos). {.emph Se deben hacer ajustes manuales a cada tipo de problema.}")
-  cli::cli_ul() ##Abre contenedor para la lista
-  cli::cli_li("{cli::style_bold('Primer ejercicio:')} Se da al alumno una tabla ANOVA incompleta para ser llenada. {s.inst('Se debe borrar la tabla de datos y borrar las celdas necesarias')}")
-  cli::cli_li("{cli::style_bold('Segundo ejercicio:')} Se da al alumno una tabla de datos para analizar mediante un ANOVA. {s.inst('Se debe borrar la tabla del ANOVA precargada, dejando solo la tabla de datos.')}")
-  cli::cli_li("{cli::style_bold('Tercer ejercicio:')} Se da al alumno una tabla de datos para realizar una prueba Post Hoc. {s.inst('Se debe borrar la tabla del ANOVA precargada')}")
-  cli::cli_end() ##Cierra contenedor
-
+  if(avisoA1 == TRUE){
+    #TODO: Que solo aparezca cuando se usan Anovas de 1 Factor.
+    ### Warning! Se deben hacer ajustes!
+    cli::cli_alert_warning(" {s.warn('NOTA!')} Los problemas del tema ANOVA 1F estan configurados para ser de tres tipos (recursivos). {.emph Se deben hacer ajustes manuales a cada tipo de problema.}")
+    cli::cli_ul() ##Abre contenedor para la lista
+    cli::cli_li("{cli::style_bold('Primer ejercicio:')} Se da al alumno una tabla ANOVA incompleta para ser llenada. {s.inst('Se debe borrar la tabla de datos y borrar las celdas necesarias')}")
+    cli::cli_li("{cli::style_bold('Segundo ejercicio:')} Se da al alumno una tabla de datos para analizar mediante un ANOVA. {s.inst('Se debe borrar la tabla del ANOVA precargada, dejando solo la tabla de datos.')}")
+    cli::cli_li("{cli::style_bold('Tercer ejercicio:')} Se da al alumno una tabla de datos para realizar una prueba Post Hoc. {s.inst('Se debe borrar la tabla del ANOVA precargada')}")
+    cli::cli_end() ##Cierra contenedor
+  
+    readline(prompt="Si ya leiste el aviso anterior, presiona <enter> para continuar.")
+  }
+    
   cli::cat_line()
   cli::cli_alert_info("Se procede a generar el reporte de respuestas del examen:")
 
   rep_Exam(Exam) ## Genera una hoja de resultados del examen. Como se da la tabla directa, no deberia haber problema con el orden de los problemas.
 
-  cli::cli_alert_success("El reporte de respuestas {.val {attr(Exam,'DBname')}_RES} ha sido generado con éxito.")
-
+  
+  cli::cli_alert_success("El reporte de respuestas {.val {attr(Exam,'DBname')}_RES} ha sido generado con éxito, y se encuentra ubicado en: \n")
+  cli::cli_text("{.path{here::here('doetest_out', 'reportes',Exam_loc)}} \n\n")
+  
   return(Exam)
 }
 
@@ -310,24 +342,32 @@ genPractica <- function(tema = NULL, format = "HTML", lang = "Esp"){
   } #No hay else, porque lo contrario es que se dio un parcial como argumento.
   
   ### TODO: Esto esta fallando. Ver como corregir
-  P <- dplyr::case_when(tema == 1 ~ readline("Cuantos problemas de Media Muestral? "),
-                        tema == 2 ~ readline("Cuantos problemas de Prueba de Hipotesis? "),
-                        tema == 3 ~ readline("Cuantos problemas de Anova de 1 Factor? "),
-                        tema == 4 ~ readline("Cuantos problemas de Anova 1F + Bloque? "),
-                        tema == 5 ~ readline("Cuantos problemas de Diseño factorial 2^k? ")
-                        )
+  #P <- dplyr::case_when(tema == 1 ~ readline("Cuantos problemas de Media Muestral? "),
+  #                      tema == 2 ~ readline("Cuantos problemas de Prueba de Hipotesis? "),
+  #                      tema == 3 ~ readline("Cuantos problemas de Anova de 1 Factor? "),
+  #                      tema == 4 ~ readline("Cuantos problemas de Anova 1F + Bloque? "),
+  #                      tema == 5 ~ readline("Cuantos problemas de Diseño factorial 2^k? "))
+  if(tema == 1){
+    P <- readline("Cuantos problemas de Media Muestral? ")
+  }else if(tema == 2){
+    P <-readline("Cuantos problemas de Prueba de Hipotesis? ")
+  }else if(tema == 3){
+    P <-readline("Cuantos problemas de Anova de 1 Factor? ")
+  }else if(tema == 4){
+    P <-readline("Cuantos problemas de Anova 1F + Bloque? ")
+  }else if(tema == 5){
+    P <-readline("Cuantos problemas de Diseño factorial 2^k? ")
+  }
   
-    
+
   ###-------------- Generador del Examen
   #for (i in 1:length(query_split)){
   #x <- query_split[i]
   query_tema <-  dplyr::case_when(tema == 1 ~ "M",
                                   tema == 2 ~ "H",
                                   tema == 3 ~ "A",
-                                  tema == 4 ~ stop(cli::cli_alert_danger(s.error("FIN: No se tienen funciones para este tema. 
-                                                                                 Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE),
-                                  tema == 5 ~ stop(cli::cli_alert_danger(s.error("FIN: No se tienen funciones para este tema. 
-                                                                                 Se aborta la generación del examen. Intente otra opción o espere una versión futura.")), call. = FALSE))
+                                  tema == 4 ~ "B",
+                                  tema == 5 ~ "K")
   query_n <- as.numeric(P) 
     
   ##--- Selecciona una tabla por tema del Directorio
@@ -457,7 +497,7 @@ genPractica <- function(tema = NULL, format = "HTML", lang = "Esp"){
   
   #cat(attr(Exam, "Elementos"))
   
-  attr(Exam,"DBname") <-  paste0(attr(Exam,"DBname"),"_",query_tema)
+  attr(Exam,"DBname") <-  paste0(attr(Exam,"DBname"),"-",query_tema)
   attr(Exam, "Idioma") <- lang
   
   ## AQUI YA ESTA SELECCIONADO EL EXAMEN
@@ -474,26 +514,33 @@ genPractica <- function(tema = NULL, format = "HTML", lang = "Esp"){
   ensamblarExamen(Exam, format, lang) #TODO Para distinguir examenes de practicas, añadir "prac"
   
   Exam_pkm <- stringr::str_split_1(attr(Exam,'id_pokemon'), pattern = "_")[3]
+  Exam_loc <- paste0(attr(Exam,'DBname'),".txt")
+  Exam_rep_loc <- paste0(attr(Exam,'DBname'),"_RES.txt")
   
-  cli::cli_alert_success("El ejercicio de practica {.val {attr(Exam,'DBname')}}, con apodo {.val {Exam_pkm}}, ha sido generado con éxito.")
+  cli::cli_alert_success("El ejercicio de practica {.val {attr(Exam,'DBname')}}, con apodo {.val {Exam_pkm}}, ha sido generado con éxito, y se encuentra ubicado en: \n")
+  cli::cli_text("{.path{here::here('doetest_out', Exam_loc)}} \n\n")
   cli::cat_line()
   
   if(query_tema == "A"){  
-    ### Warning! Se deben hacer ajustes!
+    ### Warning! Se deben hacer ajustes manuales al resultado!
   cli::cli_alert_warning(" {s.warn('NOTA!')} Los problemas del tema ANOVA 1F estan configurados para ser de tres tipos (recursivos). {.emph Se deben hacer ajustes manuales a cada tipo de problema.}")
   cli::cli_ul() ##Abre contenedor para la lista
   cli::cli_li("{cli::style_bold('Primer ejercicio:')} Se da al alumno una tabla ANOVA incompleta para ser llenada. {s.inst('Se debe borrar la tabla de datos y borrar las celdas necesarias')}")
   cli::cli_li("{cli::style_bold('Segundo ejercicio:')} Se da al alumno una tabla de datos para analizar mediante un ANOVA. {s.inst('Se debe borrar la tabla del ANOVA precargada, dejando solo la tabla de datos.')}")
   cli::cli_li("{cli::style_bold('Tercer ejercicio:')} Se da al alumno una tabla de datos para realizar una prueba Post Hoc. {s.inst('Se debe borrar la tabla del ANOVA precargada')}")
   cli::cli_end() ##Cierra contenedor
+  
+  readline(prompt="Si ya leiste el aviso anterior, presiona <enter> para continuar.")
   }
   
   cli::cat_line()
   cli::cli_alert_info("Se procede a generar el reporte de respuestas del examen:")
   
+  ## TODO - 03Oct Por alguna razon esta fallando! No logra usar stringr::str_split_1(). Dice que no encuentra los elementos de la tabla
   rep_Exam(Exam) ## Genera una hoja de resultados del examen. Como se da la tabla directa, no deberia haber problema con el orden de los problemas.
   
-  cli::cli_alert_success("El reporte de respuestas {.val {attr(Exam,'DBname')}_RES} ha sido generado con éxito.")
+  cli::cli_alert_success("El reporte de respuestas {.val {attr(Exam,'DBname')}_RES} ha sido generado con éxito, y se encuentra ubicado en: \n")
+  cli::cli_text("{.path{here::here('doetest_out', 'reportes',Exam_loc)}} \n\n")
   
   return(Exam)
 }
@@ -532,7 +579,10 @@ ensamblarExamen <- function(Data = NULL, format = "HTML", lang = "Esp"){
   ## Ver 2.6.6 (genExamen) - Anov_quest0 y MComp_statement ya estan precargados en sysdata.rda
   #Anov_quest0 <- readr::read_delim(paste0(wd0,"ANOVA_EnunProb.csv"),delim ="\t")
   Anov_quest <- Anov_quest0 %>% dplyr::filter(Lang == lang)
-
+  #A1FBloq_quest0 <- readr::read_delim(paste0(wd0,"1FBloque_EnunProb.csv"),delim ="\t")
+  A1FBloq_quest <- A1FBloq_quest0 %>% dplyr::filter(Lang == lang)
+  #D2k_quest0 <- readr::read_delim(paste0(wd0,"2k_EnunProb.csv"),delim ="\t")
+  D2k_quest <- D2k_quest0 %>% dplyr::filter(Lang == lang)
   #MComp_statement0 <- readr::read_delim(paste0(wd0,"ANOVA_MultiComp.csv"),delim ="\t")
   MComp_statement <- MComp_statement0 %>% dplyr::filter(Lang == lang)
   #[1] es Fisher, [2] es Tukey
@@ -558,11 +608,11 @@ ensamblarExamen <- function(Data = NULL, format = "HTML", lang = "Esp"){
 
   j <- 1 ##Contador para ANOVA
   sink(outfile)
-  cat("------------Examen----------------\n")
+  cat("------------Examen--------------------------\n")
   cat("- Alias:: ", attr(Exam, "id_pokemon"), "\n")
   cat("Problemas recopilados:::", attr(Exam, "Elementos"),"\n")
   cat("- Usando las bases de datos:: ", DBorigin, "\n")
-  cat("----------------------------------\n")
+  cat("--------------------------------------------\n")
 
   if (format == "LaTeX"){ ### Formato LATEX
     for(i in 1:nrow(Exam)){
@@ -701,21 +751,30 @@ ensamblarExamen <- function(Data = NULL, format = "HTML", lang = "Esp"){
 
           ## 2da parte del Enunciado
           cat(MComp_stat, "\n\n")
-
           ## 3era parte del Enunciado
           cat(dplyr::filter(Anov_quest,
                             Anov_quest$Format == "HTML")$Enunciado[j])
           cat("\n\n\n")
           j <- 1 ## Reinicia el contador para que no pase de 3
 
-        }else { ## Ejercicios normales
+        }else { ## Ejercicios normales de Anova
           cat(dplyr::filter(Anov_quest,
                             Anov_quest$Format == "HTML")$Enunciado[j])
           cat("\n\n\n")
           j <- j + 1}
 
-      }#else if(Exam$Topic[i] == "B"){}
-      #else if(Exam$Topic[i] == "K"){}
+      }else if(Exam$Topic[i] == "B"){ ## Ejercios de Anova 1F + Bloque
+        cat(Exam$z[[i]][lang][[1]], "[10pt] \n\n")
+        cat(dplyr::filter(A1FBloq_quest,
+                          A1FBloq_quest$Format == "HTML")$Enunciado[1])
+        cat("\n\n\n")
+        
+      }else if(Exam$Topic[i] == "K"){ ## Ejercicios de Diseño 2k
+        cat(Exam$z[[i]][lang][[1]], "[12pt] \n\n\n")
+        cat(dplyr::filter(D2k_quest,
+                          D2k_quest$Format == "HTML")$Enunciado[1])
+        cat("\n\n\n")
+      }
 
       cat('<br /><br /></li>', "\n")
     }
@@ -762,6 +821,7 @@ rep_Exam <- function(Data = NULL){
   #wd <- "D:/Documents/ITESM/IBT21/BT2004B/003 - Actividades/Examen/DB/Output/"
   wd <- here::here("doetest_out", "reportes")
 
+  #TODO: Esto genera error! - No se generaron los 
   Exam_elementos <- stringr::str_split_1(attr(Exam, "Elementos"), ", ") #Codigos de preguntas
   Exam_origen <- stringr::str_split_1(attr(Exam, "DBorigin"), ", ") #Nombre de tablas de donde sacaron los codigos de preguntas
   Examen_idioma <- attr(Exam, "Idioma")
@@ -769,7 +829,7 @@ rep_Exam <- function(Data = NULL){
   ## Buscar en el elemento segun la tabla de origen?? O buscar la tabla de origen según el elemento??
 
   out <- attr(Exam, "DBname")
-  outfile <- here::here(wd,paste0(out,"_RES.md"))
+  outfile <- here::here(wd,paste0(out,"_RES.txt"))
 
   sink(outfile)
   cat("------------Respuestas del Examen----------------\n")
@@ -777,7 +837,7 @@ rep_Exam <- function(Data = NULL){
   cat("- Alias:: ", attr(Exam, "id_pokemon"), "\n")
   cat("Problemas recopilados:::", attr(Exam, "Elementos"),"\n")
   cat("- Usando las bases de datos:: ", attr(Exam,"DBorigin"), "\n")
-  cat("----------------------------------\n")
+  cat("-------------------------------------------------\n")
 
   ###----- Busqueda de preguntas del examen
   for (i in 1:length(Exam_origen)){ #Vamos tabla por tabla
@@ -805,15 +865,15 @@ rep_Exam <- function(Data = NULL){
         cat("Pregunta de Anova de 1 Factor: ", query_pregunta$Code, "\n")
         rep_Q_A1(query_p_datos,query_pregunta,1)
         cat("\n")
-      }#else if (stringr::str_detect(Exam_origen[i], "AB-") == T){ #Son de Anova1f+B
-      # cat("Pregunta de Anova 1F + Bloque: ", query_pregunta$Code, "\n")
-      # rep_Q_AB(query_p_datos,query_pregunta,1)
-      # cat("\n")
-      #}else if (stringr::str_detect(Exam_origen[i], "2k-") == T){ #Son de Diseño 2k
-      #  cat("Pregunta de Diseño 2^k: ", query_pregunta$Code, "\n")
-      #  rep_Q_2k(query_p_datos,query_pregunta,1)
-      #  cat("\n")
-      #}
+      }else if (stringr::str_detect(Exam_origen[i], "AB-") == T){ #Son de Anova1f+B
+       cat("Pregunta de Anova 1F + Bloque: ", query_pregunta$Code, "\n")
+       rep_Q_AB(query_p_datos,query_pregunta,1)
+       cat("\n")
+      }else if (stringr::str_detect(Exam_origen[i], "2k-") == T){ #Son de Diseño 2k
+        cat("Pregunta de Diseño 2^k: ", query_pregunta$Code, "\n")
+        rep_Q_2k(query_p_datos,query_pregunta,1)
+        cat("\n")
+      }
     }#Pregunta por pregunta
 
   }#Tabla por tabla

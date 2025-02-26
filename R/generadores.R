@@ -866,6 +866,7 @@ question1Anova <- function(Data,Q,format = "HTML", lang = "Esp", silent = T){
   ####------- Enunciados
 
   #statement <- readr::read_delim("ANOVA_Statement.csv", delim ="\t")
+  statement <- Anov_statement
   ## Ver 3.8.3 - Se usó usethis::use_data(statement) para guardar la tabla "ANOVA_Statement" en el archivo sysdata.rda ... En teoria, ya no sera necesario importar el archivo.
 
   #X1: el enunciado, num: el numero de enunciado, Lang: Esp o Eng
@@ -1072,6 +1073,8 @@ question1Anova <- function(Data,Q,format = "HTML", lang = "Esp", silent = T){
 ## Generador de datos ----------------------------
 #' Anova 1F + Bloque: Generador de datos muestrales
 #'
+#' Ver 2.1.3 - La generacion se repite hasta que se genera un set donde el anova con bloque da significativo. 
+#' Ver 2.1.2 - Cambios menores
 #' Ver 2.1.1 - Cambios menores para importar funciones externas
 #' Ver 2.1 - Incluye integracion al directorio.
 #  Ver 2.0
@@ -1111,106 +1114,127 @@ gen1FBlock <- function(r){
   
   #### Generador de ANOVAs
   for (L in 1:r) { #10 SETS
-    #n <- round(runif(1,3,5)) #Replicas
-    a <- round(runif(1,3,5)) #Tratamientos
-    b <- round(runif(1,3,5)) #Bloques
-    df <- tibble::tibble(B = 1:b) %>% # Añadir indice (bloques) para evitar un error
-      mutate(B = str_c("B",B)) # Nombra a los bloques como tal para evitar confusión
     
-    X <- numeric()
-    #k <- 3
-    mu <- abs(runif(1,1,100))
-    sigma <- abs(runif(1,1,100))/(mu)
+    repeat { ## Se repite hasta que se vuelve significativo (con el Bloque)
+       #n <- round(runif(1,3,5)) #Replicas
+      a <- round(runif(1,3,5)) #Tratamientos
+      b <- round(runif(1,3,5)) #Bloques
+      df <- tibble::tibble(B = 1:b) %>% # Añadir indice (bloques) para evitar un error
+        dplyr::mutate(B = stringr::str_c("B",B)) # Nombra a los bloques como tal para evitar confusión
+      
+      X <- numeric()
+      #k <- 3
+      mu <- abs(runif(1,1,100))
+      sigma <- abs(runif(1,1,100))/(mu)
+      
+      
+      ####-------------- Generación de tabla de datos
+      for (i in 1:a){
+        X <- matrix(abs(rnorm(b,rnorm(1,mu,sigma),rnorm(1,sigma,sigma/mu)))) #Generar columna por columna ##
+        df <- df %>% tibble::add_column(X, .name_repair = make.unique) #Añadir la columna al dataframe
+      }
+      
+      names <- c()
+      #-- Selecciona un vector para los nombres de los tratamientos segun el numero de tratamientos
+      if(a == 3){
+        names <- c("A1","A2","A3")
+      }else if(a == 4){
+        names <- c("A1","A2","A3","A4")
+      }else if(a == 5){
+        names <- c("A1","A2","A3","A4","A5")}
+      
+      df <- df %>% dplyr::mutate_if(is.numeric,round,digits=2) #Redondear numeros, pero no quitar indice
+      
+      ###------- Genera ANOVA
+      df_reorder <- df %>% 
+        tidyr::gather(key = "X", value = "Y", 2:last_col()) %>% #Junta los datos en una columna
+        dplyr::mutate(X = factor(X))
+      
+      #df_reorder
+      model_B <- lm(Y~X+B,df_reorder) #Genera modelo 1F+B
+      #summary(aov(model_B)) #ANOVA con Bloque
+      
+      model_NB <- lm(Y~X,df_reorder) #Genera modelo 1F sin Bloque
+      #summary(aov(model_NB)) #ANOVA sin Bloque
+      
+      #Formato a la tabla de datos
+      df <- df %>% tidyr::gather(key = "X", value = "Y", 2:last_col()) %>% 
+        dplyr::mutate(X = forcats::fct_recode(X,!!!setNames(levels(df_reorder$X), names))) %>% #Cambiar nombre de tratamientos a A1,A2,A3
+        tidyr::spread(key = "X", value = "Y") #%>% select(!i) #Vuelve a restructurar la lista  
+      
+      ##Parsear tabla de ANOVA (Bloque) en un dataframe
+      df_Anova_B <- car::Anova(model_B) %>%  
+        data.frame() %>%
+        tibble::rownames_to_column(var = "Fuente") %>%
+        dplyr::add_row( Fuente = "Total", Sum.Sq = sum(.$Sum.Sq), 
+                        Df = sum(.$Df), F.value = NA, Pr..F. = NA) %>%
+        dplyr::transmute(Fuente, 
+                         SS_ = Sum.Sq, 
+                         Df, 
+                         MS_ = Sum.Sq/Df,
+                         F0 = F.value,  
+                         Pval = Pr..F. ) %>%
+        dplyr::mutate_if(is.numeric,round,digits = 3)
+      
+      ##Parsear tabla de ANOVA(sin Bloque) en un dataframe
+      df_Anova_NB <- car::Anova(model_NB) %>%  
+        data.frame() %>%
+        tibble::rownames_to_column(var = "Fuente") %>%
+        dplyr::add_row( Fuente = "Total", Sum.Sq = sum(.$Sum.Sq), 
+                 Df = sum(.$Df), F.value = NA, Pr..F. = NA) %>%
+        dplyr::transmute(Fuente, 
+                         SS_ = Sum.Sq, 
+                         Df, 
+                         MS_ = Sum.Sq/Df,
+                         F0 = F.value,  
+                         Pval = Pr..F. ) %>%
+        dplyr::mutate_if(is.numeric,round,digits = 3)
+      
+      #df_Anova_B  #Anova con Bloque
+      #model_B
+      #df_Anova_NB  #Anova sin Bloque
+      #model_NB
+      
+      #####-------- POST HOC! CON BLOQUE
+      ### Fisher
+      lsd_groups <- agricolae::LSD.test(model_B, "X")$groups
+      #lsd_mse <- LSD.test(df_lm, "X")$statistics[1] ## MSE
+      #lsd_est <- LSD.test(df_lm, "X")$statistics[5] ## T-estadistico
+      #lsd_SD <- LSD.test(df_lm, "X")$statistics[6] ## LSD
+      lsd_groups <- df_reorder %>% dplyr::group_by(X) %>% 
+        dplyr::summarise(Y = mean(Y)) %>% 
+        dplyr::left_join(lsd_groups, by = "Y")
+      lsd_statistics <- tibble::as_tibble(agricolae::LSD.test(model_B, "X")$statistics) #Estadisticos generales
+      
+      ### Tukey
+      tukey_groups <- agricolae::HSD.test(model_B, "X")$groups
+      #tukey_mse <- HSD.test(df_lm, "X")$statistics[1] ## MSE
+      #tukey_est <- HSD.test(df_lm, "X")$parameters[4] ## q-estadistico
+      #tukey_SD <- HSD.test(df_lm, "X")$statistics[5] ## HSD
+      tukey_groups <- df_reorder %>% dplyr::group_by(X) %>% 
+        dplyr::summarise(Y = mean(Y)) %>% 
+        dplyr::left_join(tukey_groups, by = "Y")
+      tukey_statistics <- tibble::as_tibble(agricolae::HSD.test(model_B, "X")$statistics) %>% 
+        dplyr::transmute(MSerror, Df, Mean, CV, 
+                         StudRange = agricolae::HSD.test(model_B, "X")$parameters[[4]], HSD = MSD) #Estadisticos generales
     
+      
+      alfa <- 0.05
+      fes <- round(df_Anova_B[1,5], digits = 3)
+      fcr <- round(qf(alfa,df_Anova_B[1,3],df_Anova_B[3,3],
+                     lower.tail = F),3) 
+      signif <- dplyr::case_when(
+        fes >= fcr ~ "Signif",
+        fes < fcr ~ "No signif")
+      
+    ### Rompe el bucle si A resulta significativo en el bloque.
+      if(signif == "No signif"){ #No hay significativos
+        ##Repetir
+      }else{ #Hay significativos
+        break
+      }
+    }## Acaba la repeticion
     
-    ####-------------- Generación de tabla de datos
-    for (i in 1:a){
-      X <- matrix(abs(rnorm(b,rnorm(1,mu,sigma),rnorm(1,sigma,sigma/mu)))) #Generar columna por columna ##
-      df <- df %>% tibble::add_column(X, .name_repair = make.unique) #Añadir la columna al dataframe
-    }
-    
-    names <- c()
-    #-- Selecciona un vector para los nombres de los tratamientos segun el numero de tratamientos
-    if(a == 3){
-      names <- c("A1","A2","A3")
-    }else if(a == 4){
-      names <- c("A1","A2","A3","A4")
-    }else if(a == 5){
-      names <- c("A1","A2","A3","A4","A5")}
-    
-    df <- df %>% dplyr::mutate_if(is.numeric,round,digits=2) #Redondear numeros, pero no quitar indice
-    
-    ###------- Genera ANOVA
-    df_reorder <- df %>% 
-      tidyr::gather(key = "X", value = "Y", 2:last_col()) %>% #Junta los datos en una columna
-      dplyr::mutate(X = factor(X))
-    
-    #df_reorder
-    model_B <- lm(Y~X+B,df_reorder) #Genera modelo 1F+B
-    #summary(aov(model_B)) #ANOVA con Bloque
-    
-    model_NB <- lm(Y~X,df_reorder) #Genera modelo 1F sin Bloque
-    #summary(aov(model_NB)) #ANOVA sin Bloque
-    
-    #Formato a la tabla de datos
-    df <- df %>% tidyr::gather(key = "X", value = "Y", 2:last_col()) %>% 
-      dplyr::mutate(X = forcats::fct_recode(X,!!!setNames(levels(df_reorder$X), names))) %>% #Cambiar nombre de tratamientos a A1,A2,A3
-      tidyr::spread(key = "X", value = "Y") #%>% select(!i) #Vuelve a restructurar la lista  
-    
-    ##Parsear tabla de ANOVA (Bloque) en un dataframe
-    df_Anova_B <- car::Anova(model_B) %>%  
-      data.frame() %>%
-      tibble::rownames_to_column(var = "Fuente") %>%
-      dplyr::add_row( Fuente = "Total", Sum.Sq = sum(.$Sum.Sq), 
-                      Df = sum(.$Df), F.value = NA, Pr..F. = NA) %>%
-      dplyr::transmute(Fuente, 
-                       SS_ = Sum.Sq, 
-                       Df, 
-                       MS_ = Sum.Sq/Df,
-                       F0 = F.value,  
-                       Pval = Pr..F. ) %>%
-      dplyr::mutate_if(is.numeric,round,digits = 3)
-    
-    ##Parsear tabla de ANOVA(sin Bloque) en un dataframe
-    df_Anova_NB <- car::Anova(model_NB) %>%  
-      data.frame() %>%
-      tibble::rownames_to_column(var = "Fuente") %>%
-      add_row( Fuente = "Total", Sum.Sq = sum(.$Sum.Sq), 
-               Df = sum(.$Df), F.value = NA, Pr..F. = NA) %>%
-      dplyr::transmute(Fuente, 
-                       SS_ = Sum.Sq, 
-                       Df, 
-                       MS_ = Sum.Sq/Df,
-                       F0 = F.value,  
-                       Pval = Pr..F. ) %>%
-      dplyr::mutate_if(is.numeric,round,digits = 3)
-    
-    #df_Anova_B  #Anova con Bloque
-    #model_B
-    #df_Anova_NB  #Anova sin Bloque
-    #model_NB
-    
-    #####-------- POST HOC! CON BLOQUE
-    ### Fisher
-    lsd_groups <- agricolae::LSD.test(model_B, "X")$groups
-    #lsd_mse <- LSD.test(df_lm, "X")$statistics[1] ## MSE
-    #lsd_est <- LSD.test(df_lm, "X")$statistics[5] ## T-estadistico
-    #lsd_SD <- LSD.test(df_lm, "X")$statistics[6] ## LSD
-    lsd_groups <- df_reorder %>% dplyr::group_by(X) %>% 
-      dplyr::summarise(Y = mean(Y)) %>% 
-      dplyr::left_join(lsd_groups, by = "Y")
-    lsd_statistics <- tibble::as_tibble(agricolae::LSD.test(model_B, "X")$statistics) #Estadisticos generales
-    
-    ### Tukey
-    tukey_groups <- agricolae::HSD.test(model_B, "X")$groups
-    #tukey_mse <- HSD.test(df_lm, "X")$statistics[1] ## MSE
-    #tukey_est <- HSD.test(df_lm, "X")$parameters[4] ## q-estadistico
-    #tukey_SD <- HSD.test(df_lm, "X")$statistics[5] ## HSD
-    tukey_groups <- df_reorder %>% dplyr::group_by(X) %>% 
-      dplyr::summarise(Y = mean(Y)) %>% 
-      dplyr::left_join(tukey_groups, by = "Y")
-    tukey_statistics <- as_tibble(agricolae::HSD.test(model_B, "X")$statistics) %>% 
-      dplyr::transmute(MSerror, Df, Mean, CV, StudRange = HSD.test(model_B, "X")$parameters[[4]], HSD = MSD) #Estadisticos generales
     
     #####----------- Construye base de datos
     DB <- DB %>% dplyr::add_row(
@@ -1223,9 +1247,11 @@ gen1FBlock <- function(r){
       mu = round(mu, 2),
       sigma = round(sigma, 2),
       #Con el Bloque
-      Fes = round(df_Anova_B[1,5], digits = 3),
-      Fcr = round(qf(alfa,df_Anova_B[1,3],df_Anova_B[3,3],
-                     lower.tail = F),3), 
+      #Fes = round(df_Anova_B[1,5], digits = 3),
+      #Fcr = round(qf(alfa,df_Anova_B[1,3],df_Anova_B[3,3],
+      #               lower.tail = F),3), 
+      Fes = fes,
+      Fcr = fcr,
       #df_Anova_B[3,3] son los gdL del Error
       signif = dplyr::case_when(
         Fes >= Fcr ~ "Signif",
@@ -1264,6 +1290,7 @@ gen1FBlock <- function(r){
 ## Generador de preguntas ------------------------
 #' Anova 1F + Bloque: Generador de Preguntas
 #'
+#' Ver 2.2.1 - Ajustes menores
 #' Ver 2.2 - Integración al Directorio
 #' Ver 2.1 - Integracion del idioma con tablas externas
 #' Ver 2.0 - Solo HTML
@@ -1287,7 +1314,8 @@ question1FBlock <- function(DB,Q,format = "HTML",lang = "Esp", silent = T){
   #  mutate(num = str_sub(X1,2,2))
   
   ####------- Enunciados
-  statement <- readr::read_delim("1FBloque_Statement.csv", delim ="\t") 
+  #statement <- readr::read_delim("1FBloque_Statement.csv", delim ="\t") 
+  statement <- A1FBloq_statement
   #X1: el enunciado, num: el numero de enunciado, Lang: Esp o Eng
   
   #[1] es Esp, [2] es Eng
@@ -1319,7 +1347,7 @@ question1FBlock <- function(DB,Q,format = "HTML",lang = "Esp", silent = T){
     num = sample(statement$num,Q, replace = TRUE),
     type = "t", 
     Topic = "B",
-    code = stringr::str_c(sprintf("%02d",as.numeric(i)),
+    Code = stringr::str_c(sprintf("%02d",as.numeric(i)),
                           Topic,
                           sprintf("%02d",as.numeric(num)),
                           type,
@@ -1367,7 +1395,7 @@ question1FBlock <- function(DB,Q,format = "HTML",lang = "Esp", silent = T){
     
     ###----------------------- ESPAÑOL
     z[j] <- Ques$statem[j]
-    z[j] <- stringr::str_replace(z[j], "([0-9])", paste0("",Ques$code[j]))
+    z[j] <- stringr::str_replace(z[j], "([0-9])", paste0("",Ques$Code[j]))
     z[j] <- stringr::str_replace(z[j], "%a%", as.character(DB$a[match(Ques$id[j],DB$id)])) #Niveles de A
     z[j] <- stringr::str_replace(z[j], "%b%", as.character(DB$a[match(Ques$id[j],DB$id)])) #Niveles de B
     z[j] <- stringr::str_replace_all(z[j], "%V%", "\n  </p> <li>") #Empieza lista de variables
@@ -1388,15 +1416,15 @@ question1FBlock <- function(DB,Q,format = "HTML",lang = "Esp", silent = T){
         padding = 5, 
         table.attr = "class=\"ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row\" style=\" width: 400px; \"") %>% 
         kableExtra::kable_minimal()
-    }
+    } #TODO: FALTA LATEX, format == "LaTeX"
     
     z[j] <- stringr::str_replace(z[j], "%T%",  tabl)
     z[j] <- stringr::str_replace(z[j], "%A%",  tablAnov)
     z[j] <- stringr::str_c(z[j], "\n", Fconf[1], "\n",
                            Fconf_NB[1],"\n",Tukval[1])
-    z[j] <- stringr::str_replace("%F%", as.character(DB$Fcr[match(Ques$id[j],DB$id)] %>% round(digits = 3))) %>%
-      stringr::str_replace("%FnB%", as.character(DB$Fcr_NB[match(Ques$id[j],DB$id)] %>% round(digits = 3))) %>%
-      stringr::str_replace("%ts%", as.character(DB$tukey[[match(Ques$id[j],DB$id)]][5] %>% round(digits = 3)))
+    z[j] <- stringr::str_replace(z[j], "%F%", as.character(DB$Fcr[match(Ques$id[j],DB$id)] %>% round(digits = 3))) 
+    z[j] <- stringr::str_replace(z[j], "%FnB%", as.character(DB$Fcr_NB[match(Ques$id[j],DB$id)] %>% round(digits = 3)))
+    z[j] <- stringr::str_replace(z[j], "%ts%", as.character(DB$tukey[[match(Ques$id[j],DB$id)]][5] %>% round(digits = 3)))
     
     Ques$z[j] <- z[j] 
     Ques$z_Esp[j] <- z[j] 
@@ -1404,7 +1432,7 @@ question1FBlock <- function(DB,Q,format = "HTML",lang = "Esp", silent = T){
     ###----------------------- INGLES
     z_Eng[j] <- Ques$statemENG[j]
     z_Eng[j] <- stringr::str_replace(z_Eng[j], "([0-9])", 
-                                     paste0("",Ques$code[j]))
+                                     paste0("",Ques$Code[j]))
     z_Eng[j] <- stringr::str_replace(z_Eng[j], "%a%", as.character(DB$a[match(Ques$id[j],DB$id)])) #Niveles de A
     z_Eng[j] <- stringr::str_replace(z_Eng[j], "%b%", as.character(DB$a[match(Ques$id[j],DB$id)])) #Niveles de B
     z_Eng[j] <- stringr::str_replace_all(z_Eng[j], "%V%", "\n  </p> <li>") #Empieza lista de variables
@@ -1431,9 +1459,9 @@ question1FBlock <- function(DB,Q,format = "HTML",lang = "Esp", silent = T){
     z_Eng[j] <- stringr::str_replace(z_Eng[j], "%A%",  tablAnov)
     z_Eng[j] <- stringr::str_c(z_Eng[j], "\n", Fconf[2], "\n", 
                                Fconf_NB[2],"\n",Tukval[2])
-    z_Eng[j] <- stringr::str_replace("%F%", as.character(DB$Fcr[match(Ques$id[j],DB$id)] %>% round(digits = 3))) %>%
-      stringr::str_replace("%FnB%", as.character(DB$Fcr_NB[match(Ques$id[j],DB$id)] %>% round(digits = 3))) %>%
-      stringr::str_replace("%ts%", as.character(DB$tukey[[match(Ques$id[j],DB$id)]][5] %>% round(digits = 3)))
+    z_Eng[j] <- stringr::str_replace(z_Eng[j],"%F%", as.character(DB$Fcr[match(Ques$id[j],DB$id)] %>% round(digits = 3)))
+    z_Eng[j] <- stringr::str_replace(z_Eng[j],"%FnB%", as.character(DB$Fcr_NB[match(Ques$id[j],DB$id)] %>% round(digits = 3)))
+    z_Eng[j] <- stringr::str_replace(z_Eng[j],"%ts%", as.character(DB$tukey[[match(Ques$id[j],DB$id)]][5] %>% round(digits = 3)))
     
     Ques$z_Eng[j] <- z_Eng[j]     
     
@@ -1490,6 +1518,7 @@ question1FBlock <- function(DB,Q,format = "HTML",lang = "Esp", silent = T){
 ## Generador de datos ----------------------------
 #' Diseño 2^k: Generador de datos muestrales
 #'
+#' Ver 2.1.1 - Ajustes menores
 #' Ver 2.1.0 - Integración del directorio
 #' Ver 2.0.0 - Inicial
 #'
@@ -1522,78 +1551,89 @@ gen2k <- function(r){
   
   #### Generador de ANOVAs
   for (L in 1:r) { #10 SETS
-    n <- sample(c(2,2,3,3,3,4),1) #Replicas
-    #k <- sample(c(3,3,3,3,4,4,5),1) #Factores
-    k <- 3
-    mu <- abs(runif(1,1,100))
-    sigma <- abs(runif(1,1,100))/(mu)
     
-    names <- c()
-    #Selecciona un vector para los nombres de los tratamientos segun el numero de tratamientos
-    if(k == 3){
-      names <- c("A","B","C")
-    }else if(k == 4){
-      names <- c("A","B","C","D")
-    }else if(k == 5){
-      names <- c("A","B","C","D","E")}
-    
-    ###------- Genera Datos
-    df <- AlgDesign::gen.factorial(2,k, varNames = names) 
-    Y0 <- matrix(abs(rnorm(2^k,mu,sigma))) # Primera columna se genera en aleatoriamente
-    Y0 <- round(Y0, digits = 2) #Redondear a dos digitos
-    Y <- Y0
-    df <- df %>% tibble::add_column(Y, .name_repair = make.unique)   
-    for (i in 1:(n-1)){ #Se añadiran nuevas filas según el número de replicas
-      Y <- numeric()
-      for (j in 1:length(Y0)){
-        Y[j] <- abs(rnorm(1,Y0[j],sd(Y0))) #Tratamientos son coherentes entre replicas
-      } 
-      Y <- matrix(round(Y, digits = 2)) #Redondear
-      df <- df %>% tibble::add_column(Y, .name_repair = make.unique) #Añadir las columnas de replicas generadas
-    }
-    #df
-    
-    
-    ###------- Genera ANOVA
-    df_reorder <- df %>% tidyr::gather(key="rep", value = "Y", Y:last_col()) %>% dplyr::select(-rep) #Reordena replicas en una columna
-    model <- lm(Y~(.)^6,df_reorder) #Genera modelo (0rden^5 para considerar todas las interacciones)
-    
-    
-    df_Anova <- car::Anova(model) %>%  ##Parsear tabla de ANOVA en un dataframe
-      data.frame() %>%
-      tibble::rownames_to_column(var = "Fuente") %>%
-      dplyr::add_row( Fuente = "Total", Sum.Sq = sum(.$Sum.Sq), 
-                      Df = sum(.$Df), F.value = NA, Pr..F. = NA) %>%
-      dplyr::transmute(Fuente, 
-                       SS_ = Sum.Sq, 
-                       Df, 
-                       MS_ = Sum.Sq/Df,
-                       F0 = F.value,  #)%>%
-                       Pval = Pr..F. ) %>%
-      dplyr::mutate_if(is.numeric,round,digits = 3)
-    
-    
-    ###-------- Modelo de Regresion
-    df_AnovaT <- df_Anova %>% dplyr::slice(1:(length(df_Anova$Df)-2)) #ANOVA Sin las ultimas 2 filas (Error y Total)
-    Fcr <- qf(0.05,df1 = 1, df2 =((n-1)*(2^k)),lower.tail=F) #F critico. Mismo para todos los factores 2^k (mismo Df)
-    
-    df_Sig <- df_AnovaT$Fuente[df_AnovaT$F0 > Fcr] #Los significativos, según F vs Fcr. Un vector de tipo chr
-    
-    df_CoEf <- as.data.frame((coefficients(model)))  %>% 
-      tibble::rownames_to_column("Factor") %>% 
-      dplyr::transmute(Factor,Coef = (coefficients(model)), Eff = Coef*2)   #Guarda Coeficientes y Efectos en un DF
-    df_CoEf <- df_CoEf %>% mutate_if(is.numeric, round,digits=3) %>% 
-      dplyr::filter_all(any_vars(. %in% c("(Intercept)",df_Sig))) #Filtra para solo quedarse con los significativos
-    #df_CoEf #Dataframe - extracto de los coeficientes, solo considerando los significativos + Interseccion
-    
-    # (!) Expresión para arrojar la ecuación de regresión
-    df_Eq <- stringr::str_c("y = ", df_CoEf[1,2])
-    for (i in 2:length(df_CoEf$Factor)){
-      df_Eq <- stringr::str_c(df_Eq," + ",as.character(df_CoEf[i,2]), " ", df_CoEf[i,1])
-    }
+    repeat{
+      n <- sample(c(2,2,3,3,3,4),1) #Replicas
+      #k <- sample(c(3,3,3,3,4,4,5),1) #Factores
+      k <- 3
+      mu <- abs(runif(1,1,100))
+      sigma <- abs(runif(1,1,100))/(mu)
+      
+      names <- c()
+      #Selecciona un vector para los nombres de los tratamientos segun el numero de tratamientos
+      if(k == 3){
+        names <- c("A","B","C")
+      }else if(k == 4){
+        names <- c("A","B","C","D")
+      }else if(k == 5){
+        names <- c("A","B","C","D","E")}
+      
+      ###------- Genera Datos
+      df <- AlgDesign::gen.factorial(2,k, varNames = names) 
+      Y0 <- matrix(abs(rnorm(2^k,mu,sigma))) # Primera columna se genera en aleatoriamente
+      Y0 <- round(Y0, digits = 2) #Redondear a dos digitos
+      Y <- Y0
+      df <- df %>% tibble::add_column(Y, .name_repair = make.unique)   
+      for (i in 1:(n-1)){ #Se añadiran nuevas filas según el número de replicas
+        Y <- numeric()
+        for (j in 1:length(Y0)){
+          Y[j] <- abs(rnorm(1,Y0[j],sd(Y0))) #Tratamientos son coherentes entre replicas
+        } 
+        Y <- matrix(round(Y, digits = 2)) #Redondear
+        df <- df %>% tibble::add_column(Y, .name_repair = make.unique) #Añadir las columnas de replicas generadas
+      }
+      #df
+      
+      
+      ###------- Genera ANOVA
+      df_reorder <- df %>% tidyr::gather(key="rep", value = "Y", Y:last_col()) %>% dplyr::select(-rep) #Reordena replicas en una columna
+      model <- lm(Y~(.)^6,df_reorder) #Genera modelo (0rden^5 para considerar todas las interacciones)
+      
+      
+      df_Anova <- car::Anova(model) %>%  ##Parsear tabla de ANOVA en un dataframe
+        data.frame() %>%
+        tibble::rownames_to_column(var = "Fuente") %>%
+        dplyr::add_row( Fuente = "Total", Sum.Sq = sum(.$Sum.Sq), 
+                        Df = sum(.$Df), F.value = NA, Pr..F. = NA) %>%
+        dplyr::transmute(Fuente, 
+                         SS_ = Sum.Sq, 
+                         Df, 
+                         MS_ = Sum.Sq/Df,
+                         F0 = F.value,  #)%>%
+                         Pval = Pr..F. ) %>%
+        dplyr::mutate_if(is.numeric,round,digits = 3)
+      
+      
+      ###-------- Modelo de Regresion
+      df_AnovaT <- df_Anova %>% dplyr::slice(1:(length(df_Anova$Df)-2)) #ANOVA Sin las ultimas 2 filas (Error y Total)
+      Fcr <- qf(0.05,df1 = 1, df2 =((n-1)*(2^k)),lower.tail=F) #F critico. Mismo para todos los factores 2^k (mismo Df)
+      
+      df_Sig <- df_AnovaT$Fuente[df_AnovaT$F0 > Fcr] #Los significativos, según F vs Fcr. Un vector de tipo chr
+      
+      df_CoEf <- as.data.frame((coefficients(model)))  %>% 
+        tibble::rownames_to_column("Factor") %>% 
+        dplyr::transmute(Factor,Coef = (coefficients(model)), Eff = Coef*2)   #Guarda Coeficientes y Efectos en un DF
+      df_CoEf <- df_CoEf %>% dplyr::mutate_if(is.numeric, round,digits=3) %>% 
+        dplyr::filter_all(dplyr::any_vars(. %in% c("(Intercept)",df_Sig))) #Filtra para solo quedarse con los significativos
+      #df_CoEf #Dataframe - extracto de los coeficientes, solo considerando los significativos + Interseccion
+      
+      # (!) Expresión para arrojar la ecuación de regresión
+      df_Eq <- stringr::str_c("y = ", df_CoEf[1,2])
+      for (i in 2:length(df_CoEf$Factor)){
+        df_Eq <- stringr::str_c(df_Eq," + ",as.character(df_CoEf[i,2]), " ", df_CoEf[i,1])
+      }
+      
+      if(length(df_Sig) == 0){ #No hay significativos
+        ##Repetir
+      }else{ #Hay significativos
+        break
+      }
+    } ### Si NO hay significativos, repetir la generacio´n...
     
     ###------- Predicción
     #?reformulate()
+    ## AGUAS!!! reformulate se muere si NO encuentra significativos!!
+        ## Repetir...?
     model_abr <- lm(stats::reformulate(df_Sig, "Y"), data = df_reorder) #Generar modelo solo con los significativos
     df_fit <- df_reorder %>% dplyr::mutate(Y_fit = fitted(model_abr)) #Guarda las predicciones en un dataframe
     
@@ -1644,6 +1684,8 @@ gen2k <- function(r){
 ## Generador de preguntas ------------------------
 #' Diseño 2^k: Generador de preguntas
 #' 
+#' Ver 2.2.2 - Se incluye la tabla de anova en el enunciado - se debe eliminar todo menos el SST
+#' Ver 2.2.1 - Cambios menores
 #' Ver 2.2.0 - Integración del directorio
 #' Ver 2.1.0 - Incorporacion de idioma
 #' Ver 2.0.0 - Inicial
@@ -1661,7 +1703,8 @@ gen2k <- function(r){
 question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
   DBorigin <- attr(DB, "DBname")
   ####------- Enunciados
-  statement <- readr::read_delim("2k_Statement.csv", delim ="\t") 
+  #statement <- readr::read_delim("2k_Statement.csv", delim ="\t") 
+  statement <- D2k_statement
   #X1: el enunciado, num: el numero de enunciado, Lang: Esp o Eng
   
   #[1] es Esp, [2] es Eng
@@ -1669,6 +1712,8 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
                 "\n\n </li> <p> Below, the design matrix for the experiment (in codified units) and the results of %n% replicates: </p> \n %T% ")
   Fconf <- c("\n <p> Para un 95% de confianza, considera un valor de F critico de %F%  </p>\n",
              "\n <p> For a test with 95% confidence, consider a critical F value of %F%  </p>\n")
+  anovT <- c("\n A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. \n %A%",
+             "\n Below, you're presented with a partial ANOVA table generated from the data. \n %A%")
   
   
   ####----- Incialización: Cuantas preguntas a generar
@@ -1676,12 +1721,13 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
   wd <- here::here("doetest_out", "reportes")
   
   ####-------- Genera tabla de Preguntas
-  Ques <- tibble(
+  Ques <- tibble::tibble(
     i = 1:Q,
     id = sample(DB$id, Q, replace = TRUE),
     num = sample(statement$num,Q, replace = TRUE),
-    topic = "k",
-    code = stringr::str_c(sprintf("%02d",as.numeric(i)),
+    type = "t", 
+    Topic = "k",
+    Code = stringr::str_c(sprintf("%02d",as.numeric(i)),
                           Topic,
                           sprintf("%02d",as.numeric(num)),
                           type,
@@ -1692,9 +1738,12 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
   Ques <- Ques %>% dplyr::mutate(
     statem = statement[statement$Lang == "Esp",]$X1[match(Ques$num, statement$num)],
     statemENG = statement[statement$Lang == "Eng",]$X1[match(Ques$num, statement$num)],
-    statem = stringr::str_c(statem, St_datos[1]),
-    statemENG = stringr::str_c(statemENG, St_datos[2]),
+    
+    statem = stringr::str_c(statem, St_datos[1], anovT[1]),
+    statemENG = stringr::str_c(statemENG, St_datos[2], anovT[2]),
+    
     table = DB$data[match(Ques$id, DB$id)],
+    table2 = DB$anova[match(Ques$id, DB$id)],
     z = NA, z_Esp = NA, z_Eng = NA)
   
   #Ques$tabl
@@ -1721,7 +1770,7 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
     
     ###----------------------- ESPAÑOL
     z[j] <- Ques$statem[j]
-    z[j] <- stringr::str_replace(z[j], "([0-9])", paste0("",Ques$code[j]))
+    z[j] <- stringr::str_replace(z[j], "([0-9])", paste0("",Ques$Code[j]))
     z[j] <- stringr::str_replace_all(z[j], "%V%", "\n  </p> <li>")
     z[j] <- stringr::str_replace_all(z[j], "%O%", "\n  </li><li>")
     z[j] <- stringr::str_replace(z[j], "%n%", as.character(DB$n[match(Ques$id[j],DB$id)]))
@@ -1734,8 +1783,17 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
                            padding = 5, 
                            table.attr = "class=\"ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row\" style=\" width: 400px; \"") %>% 
         kableExtra::kable_minimal()
+      
+      tablAnov <- knitr::kable(
+        Ques$table2[j], "html", 
+        caption =  "Tabla de Anova",
+        padding = 5, 
+        table.attr = "class=\"ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row\" style=\" width: 400px; \"") %>% 
+        kableExtra::kable_minimal()
+      
     } #TODO: format == "LaTeX"
     
+    z[j] <- stringr::str_replace(z[j], "%A%",  tablAnov)
     z[j] <- stringr::str_c(z[j], "\n", Fconf[1]) %>%
       stringr::str_replace("%T%",  tabl) %>%
       stringr::str_replace("%F%", as.character(DB$Fcr[match(Ques$id[j],DB$id)] %>% round(digits = 3)))
@@ -1745,7 +1803,7 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
     
     ###----------------------- INGLES
     z_Eng[j] <- Ques$statemENG[j]
-    z_Eng[j] <- stringr::str_replace(z_Eng[j], "([0-9])", paste0("",Ques$code[j]))
+    z_Eng[j] <- stringr::str_replace(z_Eng[j], "([0-9])", paste0("",Ques$Code[j]))
     z_Eng[j] <- stringr::str_replace_all(z_Eng[j], "%V%", "\n  </p> <li>")
     z_Eng[j] <- stringr::str_replace_all(z_Eng[j], "%O%", "\n  </li><li>")
     z_Eng[j] <- stringr::str_replace(z_Eng[j], "%n%", as.character(DB$n[match(Ques$id[j],DB$id)]))
@@ -1758,8 +1816,16 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
                            padding = 5, 
                            table.attr = "class=\"ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row\" style=\" width: 400px; \"") %>% 
         kableExtra::kable_minimal()
+      
+      tablAnov <- knitr::kable(
+        Ques$table2[j], "html", 
+        caption =  "Anova Table",
+        padding = 5, 
+        table.attr = "class=\"ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row\" style=\" width: 400px; \"") %>% 
+        kableExtra::kable_minimal()
     } #TODO: format == "LaTeX"
     
+    z_Eng[j] <- stringr::str_replace(z_Eng[j], "%A%",  tablAnov)
     z_Eng[j] <- stringr::str_c(z_Eng[j], "\n", Fconf[2]) %>%
       stringr::str_replace("%T%",  tabl) %>%
       stringr::str_replace("%F%", as.character(DB$Fcr[match(Ques$id[j],DB$id)] %>% round(digits = 3)))
@@ -1819,6 +1885,7 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
 
 #' Diseño 2^k: Generador de preguntas con enfasis en Regresión Lineal
 #' 
+#' Ver 2.2.1 - Cambios menores
 #' Ver 2.2.0 - Integración del directorio
 #' Ver 2.1.0 - Incorporacion de idioma
 #' Ver 2.0.0 - Inicial
@@ -1836,7 +1903,8 @@ question2k <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
 question2k_reg <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
   DBorigin <- attr(DB, "DBname")
   ####------- Enunciados
-  statement <- readr::read_delim("2k_Statement.csv", delim ="\t") 
+  #statement <- readr::read_delim("2k_Statement.csv", delim ="\t") 
+  statement <- D2k_statement
   #X1: el enunciado, num: el numero de enunciado, Lang: Esp o Eng
   
   #[1] es Esp, [2] es Eng
@@ -1858,8 +1926,9 @@ question2k_reg <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
     i = 1:Q,
     id = sample(DB$id, Q, replace = TRUE),
     num = sample(statement$num,Q, replace = TRUE),
-    topic = "k",
-    code = stringr::str_c(sprintf("%02d",as.numeric(i)),
+    type = "r", 
+    Topic = "k",
+    Code = stringr::str_c(sprintf("%02d",as.numeric(i)),
                           Topic,
                           sprintf("%02d",as.numeric(num)),
                           type,
@@ -1899,7 +1968,7 @@ question2k_reg <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
     
     ##-------------------- ESPAÑOL
     z[j] <- Ques$statem[j]
-    z[j] <- stringr::str_replace(z[j],"([0-9])",paste0("",Ques$code[j]))
+    z[j] <- stringr::str_replace(z[j],"([0-9])",paste0("",Ques$Code[j]))
     z[j] <- stringr::str_replace_all(z[j], "%V%", "\n  </p> <li>")
     z[j] <- stringr::str_replace_all(z[j], "%O%", "\n  </li><li>")
     z[j] <- stringr::str_replace(z[j], "%n%", as.character(DB$n[match(Ques$id[j],DB$id)]))
@@ -1919,7 +1988,7 @@ question2k_reg <- function(DB,Q, format = "HTML", lang = "Esp", silent = T){
     
     ##-------------------- INGLES
     z_Eng[j] <- Ques$statemENG[j]
-    z_Eng[j] <- stringr::str_replace(z_Eng[j], "([0-9])", paste0("",Ques$code[j]))
+    z_Eng[j] <- stringr::str_replace(z_Eng[j], "([0-9])", paste0("",Ques$Code[j]))
     z_Eng[j] <- stringr::str_replace_all(z_Eng[j], "%V%", "\n  </p> <li>")
     z_Eng[j] <- stringr::str_replace_all(z_Eng[j], "%O%", "\n  </li><li>")
     z_Eng[j] <- stringr::str_replace(z_Eng[j], "%n%", as.character(DB$n[match(Ques$id[j],DB$id)]))

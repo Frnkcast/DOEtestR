@@ -21,6 +21,7 @@ question2k_reg(DB, Q, format = "HTML", lang = "Esp", silent = T)
 Una tabla de datos, se guarda en un archivo, y se puede asignar a un objeto
 }
 \description{
+Ver 2.2.1 - Cambios menores
 Ver 2.2.0 - Integración del directorio
 Ver 2.1.0 - Incorporacion de idioma
 Ver 2.0.0 - Inicial

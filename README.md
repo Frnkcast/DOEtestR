@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Version 2.0.1
+Version 2.2,1
 
 Este paquete (doe.testR) contiene funciones para generar ejercicios y
 examenes para un curso de Diseño de Experimentos. En la versión actual,
@@ -14,9 +14,18 @@ contiene las funcionalidades para desarrollar ejercicios de Media
 Muestral, Prueba de Hipotesis para comparación de medias, Anova de 1
 Factor y Pruebas Post-Hoc. Incluye desarrollo de un sistema de
 directorio de tablas relacionales para el manejo de todos los ejercicios
-y examenes desarrollados. Para la version 2.0.0 se diseñó un Command
-Line Interface para facilitar el uso de la libreria - para usarla, se
-llama a la variable ´doeExam()´.
+y examenes desarrollados.
+
+- Para la version 2.0.0 se diseñó una Interfaz de Texto en Consola para
+  facilitar el uso de la libreria - para usarla, se llama a la funcion
+  ´doeExam()´.
+
+- Para la version 2.1.0 se tiene ahora un modo para armar ejercicios de
+  un solo tema - a esta modalidad se le llama con la funcion
+  ´doePractice()´,
+
+- Para la version 2.2.0, se incluyen los temas de Anova con Bloque y
+  Diseño 2^k. Se corrigen errores.
 
 ## Instalación
 
@@ -108,7 +117,128 @@ no. 2 Tipos de problemas:
 1.  Se proporciona una tabla de ANOVA incompleta, y se debe de
     completar.
 2.  Se solicita el procedimiento completo del ANOVA
+3.  Se proporciona la tabla ANOVA completa, y se solicita realizar una
+    prueba Post Hoc (Fisher o Tukey)
 
-## Example
+### Tema 4. Anova de 1 Factor con Bloque
 
-This is a basic example which shows you how to solve a common problem:
+Similar al Anova de 1 Factor, y a modo de introducción para el manejo de
+multiples variables, se genera una tabla de datos y se asigna un
+escenario con definición para las variables Factor (A) y Bloque (B). Se
+solicita realizar un analisis ANOVA de los datos considerando el bloque,
+y se pide contrastar el resultado contra un segundo analisis donde el
+bloque es ignorado.
+
+### Tema 5. Diseños 2^k
+
+Para este ejercicio, se genera una matriz de diseño siguiendo un diseño
+2^k, usando 3 variables, y se rellena con datos. Se asigna un escenario
+para definir las variables y sus niveles. Para el analisis, se solicita
+realizar el correspondiente ANOVA, asi como tambien un analisis de
+regresión sencillo, para obtener un modelo de regresión abreviado con el
+cual poder hacer una inferencia sobre el mayor y el menor valor estimado
+de la variable respuesta.
+
+## Notas de Desarrollo y Cambios
+
+#### 02/25/2024
+
+- Revisión general del funcionamiento para actualizar el GitHub con la
+  implementacion de los temas del 2do parcial.
+
+- Sugerencias:
+
+  - Indicar al final de cada operación, donde encontrar el archivo o
+    tabla generada. Aunque suene redundante, para fines de debug.
+
+    - O, al final de la interfaz, dar un resumen de lo que se generó
+      (examen y resultados) y donde estan localizados.
+
+  - Cuando se genera un examen o ejercicio del tema de Anova de 1 Factor
+    (A), la interfaz debe detenerse para que el usuario pueda revisar el
+    aviso sobre la necesidad de ajustar los enunciados generados. Hacer
+    pregunta de “Se entendio? S/N?” o “Presiona <ENTER> para continuar”,
+    y no liberar el archivo hasta entonces.
+
+  - Pausar la interfaz en momentos importantes para dar tiempo al
+    usuario de ver lo que se esta haciendo.
+
+- Errores detectados:
+
+  - Si se tiene ya existente y poblada la carpeta tablas, pero no se
+    encuentran una tabla de un tema particular - el genExam() tratará de
+    pedir el nombre de una tabla, diciendo que hay más de una tabla con
+    un nombre similar. Ej. Habiendo anteriormente armado examenes de 2do
+    Parcial (MHBK), se pidió hacer un examen de 1er Parcial (MHA). Al no
+    existir tablas para A, el programa reconoce que no encontró tablas
+    del tema, pero en vez de generar las tablas faltantes, busca en el
+    directorio.
+
+    - Corregido. 25/02/2025 11:40 PM
+
+#### 03/10/2024
+
+- Ya se cuenta con la implementacion de Anova con Bloques y Diseños 2^k.
+  Falta solo ajustar detalles y ver como resolver casos donde los datos
+  de entrada no son los correctos.
+
+  - Sugerencias:
+
+    - Cuando se piden mas preguntas de las que hay en la tabla de
+      preguntas
+
+      - Generar nueva tabla de preguntas y usarla - poblarDirectorio()
+
+    - Cuando no existen preguntas de una tabla particular para el
+      examen.
+
+      - Generar la nueva tabla. Ej. En el examen 2 se generan preguntas
+        del tema 1 y 2, pero no del tema 3. Si se pide realizar un
+        examen de 1er parcial y no se pobla el directorio, no habrá
+        tablas para usar.
+
+  - Ahorita lo urgente es terminar de armar el examen 2: 2 problemas de
+    pruebas de hipotesis? 1 de anova con bloque? 1 con anova 2^3?
+
+#### 01/10/2024
+
+- Se probó que funciona. Se uso para generar examenes de prueba +
+  solucionario. Commit a GitHub.
+
+- Sugerencias futuras:
+
+  1.  Añadir generadores para Temas 2^k
+
+  2.  Manejo de graficos:
+
+      1.  Area bajo la curva para Dist Muestrales y Pruebas de Hipotesis
+
+#### 27/09/2024
+
+- Commit inicial a Github con la version 2.0.1
+
+#### 25/09/2024
+
+- Falta compilar el paquete, pero ya se probó que funciona. Se hicieron
+  mas ajustes al CLI y ya se tiene una interfaz lo suficientemente
+  robusta.
+  - Casos de error que se busca evitar: Carpetas existentes pero vacias
+    (Directorio vacio).
+  - Placeholders para los temas del 2do parcial
+  - Se escribió un anuncio con instrucciones para preparar los problemas
+    de Anova
+- Se separó el ensamblador de enunciados del examen en su propia funcion
+  (ensamblarExamen()), para que las tablas de examenes no esten
+  encadenadas a un solo idioma - sino que la decisión del idioma y el
+  formato de salida se puedan dar despues.
+  - Respecto al idioma, se cambió la forma de implementar la seleccion
+    del idioma para el enunciado de los problemas. Ya los generadores de
+    preguntas guardan ambos enunciados (z_Esp y z_Eng) simultaneamente,
+    y el generador de tabla de examen los junta dentro de una tibble y
+    guarda en una lista dentro de la tabla. Rebuscado? Algo, pero util.
+
+<!-- -->
+
+- FALTA: Corregir la ortografía, artefactos de texto (≠, } , \$), ver la
+  forma de implementar los subscripts.
+  - HTML Entities.

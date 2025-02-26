@@ -465,7 +465,7 @@ rep_D_AB <- function(DB){
 rep_Q_AB <- function(Data,Ques,i){
   
   cat("-----------------------------------------------------------\n")
-  cat(" Entrada ", i,"B --  ", as.character(Ques[[i,"code"]]), "\n")
+  cat(" Entrada ", i,"B --  ", as.character(Ques[[i,"Code"]]), "\n")
   cat("-----------------------------------------------------------\n\n")
   cat("   # Niveles de A: ", as.character(Data$a[[match(Ques$id[i], Data$id)]]), "\n")
   cat("   # Niveles de B (Bloque): ", as.character(Data$b[[match(Ques$id[i], Data$id)]]), "\n \n")
@@ -494,15 +494,15 @@ rep_Q_AB <- function(Data,Ques,i){
   
   cat("- A5 (2 pts) Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadistico q de Tukey a utilizar para la prueba)", "\n")
   cat("Res: \n")
-  cat(knitr::kable(list(Data$tukey[[match(Ques$id[i], Data$id)]]), "pipe"), "\n")
-  cat(knitr::kable(list(Data$tukey_groups[[match(Ques$id[i], Data$id)]]), "pipe"), "\n")
+  cat(knitr::kable(list(Data$tukey[[match(Ques$id[i], Data$id)]]), "pipe"), "\n\n")
+  cat(knitr::kable(list(Data$tukey_groups[[match(Ques$id[i], Data$id)]]), "pipe"), "\n\n")
   
   ### Matriz de comparacion...
   #Data$signif_NB[[match(Ques$id[i], Data$id)]]
   x1 <- Data$data[[match(Ques$id[i], Data$id)]] #La Tabla
   ## Calcula los promedios por nivel de la variable
   x1m <- x1 %>% tidyr::gather(key = "X", value = "Y", A1:last_col())%>%
-    dlyr::group_by(X) %>% dplyr::summarise(Y=mean(Y))
+    dplyr::group_by(X) %>% dplyr::summarise(Y=mean(Y))
   ## Prepara la matriz de comparación por parejas
   names(x1m$Y) <- x1m$X
   x1pw <- abs(outer(x1m$Y, x1m$Y, FUN = "-"))
@@ -522,7 +522,8 @@ rep_Q_AB <- function(Data,Ques,i){
   cat("\n\n")
   
   cat("- A6 (2 pts)  Vuelve a realizar tu analisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad apropiados. El valor de F critico a utilizar se encuentra en el enunciado de este problema. ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento?", "\n")
-  cat("Res:\n", knitr::kable(Data$anova_NB[[match(Ques$id[i], Data$id)]], "pipe"), "\n")
+  cat("Res:\n")
+  cat(knitr::kable(list(Data$anova_NB[[match(Ques$id[i], Data$id)]]), "pipe"), "\n")
   cat("    ", dplyr::case_when(
     Data$signif_NB[[match(Ques$id[i], Data$id)]] == "Signif" ~ "Se rechaza H0. El factor A es significativo",
     Data$signif_NB[[match(Ques$id[i], Data$id)]] == "No signif" ~ "No se rechaza H0. El factor A no es significativo"),
@@ -612,7 +613,7 @@ rep_D_2k <- function(DB){
 #' @examples
 rep_Q_2k <- function(Data, Ques, i){
   cat("-----------------------------------------------------------\n")
-  cat(" Entrada ", i,"#: -- ", as.character(Ques[[i,"code"]]), "\n")
+  cat(" Entrada ", i,"#: -- ", as.character(Ques[[i,"Code"]]), "\n")
   cat("-----------------------------------------------------------\n")
   cat("   # Factores: ", as.character(Data$k[[match(Ques$id[i], Data$id)]]), "\n")
   cat("   Replicas: ", as.character(Data$n[[match(Ques$id[i], Data$id)]]), "\n \n")
@@ -622,7 +623,7 @@ rep_Q_2k <- function(Data, Ques, i){
   cat(Ques[[i,"statem"]], "\n\n")
   
   cat("  Datos::  \n")
-  cat(knitr::kable(Data$data[[match(Ques$id[i], Data$id)]], "pipe"), "\n\n")
+  cat(knitr::kable(list(Data$data[[match(Ques$id[i], Data$id)]]), "pipe"), "\n\n")
   
   cat("  Preguntas y sus respuestas:: \n\n")
   
@@ -635,8 +636,8 @@ rep_Q_2k <- function(Data, Ques, i){
   model <- lm(Y~(.)^6,df)
   dfCoEf <- as.data.frame((coefficients(model)))  %>% 
     tibble::rownames_to_column("Factor") %>% 
-    dplyr::mutate(Coef=(coefficients(model)),Efecto=Coef*2)
-  dplyr::transmute(Factor,Efecto,Coef) %>% 
+    dplyr::mutate(Coef=(coefficients(model)),Efecto=Coef*2) %>%
+    dplyr::transmute(Factor,Efecto,Coef) %>% 
     dplyr::mutate_if(is.numeric,round,3)  #Guarda Coeficientes y Efectos en un DF
   #cat("\n Tabla de Efectos y Coeficientes: \n")
   cat(knitr::kable(list(dfCoEf), "pipe"))
@@ -648,7 +649,7 @@ rep_Q_2k <- function(Data, Ques, i){
   
   cat("- B3 (3 pts) Realiza un analisis de varianza Anova y reporta cuales factores e interacciones son significativos. Utiliza un alfa de 0.05 (el valor de F critico a utilizar en las comparaciones está dado en el enunciado del problema) \n")
   cat("Res: \n")
-  cat(knitr::kable(Data$anova[[match(Ques$id[i], Data$id)]], "pipe"), "\n")
+  cat(knitr::kable(list(Data$anova[[match(Ques$id[i], Data$id)]]), "pipe"), "\n")
   cat("Significativos: ", Data$sign[[match(Ques$id[i], Data$id)]][[1]])
   cat("\n\n")
   
@@ -658,7 +659,7 @@ rep_Q_2k <- function(Data, Ques, i){
   cat("\n\n")
   
   cat("Predicción de la respuesta con el mejor modelo: \n")
-  cat(knitr::kable(Data$Fit[[match(Ques$id[i], Data$id)]], "pipe"), "\n")
+  cat(knitr::kable(list(Data$Fit[[match(Ques$id[i], Data$id)]]), "pipe"), "\n")
   cat("\n")
   
   cat("- B5 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
@@ -666,14 +667,14 @@ rep_Q_2k <- function(Data, Ques, i){
         b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para minimizar la respuesta? \n")
   cat("Res: \n")
   cat("   - Minimizar: \n")
-  cat(knitr::kable(Data$Fit_Min[[match(Ques$id[i], Data$id)]], "pipe"), "\n\n")
+  cat(knitr::kable(list(Data$Fit_Min[[match(Ques$id[i], Data$id)]]), "pipe"), "\n\n")
   
   cat("- B6 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
         a) ¿Cuál es el valor maximo de la variable respuesta predicho por el modelo abreviado
         b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para maximizar la respuesta? \n")
   cat("Res: \n")
   cat("   - Maximizar: \n")
-  cat(knitr::kable(Data$Fit_Max[[match(Ques$id[i], Data$id)]], "pipe"))
+  cat(knitr::kable(list(Data$Fit_Max[[match(Ques$id[i], Data$id)]]), "pipe"))
   cat("\n \n")
   cat("-----------------------------------------------------------\n")
   cat("\n")
