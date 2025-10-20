@@ -1,6 +1,7 @@
 ### Generador de Examen ----------------------------------------
 #' Generador de Examen
 #'
+#' Version 2.9.0 - Se incorpora la opcion de generar el reporte de resultados en markdown -- word. Se incorpora tambien una solucion cruda para el problema de tener preguntas con datos repetidos. Falta una solucion mas elegante que permita incorporar de diferentes tablas.
 #' Version 2.8.2 - Se corrige un error para cuando el directorio no tiene una tabla de un tema en particular.
 #' Version 2.8.1 - Cambios menores para Quality of Life. Se añaden pausas en la interfaz para el usuario.
 #' Version 2.8.0 - Se incorporan el framework para trabajar con los temas B y K
@@ -24,9 +25,10 @@
 #' @export
 #'
 #' @examples
-genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
+genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp", rformat = "txt"){
   #query <- "M3-H3-A3"
   wd <- here::here("doetest_out", "tablas")
+  avisoA1 <- FALSE
   #wd0 <- "D:/Documents/ITESM/IBT21/BT2004B/003 - Actividades/Examen/"
 
   #### Estilos de cli() ##########;
@@ -61,7 +63,7 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
     A <- readline("Cuantos problemas de Anova de 1 Factor? ")
 
     query <- paste0("M",M,"-H",H,"-A",A)
-
+    
   }else if (parcial == 2){
     #cli::cli_alert_warning(s.warn("Paquete {.pkg doe.testR} Ver 2.0.0, No tienen preparadas funciones para armar un examen de 2do Parcial"))
     #cli::cli_alert_danger(s.error("FIN: Se aborta la generación del examen. Intente otra opción o espere una versión futura."))
@@ -145,7 +147,6 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
     query_path <- paste0(query_selec$DBname,".RDS") #Path del archivo de la tabla
     query_out <- importDB(query_path) ##Importa desde nuevo la tabla desde el archivo. Evita el problema de los nombres de las tablas como variable.
 
-    
     ## v2.7 - Mensaje de la tabla que se esta usando.
     c_tema <- dplyr::case_when(query_tema == "A" ~ "Anova de 1 Factor",
                         query_tema == "M" ~ "Media Muestral",
@@ -156,47 +157,76 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
     cli::cli_alert_success("Se cargó la tabla: {.val {query_selec$DBname}} para la construcción del examen.")
     cli::cli_alert_info("Eligiendo preguntas provenientes de la tabla.")
 
+    
     #####--- Obtener las preguntas
-    if(query_tema == "A"){ ##Para ANOVAS, cada 3ero es de Comp.Multiples, DEBE ser significativo
-
-      query_code_AN <-  query_out$Code #Los codigos de la tabla, disponibles. De ANOVA
-      query_code <- c() ##La lista de codigos se genera uno por uno
-      k <- 1 ##Variable contador
-
-      ## Para los postHoc, busamos solo IDs de sets de datos donde el resultado sea significativo.
-      query_code_AN_data_si <- importDB(attr(query_out, "DBorigin")) %>%
-        dplyr::filter(signif == "Signif") ##Tabla de menos filas
-
-      #query_code_AN_data_si$id ##ids de sets de datos significativos
-      ## Ahora, busca los ids significativos en la tabla de codigos
-      query_code_AN_ques_si <- query_out %>%
-        dplyr::filter(id %in% query_code_AN_data_si$id) ##Tabla de problemas que usan datos significativos
-
-      ## Para sacar la lista de codigos, todo depende del tamaño de query_n
-      for (n in 1:query_n){
-        if(k == 3){ ##Ya es el 3ero, le toca Comp.Multiple
-          ## Sample de 1 elemento de la lista de codigos significativos
-          query_code[n] <- sample(query_code_AN_ques_si$Code, 1)
-
-          ## El elemento añadido, se borra de ambas listas.
-          query_code_AN <- query_code_AN[! query_code_AN %in% query_code[n]]
-          query_code_AN_ques_si <- query_code_AN_ques_si[!query_code_AN_ques_si %in% query_code[n]]
-
-          k <- 1 ##Se reinicia el contador
-        }else {
-          ## Sample de 1 codigo de la lista query_code_AN
-          query_code[n] <- sample(query_code_AN, 1)
-
-          ## El elemento añadido, se borra de ambas listas.
-          query_code_AN <- query_code_AN[! query_code_AN %in% query_code[n]]
-          query_code_AN_ques_si <- query_code_AN_ques_si[!query_code_AN_ques_si %in% query_code[n]]
-
-          k <- k + 1 ##Se añade 1 al contador
+       ###TODO: Se necesita una forma de revisar que no se esten repitiendo los datos. Por mientras, se hara manual. 
+    aprov <- F
+    while(aprov == F){
+      
+      ## Seleccion de las preguntas por tema de forma aleatorea.
+      if(query_tema == "A"){ ##Para ANOVAS, cada 3ero es de Comp.Multiples, DEBE ser significativo
+        query_code_AN <-  query_out$Code #Los codigos de la tabla, disponibles. De ANOVA
+        query_code <- c() ##La lista de codigos se genera uno por uno
+        k <- 1 ##Variable contador
+  
+        ## Para los postHoc, busamos solo IDs de sets de datos donde el resultado sea significativo.
+        query_code_AN_data_si <- importDB(attr(query_out, "DBorigin")) %>%
+          dplyr::filter(signif == "Signif") ##Tabla de menos filas
+  
+        #query_code_AN_data_si$id ##ids de sets de datos significativos
+        ## Ahora, busca los ids significativos en la tabla de codigos
+        query_code_AN_ques_si <- query_out %>%
+          dplyr::filter(id %in% query_code_AN_data_si$id) ##Tabla de problemas que usan datos significativos
+  
+        ## Para sacar la lista de codigos, todo depende del tamaño de query_n
+        for (n in 1:query_n){
+          if(k == 3){ ##Ya es el 3ero, le toca Comp.Multiple
+            ## Sample de 1 elemento de la lista de codigos significativos
+            query_code[n] <- sample(query_code_AN_ques_si$Code, 1)
+  
+            ## El elemento añadido, se borra de ambas listas.
+            query_code_AN <- query_code_AN[! query_code_AN %in% query_code[n]]
+            query_code_AN_ques_si <- query_code_AN_ques_si[!query_code_AN_ques_si %in% query_code[n]]
+  
+            k <- 1 ##Se reinicia el contador
+          }else {
+            ## Sample de 1 codigo de la lista query_code_AN
+            query_code[n] <- sample(query_code_AN, 1)
+  
+            ## El elemento añadido, se borra de ambas listas.
+            query_code_AN <- query_code_AN[! query_code_AN %in% query_code[n]]
+            query_code_AN_ques_si <- query_code_AN_ques_si[!query_code_AN_ques_si %in% query_code[n]]
+  
+            k <- k + 1 ##Se añade 1 al contador
+          }
         }
+      }else { #Para todos los demas casos
+        query_code <- sample(query_out$Code, query_n, replace = FALSE) #Da n codigos de preguntas - sin repetir. Es un VECTOR
       }
-    }else { #Para todos los demas casos
-      query_code <- sample(query_out$Code, query_n, replace = FALSE) #Da n codigos de preguntas - sin repetir. Es un VECTOR
+      
+      
+      ## v2.7 - Mensaje de la tabla que se esta usando.
+      cli::cli_alert_info("De la tabla {.val {query_selec$DBname}}, se seleccionaron al azar las preguntas: ")
+      cli::cli_ul() ##Abriendo contenedor para la lista
+      cli::cli_li(query_code)
+      cli::cli_end() ##Cerrando contenedor para la lista
+      #cli::cat_line()
+      
+      ## -- Revision para determinar si se queda o se van las 
+      apr <- menu(c("Si, continuar con las preguntas", "No, regenerar la selección"), title = "¿Se desea continuar con estas preguntas, o se desea regenerar la selección? (Nota, revisar que no coincidan los ultimos dos digitos del código, para no repetir los datos muestrales usados para los problemas)")
+      aprov <- dplyr::case_when(apr == 1 ~ T,  ## Se aprueban las preguntas, se continua con el siguiente tema
+                                apr == 2 ~ F)  ## Se tiene que volver a regenerar.      
+      
+      if(aprov == F){
+        cli::cli_alert_warning("Se volveran a seleccionar preguntas de la tabla.")
+      }else {
+        cli::cli_alert_success("Se continua con las preguntas seleccionada para el tema.")
+        }
     }
+    
+    
+    
+    
 
     ######-------- Implementacion de Idioma: Cambiar el enunciado segun el idioma elegido
     #if (lang == "Esp") {
@@ -210,12 +240,7 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
     #query_ques <- query_out$z[query_out$Code %in% query_code] #!CHANGED
         ##No usar! Puesto que la busqueda se hace respetando el orden de la tabla de preguntas, no la de query_code
 
-    ## v2.7 - Mensaje de la tabla que se esta usando.
-    cli::cli_alert_info("De la tabla {.val {query_selec$DBname}}, se eligieron las preguntas: ")
-    cli::cli_ul() ##Abriendo contenedor para la lista
-    cli::cli_li(query_code)
-    cli::cli_end() ##Cerrando contenedor para la lista
-    #cli::cat_line()
+
 
     ######-------------- Armando la tabla del examen.
     for (j in 1:query_n){
@@ -262,7 +287,7 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
   Exam_rep_loc <- paste0(attr(Exam,'DBname'),"_RES.txt")
   
   cli::cli_alert_success("El examen {.val {attr(Exam,'DBname')}}, con apodo {.val {Exam_pkm}}, ha sido generado con éxito y se guardó en: \n")
-  cli::cli_text("{.path{here::here('doetest_out', Exam_loc)}} \n\n")
+  cli::cli_text("{.path {here::here('doetest_out', Exam_loc)}} \n\n")
   cli::cat_line()
 
   if(avisoA1 == TRUE){
@@ -281,11 +306,11 @@ genExamen <- function(parcial = NULL, format = "HTML", lang = "Esp"){
   cli::cat_line()
   cli::cli_alert_info("Se procede a generar el reporte de respuestas del examen:")
 
-  rep_Exam(Exam) ## Genera una hoja de resultados del examen. Como se da la tabla directa, no deberia haber problema con el orden de los problemas.
+  rep_Exam(Exam, format = rformat) ## Genera una hoja de resultados del examen. Como se da la tabla directa, no deberia haber problema con el orden de los problemas.
 
   
   cli::cli_alert_success("El reporte de respuestas {.val {attr(Exam,'DBname')}_RES} ha sido generado con éxito, y se encuentra ubicado en: \n")
-  cli::cli_text("{.path{here::here('doetest_out', 'reportes',Exam_loc)}} \n\n")
+  cli::cli_text("{.path {here::here('doetest_out', 'reportes',Exam_loc)}} \n\n")
   
   return(Exam)
 }
@@ -518,7 +543,7 @@ genPractica <- function(tema = NULL, format = "HTML", lang = "Esp"){
   Exam_rep_loc <- paste0(attr(Exam,'DBname'),"_RES.txt")
   
   cli::cli_alert_success("El ejercicio de practica {.val {attr(Exam,'DBname')}}, con apodo {.val {Exam_pkm}}, ha sido generado con éxito, y se encuentra ubicado en: \n")
-  cli::cli_text("{.path{here::here('doetest_out', Exam_loc)}} \n\n")
+  cli::cli_text("{.path {here::here('doetest_out', Exam_loc)}} \n\n")
   cli::cat_line()
   
   if(query_tema == "A"){  
@@ -540,7 +565,7 @@ genPractica <- function(tema = NULL, format = "HTML", lang = "Esp"){
   rep_Exam(Exam) ## Genera una hoja de resultados del examen. Como se da la tabla directa, no deberia haber problema con el orden de los problemas.
   
   cli::cli_alert_success("El reporte de respuestas {.val {attr(Exam,'DBname')}_RES} ha sido generado con éxito, y se encuentra ubicado en: \n")
-  cli::cli_text("{.path{here::here('doetest_out', 'reportes',Exam_loc)}} \n\n")
+  cli::cli_text("{.path {here::here('doetest_out', 'reportes',Exam_loc)}} \n\n")
   
   return(Exam)
 }
@@ -613,18 +638,48 @@ ensamblarExamen <- function(Data = NULL, format = "HTML", lang = "Esp"){
   cat("Problemas recopilados:::", attr(Exam, "Elementos"),"\n")
   cat("- Usando las bases de datos:: ", DBorigin, "\n")
   cat("--------------------------------------------\n")
-
+  z <- c()
   if (format == "LaTeX"){ ### Formato LATEX
     for(i in 1:nrow(Exam)){
       if(Exam$Topic[i] == "M"){ ##Problemas de Media Muestral
         cat("\\question[2] \n")
         #cat(Exam$z[i], "\\droppoints \\ansline \n\n")
-        cat(Exam$z[[i]][lang][[1]], "\\droppoints \\ansline \n\n")
+        z <- Exam$z[[i]][lang][[1]]
+        #z <- stringr::str_replace(z,stringr::fixed("X &sim; N( &mu;  ="), "$X \\sim N \\left( {\\mu  =")
+        #z <- stringr::str_replace(z,stringr::fixed(") , se obtuvo"), "} \\right)$, se obtuvo")
+        #z <- stringr::str_replace(z,stringr::fixed(" S = "), " S = $")
+        #z <- stringr::str_replace(z,stringr::fixed(". Dado que P(X&#772;"),"$. Dado que $P\\left( {\\overline{X}")
+        #z <- stringr::str_replace(z,stringr::fixed(") = "), " } \\right) = ")
+        #z <- stringr::str_replace(z,stringr::fixed(". \n"), "$. \n")
+        #z <- stringr::str_replace(z,stringr::fixed("&mu;"),"$\\mu$")
+        #cat(Exam$z[[i]][lang][[1]], "\\droppoints \\ansline \n\n")
+        cat(z, "\\droppoints \\ansline \n\n")
 
       }else if(Exam$Topic[i] == "H"){ ##Problemas de Prueba de Hipotesis
         cat("\\question[6] \n")
         #cat(Exam$z[i], "\\droppoints \\ansline \n \n")
-        cat(Exam$z[[i]][lang][[1]], "\\droppoints \\ansline \n\n")
+        z <- Exam$z[[i]][lang][[1]]
+        #z <- stringr::str_replace(z,stringr::fixed("que tenía una desviación de &sigma;<sub>1</sub>"),"que tenía una desviación de ${{\\sigma}_1}")
+        #z <- stringr::str_replace(z,stringr::fixed(", se obtuvo una muestra de tamaño n<sub>1</sub> ="),"$, se obtuvo una muestra de tamaño ${n_1} =")
+        #z <- stringr::str_replace(z,stringr::fixed("Del primer grupo,  se obtuvo una muestra de tamaño n<sub>1</sub> ="),"Del primer grupoo,  se obtuvo una muestra de tamaño ${n_1} =")
+        #z <- stringr::str_replace(z,stringr::fixed(", que tuvo un promedio de X&#772;<sub>1</sub> ="), "$, que tuvo un promedio de ${{\\overline X}_1} =")
+        #z <- stringr::str_replace(z,stringr::fixed(", y una desviación S<sub>1</sub> "), "$, y una desviación ${S_1}")
+        #z <- stringr::str_replace(z,stringr::fixed(" \n"), "$ \n")
+        
+        #z <- stringr::str_replace(z,stringr::fixed("que tenía una desviación de &sigma;<sub>2</sub>"),"que tenía una desviación de ${{\\sigma}_2}")
+        #z <- stringr::str_replace(z,stringr::fixed(", se obtuvo una muestra de tamaño n<sub>2</sub> ="),"$, se obtuvo una muestra de tamaño ${n_2} =")
+        #z <- stringr::str_replace(z,stringr::fixed("Del segundo grupo,  se obtuvo una muestra de tamaño n<sub>2</sub> ="),"Del segundo grupo, se obtuvo una muestra de tamaño ${n_2} =")
+        #z <- stringr::str_replace(z,stringr::fixed(", que tuvo un promedio de X&#772;<sub>2</sub> ="), "$, que tuvo un promedio de ${{\\overline X}_2} =")
+        #z <- stringr::str_replace(z,stringr::fixed(", y una desviación S<sub>2</sub> "), "$, y una desviación ${S_2}")
+        #z <- stringr::str_replace(z,stringr::fixed("un valor de &alpha;"), "un valor de $ \\alpha")
+        #z <- stringr::str_replace(z,stringr::fixed(", prueba las siguientes hipotesis"), "$, prueba las siguientes hipotesis")
+        #z <- stringr::str_replace(z,stringr::fixed(" H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub>"), " ${H_0}:{\\mu _1} - {\\mu _2} = 0$  vs ${H_A}:{\\mu _1} - {\\mu _2}")
+        #z <- stringr::str_replace(z,stringr::fixed("&ne;"), "\\ne")
+        #z <- stringr::str_replace(z,stringr::fixed(" , y da tu conclusión."), "$ , y da tu conclusión.")
+        
+        #cat(Exam$z[[i]][lang][[1]], "\\droppoints \\ansline \n\n")
+        cat(z, "\\droppoints \\ansline \n\n")
+        
 
       }else if(Exam$Topic[i] == "A"){ ##Problemas de ANOVA
         cat("\\question[10] \n")
@@ -684,8 +739,18 @@ ensamblarExamen <- function(Data = NULL, format = "HTML", lang = "Esp"){
                             Anov_quest$Format == "LaTeX")$Enunciado[j])
           cat("\n\n\n")
           j <- j + 1}
-      }#else if(Exam$Topic[i] == "B"){ ##Problemas de ANOVA 1F+B
-      #}else if(Exam$Topic[i] == "K"){} ##Problemas de Diseño 2k
+      }else if(Exam$Topic[i] == "B"){ ## Ejercios de Anova 1F + Bloque
+        cat(Exam$z[[i]][lang][[1]], "[10pt] \n\n")
+        cat(dplyr::filter(A1FBloq_quest,
+                          A1FBloq_quest$Format == "LaTeX")$Enunciado[1])
+        cat("\n\n\n")
+        
+      }else if(Exam$Topic[i] == "K"){ ## Ejercicios de Diseño 2k
+        cat(Exam$z[[i]][lang][[1]], "[12pt] \n\n\n")
+        cat(dplyr::filter(D2k_quest,
+                          D2k_quest$Format == "LaTeX")$Enunciado[1])
+        cat("\n\n\n")
+      }
       
     }
   }
@@ -793,6 +858,7 @@ ensamblarExamen <- function(Data = NULL, format = "HTML", lang = "Esp"){
 ### Reporte de respuestas del examen ----------------------------------------
 #' Reporte de respuestas del examen
 #'
+#' Ver 2.5.0 - Cambio importante. Ahora se puede generar el reporte usando un template en  Markdown.
 #' Ver 2.4.0 - Se incorporan el framework para trabajar con los temas B y K
 #' Ver 2.3.1  - Se cambian los ´on.exit(sink())´ y ´sink()´ por  ´closeAllConnections()´
 #' Ver 2.3 - usar los paquetes here y folders para los paths relativos
@@ -805,7 +871,7 @@ ensamblarExamen <- function(Data = NULL, format = "HTML", lang = "Esp"){
 #' @export
 #'
 #' @examples
-rep_Exam <- function(Data = NULL){
+rep_Exam <- function(Data = NULL, format = "txt"){
   ## Ver 2.2 - Si no se da un query como argumento, pedirlo al usuario.
   if (is.null(Data)){
     query <- readline("Da el codigo del examen a buscar: ")
@@ -814,70 +880,90 @@ rep_Exam <- function(Data = NULL){
     #Nota - importDB() ya incluye una llamada a la función parsearQuery(), no es necesario hacerlo dos veces.
   } else {
     Exam <- Data ##Se dio una tabla como argumento, se renombra para trabajar con ella internamene.
-    }
-
+  }
+  
   ##Opcion A: De la lista proveniente del examen
-
+  
   #wd <- "D:/Documents/ITESM/IBT21/BT2004B/003 - Actividades/Examen/DB/Output/"
   wd <- here::here("doetest_out", "reportes")
-
+  template <- system.file("rmd", "Template_ExamRes.Rmd", package = "DOEtestR") 
+  
+  
   #TODO: Esto genera error! - No se generaron los 
   Exam_elementos <- stringr::str_split_1(attr(Exam, "Elementos"), ", ") #Codigos de preguntas
   Exam_origen <- stringr::str_split_1(attr(Exam, "DBorigin"), ", ") #Nombre de tablas de donde sacaron los codigos de preguntas
   Examen_idioma <- attr(Exam, "Idioma")
-
+  
   ## Buscar en el elemento segun la tabla de origen?? O buscar la tabla de origen según el elemento??
-
-  out <- attr(Exam, "DBname")
-  outfile <- here::here(wd,paste0(out,"_RES.txt"))
-
-  sink(outfile)
-  cat("------------Respuestas del Examen----------------\n")
-  cat("Generada para el examen::: ", attr(Exam, "DBname"), "\n")
-  cat("- Alias:: ", attr(Exam, "id_pokemon"), "\n")
-  cat("Problemas recopilados:::", attr(Exam, "Elementos"),"\n")
-  cat("- Usando las bases de datos:: ", attr(Exam,"DBorigin"), "\n")
-  cat("-------------------------------------------------\n")
-
-  ###----- Busqueda de preguntas del examen
-  for (i in 1:length(Exam_origen)){ #Vamos tabla por tabla
-    query_tabla <- importDB(Exam_origen[i]) # Importa la tabla de problemas de un tema
-    Exam_elementos_sub <- Exam %>%
-      dplyr::filter(Origin == Exam_origen[i]) # Subset con las preguntas que surgen de una determinada tabla
-    query_p_origin <- attr(query_tabla, "DBorigin") # Nombre de la tabla de origen de los datos de las preguntas
-    query_p_datos <- importDB(query_p_origin) # Importa la tabla de origen de los datos de las preguntas.
-
-    for (j in 1:nrow(Exam_elementos_sub)){ #Vamos pregunta por pregunta
-      query_p_fila <- grep(Exam_elementos_sub$Code[j],
-                           query_tabla$Code) #Fila, en la tabla de problemas en la que esta el j-esimo codigo del examen
-      query_pregunta <- query_tabla[query_p_fila,] #Con el numero de fila, regresa la fila entera de la tabla de problemas del tema.
-
-      ###---- Ahora, a generar el archivo de salida, poco a poco, segun el tema...
-      if (stringr::str_detect(Exam_origen[i], "MM-") == T){ #Son de MediaMues
-        cat("Pregunta de Media Muestral: ", query_pregunta$Code, "\n")
-        rep_Q_MM(query_p_datos,query_pregunta,1)
-        cat("\n")
-      }else if (stringr::str_detect(Exam_origen[i], "PH-") == T){ #Son de Prueb.Hip
-        cat("Pregunta de Prueba de Hipotesis: ", query_pregunta$Code, "\n")
-        rep_Q_PH(query_p_datos,query_pregunta,1)
-        cat("\n")
-      }else if (stringr::str_detect(Exam_origen[i], "A1-") == T){ #Son de Anova
-        cat("Pregunta de Anova de 1 Factor: ", query_pregunta$Code, "\n")
-        rep_Q_A1(query_p_datos,query_pregunta,1)
-        cat("\n")
-      }else if (stringr::str_detect(Exam_origen[i], "AB-") == T){ #Son de Anova1f+B
-       cat("Pregunta de Anova 1F + Bloque: ", query_pregunta$Code, "\n")
-       rep_Q_AB(query_p_datos,query_pregunta,1)
-       cat("\n")
-      }else if (stringr::str_detect(Exam_origen[i], "2k-") == T){ #Son de Diseño 2k
-        cat("Pregunta de Diseño 2^k: ", query_pregunta$Code, "\n")
-        rep_Q_2k(query_p_datos,query_pregunta,1)
-        cat("\n")
-      }
-    }#Pregunta por pregunta
-
-  }#Tabla por tabla
-  #sink()
-  closeAllConnections()   # .........................
-  file.show(outfile)
+  
+  if (format == "txt"){
+    #------------ Formato:: Archivo de texto
+    out <- attr(Exam, "DBname")
+    outfile <- here::here(wd,paste0(out,"_RES.txt"))
+    
+    sink(outfile)
+    cat("------------Respuestas del Examen----------------\n")
+    cat("Generada para el examen::: ", attr(Exam, "DBname"), "\n")
+    cat("- Alias:: ", attr(Exam, "id_pokemon"), "\n")
+    cat("Problemas recopilados:::", attr(Exam, "Elementos"),"\n")
+    cat("- Usando las bases de datos:: ", attr(Exam,"DBorigin"), "\n")
+    cat("-------------------------------------------------\n")
+    
+    ###----- Busqueda de preguntas del examen
+    for (i in 1:length(Exam_origen)){ #Vamos tabla por tabla
+      query_tabla <- importDB(Exam_origen[i]) # Importa la tabla de problemas de un tema
+      Exam_elementos_sub <- Exam %>%
+        dplyr::filter(Origin == Exam_origen[i]) # Subset con las preguntas que surgen de una determinada tabla
+      query_p_origin <- attr(query_tabla, "DBorigin") # Nombre de la tabla de origen de los datos de las preguntas
+      query_p_datos <- importDB(query_p_origin) # Importa la tabla de origen de los datos de las preguntas.
+      
+      for (j in 1:nrow(Exam_elementos_sub)){ #Vamos pregunta por pregunta
+        query_p_fila <- grep(Exam_elementos_sub$Code[j],
+                             query_tabla$Code) #Fila, en la tabla de problemas en la que esta el j-esimo codigo del examen
+        query_pregunta <- query_tabla[query_p_fila,] #Con el numero de fila, regresa la fila entera de la tabla de problemas del tema.
+        
+        ###---- Ahora, a generar el archivo de salida, poco a poco, segun el tema...
+        if (stringr::str_detect(Exam_origen[i], "MM-") == T){ #Son de MediaMues
+          cat("Pregunta de Media Muestral: ", query_pregunta$Code, "\n")
+          rep_Q_MM(query_p_datos,query_pregunta,1)
+          cat("\n")
+        }else if (stringr::str_detect(Exam_origen[i], "PH-") == T){ #Son de Prueb.Hip
+          cat("Pregunta de Prueba de Hipotesis: ", query_pregunta$Code, "\n")
+          rep_Q_PH(query_p_datos,query_pregunta,1)
+          cat("\n")
+        }else if (stringr::str_detect(Exam_origen[i], "A1-") == T){ #Son de Anova
+          cat("Pregunta de Anova de 1 Factor: ", query_pregunta$Code, "\n")
+          rep_Q_A1(query_p_datos,query_pregunta,1)
+          cat("\n")
+        }else if (stringr::str_detect(Exam_origen[i], "AB-") == T){ #Son de Anova1f+B
+          cat("Pregunta de Anova 1F + Bloque: ", query_pregunta$Code, "\n")
+          rep_Q_AB(query_p_datos,query_pregunta,1)
+          cat("\n")
+        }else if (stringr::str_detect(Exam_origen[i], "2k-") == T){ #Son de Diseño 2k
+          cat("Pregunta de Diseño 2^k: ", query_pregunta$Code, "\n")
+          rep_Q_2k(query_p_datos,query_pregunta,1)
+          cat("\n")
+        }
+      }#Pregunta por pregunta
+    }#Tabla por tabla
+    #sink()
+    closeAllConnections()   # .........................
+    file.show(outfile)
+  } else if (format == "Rmd"){ ### Esto es lo nuevo 09/01/2025
+    
+    ## El markdown se puede knittea una sola vez, ¿Como entonces lograr que se vaya armando con las tablas necesarias?
+    ## Una lista por tema?? O una lista general, considerando que pueden haber temas distintos...
+    
+    #Exam_origen <- stringr::str_split_1(attr(Exam, "DBorigin"), ", ") 
+    Exam_ques <- list()
+    for (i in 1:length(Exam_origen)){
+      query_tabla <- importDB(Exam_origen[i]) #Importar la tabla de preguntas del tema
+      Exam_ques[[i]] <- query_tabla[query_tabla$Code %in% Exam$Code,] #Filas de la tabla de preguntas que fueron usadas para el examen.
+    }
+    Exam_ques ## Lista con todas las preguntas usadas en el examen
+    
+    rmarkdown::render(template, params = list(E = Exam, Q=Exam_ques),
+                      output_file=paste0(here::here(wd,attr(Exam,"DBname")),"_RES", ".docx"))
+    
+  }
 }

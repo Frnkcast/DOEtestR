@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Version 2.2,1
+Version 2.2.5
 
 Este paquete (doe.testR) contiene funciones para generar ejercicios y
 examenes para un curso de Diseño de Experimentos. En la versión actual,
@@ -26,6 +26,11 @@ y examenes desarrollados.
 
 - Para la version 2.2.0, se incluyen los temas de Anova con Bloque y
   Diseño 2^k. Se corrigen errores.
+
+NOTA!! La elaboración del Examen en formato LaTeX esta en proceso
+experimental. Ya esta habilitado para los temas de Media Muestral,
+Prueba de Hipotesis y Anova de 1 Factor, pero falta incorporar metodos
+para los otros dos temas.
 
 ## Instalación
 
@@ -275,6 +280,18 @@ de la variable respuesta.
     guarda en una lista dentro de la tabla. Rebuscado? Algo, pero util.
 - FALTA: Corregir la ortografía, artefactos de texto (≠, } , \$), ver la
   forma de implementar los subscripts.
+
+#### 20/10/2025
+
+- Se introduce una nueva forma de generar los reportes del examen (hojas
+  de respuesta), a partir de funciones internas y un Rmd template para
+  poder generar el documento en formato Word.
+
+- QoL - Se realiza una corrección menor a la forma de generar examenes
+  mediante la selección de ejercicios de las tablas generadas. Ahora la
+  interfaz pide al usuario validar los ejercicios seleccionados por
+  tema, a partir de revisar que los codigos no coincidan - para evitar
+  ejercicios con datos repetidos.
 
 ## Ejemplo de Uso
 

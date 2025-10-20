@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-Version 2.2,1
+Version 2.2.5
 
 Este paquete (doe.testR) contiene funciones para generar ejercicios y examenes para un curso de Diseño de Experimentos. En la versión actual, contiene las funcionalidades para desarrollar ejercicios de Media Muestral, Prueba de Hipotesis para comparación de medias, Anova de 1 Factor y Pruebas Post-Hoc. Incluye desarrollo de un sistema de directorio de tablas relacionales para el manejo de todos los ejercicios y examenes desarrollados.
 
@@ -30,6 +30,8 @@ Este paquete (doe.testR) contiene funciones para generar ejercicios y examenes p
 -   Para la version 2.1.0 se tiene ahora un modo para armar ejercicios de un solo tema - a esta modalidad se le llama con la funcion ´doePractice()´,
 
 -   Para la version 2.2.0, se incluyen los temas de Anova con Bloque y Diseño 2\^k. Se corrigen errores.
+
+NOTA!! La elaboración del Examen en formato LaTeX esta en proceso experimental. Ya esta habilitado para los temas de Media Muestral, Prueba de Hipotesis y Anova de 1 Factor, pero falta incorporar metodos para los otros dos temas.
 
 ## Instalación
 
@@ -182,6 +184,12 @@ Para este ejercicio, se genera una matriz de diseño siguiendo un diseño 2\^k, 
 -   Se separó el ensamblador de enunciados del examen en su propia funcion (ensamblarExamen()), para que las tablas de examenes no esten encadenadas a un solo idioma - sino que la decisión del idioma y el formato de salida se puedan dar despues.
     -   Respecto al idioma, se cambió la forma de implementar la seleccion del idioma para el enunciado de los problemas. Ya los generadores de preguntas guardan ambos enunciados (z_Esp y z_Eng) simultaneamente, y el generador de tabla de examen los junta dentro de una tibble y guarda en una lista dentro de la tabla. Rebuscado? Algo, pero util.
 -   FALTA: Corregir la ortografía, artefactos de texto (≠, } , \$), ver la forma de implementar los subscripts.
+
+#### 20/10/2025
+
+-   Se introduce una nueva forma de generar los reportes del examen (hojas de respuesta), a partir de funciones internas y un Rmd template para poder generar el documento en formato Word.
+
+-   QoL - Se realiza una corrección menor a la forma de generar examenes mediante la selección de ejercicios de las tablas generadas. Ahora la interfaz pide al usuario validar los ejercicios seleccionados por tema, a partir de revisar que los codigos no coincidan - para evitar ejercicios con datos repetidos.
 
 ## Ejemplo de Uso
 

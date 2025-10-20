@@ -1,0 +1,29 @@
+Inicializando.... Base de datos de Preguntas 
+   id:  9d9979 
+   id:  devoted_beguiled_parasect 
+- Elaborado en:  1728015804 
+- Utilizando datos de la tabla:  2k-data-20241003-9c6778 
+- Para el tema:  Diseño factorial 2^k 
+- Lista de problemas generados:  01k03t01, 02k03t05, 03k06t01, 04k04t04, 05k01t05 
+
+
+-----------------------------------------------------------
+ Entrada  1 #: --  01k03t01 
+-----------------------------------------------------------
+   # Factores:  3 
+   Replicas:  4 
+ 
+  Enunciado:::  
+(3) Una barista con gusto por la estadistica quiere identificar los factores que influyen en el perfil de sabores del café espresso que ella prepara. Decide armar una escala para calificar el sabor del café y establece un diseño 2^3 con las siguientes variables y factores: %V%  A: Tipo de molido (Fino, Medio) %O% B: Tipo de tostado (Medio, Oscuro) %O% C: Temperatura del agua (85°C, 92°C) %O% Y: Calificación dada por un panel de catadores
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de %n% réplicas: </p> 
+ %T%  
+
+  Datos::  
+|  A|  B|  C|     Y|   Y.1|   Y.2|   Y.3| |--:|--:|--:|-----:|-----:|-----:|-----:| | -1| -1| -1| 53.67| 53.47| 53.25| 53.70| |  1| -1| -1| 55.98| 56.66| 57.21| 56.47| | -1|  1| -1| 54.12| 54.71| 54.77| 54.29| |  1|  1| -1| 54.75| 54.73| 53.50| 53.78| | -1| -1|  1| 55.57| 55.41| 55.85| 54.38| |  1| -1|  1| 54.17| 53.76| 54.53| 54.79| | -1|  1|  1| 54.72| 56.11| 54.93| 53.96| |  1|  1|  1| 54.49| 54.34| 54.74| 55.00| 
+
+  Preguntas y sus respuestas:: 
+
+- B1 (2 pts) Calcula y reporta los efectos de los factores principales y las interacciones. 
+Res: 
+

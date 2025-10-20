@@ -1,0 +1,37 @@
+id_bytes,id_animal,id_pokemon,DBname,Tema,Cont,n,Elementos,Usado,Fecha,Idioma
+0612ca,vermicular_predacious_kakarikis,bounded_carefree_swablu,2k-data-20241003-0612ca,Diseño factorial 2^k,Datos muestrales,5,NA,NA,2024-10-03 22:33:00.3333,NA
+031efd,polynuclear_juicy_elephantbeetle,aligned_unreliable_manectric,2k-data-20241011-031efd,Diseño factorial 2^k,Datos muestrales,5,NA,NA,2024-10-11 17:54:25.624905,NA
+2458cd,catastrophical_complacent_natterjacktoad,insensible_registering_cresselia,2k-data-20241012-2458cd,Diseño factorial 2^k,Datos muestrales,5,NA,NA,2024-10-12 22:12:47.856699,NA
+e6362b,unostentatious_paralysed_howlermonkey,aggressive_angrier_teddiursa,2k-ques-20241003-e6362b,Diseño factorial 2^k,Preguntas formuladas,5,"01k07t02, 02k06t04, 03k07t02, 04k01t04, 05k05t05",NA,2024-10-03 22:33:03.35253,NA
+20671c,fameless_nihilistic_coelacanth,brethren_speedy_sableye,2k-ques-20241011-20671c,Diseño factorial 2^k,Preguntas formuladas,5,"01k04t05, 02k02t04, 03k01t05, 04k02t05, 05k02t04",NA,2024-10-11 17:54:27.977135,NA
+d95c4a,rearrangeable_queasy_herring,memorable_ever-present_tyrogue,2k-ques-20241012-d95c4a,Diseño factorial 2^k,Preguntas formuladas,5,"01k02t01, 02k07t02, 03k07t03, 04k03t01, 05k01t02",NA,2024-10-12 22:12:55.351994,NA
+7ae254,prepsychological_convictive_lobo,squint_underground_golduck,AB-data-20241003-7ae254,Anova 1F + Bloque,Datos muestrales,5,NA,NA,2024-10-03 13:10:07.814316,NA
+8b6847,coseys_highlyexplosive_alligator,chapel_exultant_carnivine,AB-data-20241011-8b6847,Anova 1F + Bloque,Datos muestrales,5,NA,NA,2024-10-11 17:54:12.130706,NA
+40a5c6,inodorous_secure_earwig,passive_worst-case_entei,AB-data-20241012-40a5c6,Anova 1F + Bloque,Datos muestrales,5,NA,NA,2024-10-12 21:17:21.287814,NA
+d17afc,okay_nonevolutionary_bighorn,unaided_liver_marill,AB-data-20241012-d17afc,Anova 1F + Bloque,Datos muestrales,8,NA,NA,2024-10-12 19:49:57.658532,NA
+e3e17a,dastardly_creasy_queenslandheeler,heralded_squint_karrablast,AB-ques-20241003-e3e17a,Anova 1F + Bloque,Preguntas formuladas,5,"01B03t02, 02B02t05, 03B01t04, 04B03t02, 05B02t04",NA,2024-10-03 13:10:10.618361,NA
+32ffd7,rebuffable_injurious_zethusspinipes,blue-collar_insane_klinklang,AB-ques-20241011-32ffd7,Anova 1F + Bloque,Preguntas formuladas,5,"01B02t01, 02B04t02, 03B04t02, 04B04t05, 05B01t03",NA,2024-10-11 17:54:14.446577,NA
+813611,selfrighteous_charlatanical_rhinocerosbeetle,humiliating_realizing_deoxys,AB-ques-20241012-813611,Anova 1F + Bloque,Preguntas formuladas,8,"01B04t02, 02B04t05, 03B04t08, 04B04t03, 05B03t01, 06B04t06, 07B02t02, 08B03t03",NA,2024-10-12 19:50:11.035319,NA
+b2445d,psychometric_largescale_alpinegoat,unread_bohemian_lucario,AB-ques-20241012-b2445d,Anova 1F + Bloque,Preguntas formuladas,5,"01B02t05, 02B01t03, 03B01t01, 04B02t02, 05B02t02",NA,2024-10-12 21:17:26.389747,NA
+852ee9,amoeboid_wheezy_honeybadger,vanilla_lightest_servine,EX-exam-20241011-852ee9-Esp,Examen,Examen,6,"04M01p01, 01M01m03, 04H01rt09, 01H01rt03, 02B02t05, 01k07t02",NA,2024-10-11 17:57:20.807766,Esp
+476dc3,spinelike_dissuasive_heterodontosaurus,spanking_tyrannical_bellsprout,EX-prac-20241003-476dc3_B,Examen,Ejercicio de practica,4,"01B03t02, 02B02t05, 04B03t02, 05B02t04",NA,2024-10-03 20:44:10.324726,Esp
+80a6be,dire_semifluid_hydatidtapeworm,scarlet_tectonic_horsea,EX-prac-20241003-80a6be-K,Examen,Ejercicio de practica,4,"03k07t02, 01k07t02, 02k06t04, 04k01t04",NA,2024-10-03 22:33:19.739524,Esp
+471eea,chargeless_simplehearted_ostracod,sweating_envious_krokorok,EX-prac-20241012-471eea-B,Examen,Ejercicio de practica,5,"02B01t03, 04B02t02, 03B01t01, 05B02t02, 01B02t05",NA,2024-10-12 21:17:43.056579,Esp
+ba4706,sanidine_declared_xinjiangovenator,spineless_sleepless_shelmet,EX-prac-20241012-ba4706-K,Examen,Ejercicio de practica,2,"05k01t02, 04k03t01",NA,2024-10-12 22:13:21.633099,Eng
+ec5bd7,mycologic_precious_tenrec,unpleasant_cathartic_lotad,EX-prac-20241012-ec5bd7-B,Examen,Ejercicio de practica,5,"04B04t03, 08B03t03, 07B02t02, 06B04t06, 02B04t05",NA,2024-10-12 19:50:27.723523,Eng
+3e731c,unadjoining_prelegal_cuckoo,diffused_excess_burmy,MM-data-20241011-3e731c,Media Muestral,Datos muestrales,5,NA,NA,2024-10-11 17:53:44.056179,NA
+a559aa,exoteric_antisolar_abalone,elven_waved_miltank,MM-data-20241011-a559aa,Media Muestral,Datos muestrales,5,NA,NA,2024-10-11 17:50:57.466309,NA
+ee74fd,savvy_companionable_nighthawk,versed_twisted_solosis,MM-data-20241011-ee74fd,Media Muestral,Datos muestrales,5,NA,NA,2024-10-11 17:49:11.99534,NA
+ef170a,unamicable_tigerseye_ugandakob,material_employed_magby,MM-data-20241011-ef170a,Media Muestral,Datos muestrales,10,NA,NA,2024-10-11 17:47:18.557467,NA
+4795d8,birdlike_countrywide_xenoposeidon,blooded_biochemical_venomoth,MM-ques-20241011-4795d8,Media Muestral,Preguntas formuladas,5,"01M01m05, 02M01m02, 03M01m02, 04M01m01, 05M01q03",NA,2024-10-11 17:53:47.829848,NA
+6a6486,associated_inexplosive_amethystinepython,conservative_valiant_audino,MM-ques-20241011-6a6486,Media Muestral,Preguntas formuladas,10,"01M01q05, 02M01q03, 03M01p02, 04M01m04, 05M01m07, 06M01q06, 07M01q10, 08M01m08, 09M01q06, 10M01q07",NA,2024-10-11 17:47:21.217382,NA
+ee5d74,affectionate_transoceanic_flyingfish,worst-case_resigned_taillow,MM-ques-20241011-ee5d74,Media Muestral,Preguntas formuladas,5,"01M01m03, 02M01q03, 03M01q03, 04M01p01, 05M01p03",NA,2024-10-11 17:49:14.859811,NA
+f754b1,nonmetallic_southmost_fairyfly,saved_slamming_chandelure,MM-ques-20241011-f754b1,Media Muestral,Preguntas formuladas,5,"01M01q05, 02M01q03, 03M01q01, 04M01m02, 05M01q01",NA,2024-10-11 17:50:59.872262,NA
+027627,gelatinoid_wellblacked_killdeer,fitted_contraceptive_purugly,PH-data-20241011-027627,Prueba de Hipotesis,Datos muestrales,5,NA,NA,2024-10-11 17:49:23.166049,NA
+4f1b49,late_bonny_americansaddlebred,improbable_cleric_flareon,PH-data-20241011-4f1b49,Prueba de Hipotesis,Datos muestrales,5,NA,NA,2024-10-11 17:51:07.839472,NA
+66d073,releasable_fineable_toucan,lucid_ensconced_maractus,PH-data-20241011-66d073,Prueba de Hipotesis,Datos muestrales,5,NA,NA,2024-10-11 17:53:55.244516,NA
+9ddef9,sybaritic_slimy_blacknorwegianelkhound,metallic_excess_jigglypuff,PH-data-20241011-9ddef9,Prueba de Hipotesis,Datos muestrales,10,NA,NA,2024-10-11 17:47:29.162934,NA
+2ff4d6,minimum_uncooked_widgeon,presumed_clanking_octillery,PH-ques-20241011-2ff4d6,Prueba de Hipotesis,Preguntas formuladas,5,"01H01lt01, 02H01lt01, 03H01tt05, 04H01lt01, 05H01lt04",NA,2024-10-11 17:51:10.253725,NA
+839c80,malevolent_influential_waterthrush,livid_breeding_cryogonal,PH-ques-20241011-839c80,Prueba de Hipotesis,Preguntas formuladas,5,"01H01rt05, 02H01lt03, 03H01lt02, 04H01lt04, 05H01lt01",NA,2024-10-11 17:49:25.366694,NA
+c26ea4,driveable_tapestried_polliwog,perpetuate_bullied_trapinch,PH-ques-20241011-c26ea4,Prueba de Hipotesis,Preguntas formuladas,10,"01H01rt03, 02H01rt07, 03H01tt05, 04H01rt09, 05H01lt01, 06H01lt01, 07H01tt08, 08H01lt06, 09H01rt04, 10H01lt09",NA,2024-10-11 17:47:31.427146,NA
+d66b63,pear_impressed_imperialeagle,presumed_primetime_wormadam,PH-ques-20241011-d66b63,Prueba de Hipotesis,Preguntas formuladas,5,"01H01tt04, 02H01lt03, 03H01lt04, 04H01tt02, 05H01rt02",NA,2024-10-11 17:53:57.808165,NA

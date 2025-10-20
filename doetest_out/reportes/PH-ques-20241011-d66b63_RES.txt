@@ -1,0 +1,209 @@
+Inicializando.... Base de datos de Preguntas 
+   id:  d66b63 
+   id:  presumed_primetime_wormadam 
+- Elaborado en:  1728690838 
+- Utilizando datos de la tabla:  PH-data-20241011-66d073 
+- Para el tema:  Prueba de Hipotesis 
+- Lista de problemas generados:  01H01tt04, 02H01lt03, 03H01lt04, 04H01tt02, 05H01rt02 
+
+
+-----------------------------------------------------------
+ Entrada #:  01H01tt04 
+-----------------------------------------------------------
+Población 1::: 
+   Mu =  1.321 
+   Sig =  8.037 
+   Muestra ::: 
+      n:   6 
+      Media muestal =  -1.531 
+      Desv. Muestral(S) =  5.785 
+
+Población 2::: 
+   Mu =  1.234 
+   Sig =  1.747 
+   Muestra ::: 
+      n:   6 
+      Media muestal =  1.244 
+      Desv. Muestral(S) =  2.679 
+
+Probabilidades:: 
+   Enunciado:: 
+ [01H01tt04] A partir de dos grupos, se tomaron las siguientes muestras: 
+Del primer grupo,  se obtuvo una muestra de tamaño n<sub>1</sub> = 6, que tuvo un promedio de X&#772;<sub>1</sub> = -1.531, y una desviación S<sub>1</sub> = 5.785 
+Del segundo grupo,  se obtuvo una muestra de tamaño n<sub>2</sub> = 6, que tuvo un promedio de X&#772;<sub>2</sub> = 1.244, y una desviación S<sub>2</sub> = 2.679 
+Utilizando un valor de &alpha; = 0.01, prueba las siguientes hipotesis: 
+ H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub> &ne; 0 , y da tu conclusión. 
+ 
+   Distribución:  t 
+   Grados de libertad (t):  10 
+   Hipotesis nula: $\mu_1 - \mu_2 =  0 $ 
+   Hipotesis alternativa: $\mu_1 - \mu_2  \ne   0 $ 
+   Prueba de una cola. 
+   Alfa:  0.01 
+   Estadistico de Prueba:  -1.066 
+   Valor Critico:  3.1693 
+   P(X \ne  EP) = p_value =  0.1557 
+   Conclusion:  Fail to Reject  H0. 
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  02H01lt03 
+-----------------------------------------------------------
+Población 1::: 
+   Mu =  16.278 
+   Sig =  0.012 
+   Muestra ::: 
+      n:   43 
+      Media muestal =  16.279 
+      Desv. Muestral(S) =  0.012 
+
+Población 2::: 
+   Mu =  16.294 
+   Sig =  0.016 
+   Muestra ::: 
+      n:   43 
+      Media muestal =  16.298 
+      Desv. Muestral(S) =  0.018 
+
+Probabilidades:: 
+   Enunciado:: 
+ [02H01lt03] A partir de dos grupos, se tomaron las siguientes muestras: 
+Del primer grupo, que tenía una desviación de &sigma;<sub>1</sub> =0.012, se obtuvo una muestra de tamaño n<sub>1</sub> = 43, que tuvo un promedio de X&#772;<sub>1</sub> = 16.279, y una desviación S<sub>1</sub> = 0.012 
+Del segundo grupo, que tenía una desviación de &sigma;<sub>2</sub> =0.016, se obtuvo una muestra de tamaño n<sub>2</sub> = 43, que tuvo un promedio de X&#772;<sub>2</sub> = 16.298, y una desviación S<sub>2</sub> = 0.018 
+Utilizando un valor de &alpha; = 0.2, prueba las siguientes hipotesis: 
+ H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub> < 0 , y da tu conclusión. 
+ 
+   Distribución:  z 
+   Grados de libertad (t):  84 
+   Hipotesis nula: $\mu_1 - \mu_2 =  0 $ 
+   Hipotesis alternativa: $\mu_1 - \mu_2  <   0 $ 
+   Prueba de una cola. 
+   Alfa:  0.2 
+   Estadistico de Prueba:  -6.236 
+   Valor Critico:  -0.8416 
+   P(X <  EP) = p_value =  0 
+   Conclusion:  Reject  H0. 
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  03H01lt04 
+-----------------------------------------------------------
+Población 1::: 
+   Mu =  1.321 
+   Sig =  8.037 
+   Muestra ::: 
+      n:   6 
+      Media muestal =  -1.531 
+      Desv. Muestral(S) =  5.785 
+
+Población 2::: 
+   Mu =  1.234 
+   Sig =  1.747 
+   Muestra ::: 
+      n:   6 
+      Media muestal =  1.244 
+      Desv. Muestral(S) =  2.679 
+
+Probabilidades:: 
+   Enunciado:: 
+ [03H01lt04] A partir de dos grupos, se tomaron las siguientes muestras: 
+Del primer grupo,  se obtuvo una muestra de tamaño n<sub>1</sub> = 6, que tuvo un promedio de X&#772;<sub>1</sub> = -1.531, y una desviación S<sub>1</sub> = 5.785 
+Del segundo grupo,  se obtuvo una muestra de tamaño n<sub>2</sub> = 6, que tuvo un promedio de X&#772;<sub>2</sub> = 1.244, y una desviación S<sub>2</sub> = 2.679 
+Utilizando un valor de &alpha; = 0.05, prueba las siguientes hipotesis: 
+ H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub> < 0 , y da tu conclusión. 
+ 
+   Distribución:  t 
+   Grados de libertad (t):  10 
+   Hipotesis nula: $\mu_1 - \mu_2 =  0 $ 
+   Hipotesis alternativa: $\mu_1 - \mu_2  <   0 $ 
+   Prueba de una cola. 
+   Alfa:  0.05 
+   Estadistico de Prueba:  -1.066 
+   Valor Critico:  -1.8125 
+   P(X <  EP) = p_value =  0.1557 
+   Conclusion:  Fail to Reject  H0. 
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  04H01tt02 
+-----------------------------------------------------------
+Población 1::: 
+   Mu =  4.918 
+   Sig =  0.242 
+   Muestra ::: 
+      n:   6 
+      Media muestal =  4.887 
+      Desv. Muestral(S) =  0.176 
+
+Población 2::: 
+   Mu =  4.883 
+   Sig =  0.306 
+   Muestra ::: 
+      n:   9 
+      Media muestal =  4.86 
+      Desv. Muestral(S) =  0.302 
+
+Probabilidades:: 
+   Enunciado:: 
+ [04H01tt02] A partir de dos grupos, se tomaron las siguientes muestras: 
+Del primer grupo,  se obtuvo una muestra de tamaño n<sub>1</sub> = 6, que tuvo un promedio de X&#772;<sub>1</sub> = 4.887, y una desviación S<sub>1</sub> = 0.176 
+Del segundo grupo,  se obtuvo una muestra de tamaño n<sub>2</sub> = 9, que tuvo un promedio de X&#772;<sub>2</sub> = 4.86, y una desviación S<sub>2</sub> = 0.302 
+Utilizando un valor de &alpha; = 0.1, prueba las siguientes hipotesis: 
+ H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub> &ne; 0 , y da tu conclusión. 
+ 
+   Distribución:  t 
+   Grados de libertad (t):  13 
+   Hipotesis nula: $\mu_1 - \mu_2 =  0 $ 
+   Hipotesis alternativa: $\mu_1 - \mu_2  \ne   0 $ 
+   Prueba de una cola. 
+   Alfa:  0.1 
+   Estadistico de Prueba:  0.215 
+   Valor Critico:  1.7709 
+   P(X \ne  EP) = p_value =  0.4166 
+   Conclusion:  Fail to Reject  H0. 
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  05H01rt02 
+-----------------------------------------------------------
+Población 1::: 
+   Mu =  4.918 
+   Sig =  0.242 
+   Muestra ::: 
+      n:   6 
+      Media muestal =  4.887 
+      Desv. Muestral(S) =  0.176 
+
+Población 2::: 
+   Mu =  4.883 
+   Sig =  0.306 
+   Muestra ::: 
+      n:   9 
+      Media muestal =  4.86 
+      Desv. Muestral(S) =  0.302 
+
+Probabilidades:: 
+   Enunciado:: 
+ [05H01rt02] A partir de dos grupos, se tomaron las siguientes muestras: 
+Del primer grupo,  se obtuvo una muestra de tamaño n<sub>1</sub> = 6, que tuvo un promedio de X&#772;<sub>1</sub> = 4.887, y una desviación S<sub>1</sub> = 0.176 
+Del segundo grupo,  se obtuvo una muestra de tamaño n<sub>2</sub> = 9, que tuvo un promedio de X&#772;<sub>2</sub> = 4.86, y una desviación S<sub>2</sub> = 0.302 
+Utilizando un valor de &alpha; = 0.05, prueba las siguientes hipotesis: 
+ H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub> > 0 , y da tu conclusión. 
+ 
+   Distribución:  t 
+   Grados de libertad (t):  13 
+   Hipotesis nula: $\mu_1 - \mu_2 =  0 $ 
+   Hipotesis alternativa: $\mu_1 - \mu_2  >   0 $ 
+   Prueba de una cola. 
+   Alfa:  0.05 
+   Estadistico de Prueba:  0.215 
+   Valor Critico:  1.7709 
+   P(X >  EP) = p_value =  0.4166 
+   Conclusion:  Fail to Reject  H0. 
+
+-----------------------------------------------------------
+

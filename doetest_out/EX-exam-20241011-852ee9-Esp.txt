@@ -1,0 +1,265 @@
+------------Examen----------------
+- Alias::  vanilla_lightest_servine 
+Problemas recopilados::: 04M01p01, 01M01m03, 04H01rt09, 01H01rt03, 02B02t05, 01k07t02 
+- Usando las bases de datos::  MM-ques-20241011-ee5d74, PH-ques-20241011-c26ea4, AB-ques-20241003-e3e17a, 2k-ques-20241003-e6362b 
+----------------------------------
+<p><strong><span class="fontstyle0">Instrucciones: </span></strong><span class="fontstyle2">Lee detenidamente las preguntas. Contesta ya sea en el espacio en Canvas, o en la hoja de respuestas, marcando claramente cu&aacute;l pregunta se est&aacute; contestando.</span> Ignora el c&oacute;digo entre corchetes (eg. 01M01a01), pues esto es solo para la revisi&oacute;n de tu examen. <span style="background-color: #000000;">Código del examen: vanilla_lightest_servine</span>.</p> 
+
+<ol style="list-style-type: decimal;"> 
+<li>[04M01p01] A partir de una población normal con las siguientes caracteristicas: "X &sim; N( &mu;  = 88.142) , se obtuvo una muestra de tamaño 26 con una desviación muestral de S = 4.473. Dado que P(X&#772; <90.322) = ?. 
+Resuelve. 
+ [2pt] 
+
+
+<br /><br /></li> 
+<li>[01M01m03] A partir de una población normal con las siguientes caracteristicas: "X &sim; N( &mu;  = ?, σ  = 1.245) , se obtuvo una muestra de tamaño 35 con una desviación muestral de S = 1.087. Dado que P(X&#772; <93.541) = 0.649. 
+Encuentra el valor de &mu;. 
+ [2pt] 
+
+
+<br /><br /></li> 
+<li>[04H01rt09] A partir de dos grupos, se tomaron las siguientes muestras: 
+Del primer grupo,  se obtuvo una muestra de tamaño n<sub>1</sub> = 7, que tuvo un promedio de X&#772;<sub>1</sub> = 54.86, y una desviación S<sub>1</sub> = 4.992 
+Del segundo grupo,  se obtuvo una muestra de tamaño n<sub>2</sub> = 8, que tuvo un promedio de X&#772;<sub>2</sub> = 61.955, y una desviación S<sub>2</sub> = 6.458 
+Utilizando un valor de &alpha; = 0.05, prueba las siguientes hipotesis: 
+ H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub> > 0 , y da tu conclusión. 
+ [5pt] 
+
+
+<br /><br /></li> 
+<li>[01H01rt03] A partir de dos grupos, se tomaron las siguientes muestras: 
+Del primer grupo,  se obtuvo una muestra de tamaño n<sub>1</sub> = 16, que tuvo un promedio de X&#772;<sub>1</sub> = 63.867, y una desviación S<sub>1</sub> = 9.296 
+Del segundo grupo,  se obtuvo una muestra de tamaño n<sub>2</sub> = 18, que tuvo un promedio de X&#772;<sub>2</sub> = 73.248, y una desviación S<sub>2</sub> = 21.222 
+Utilizando un valor de &alpha; = 0.2, prueba las siguientes hipotesis: 
+ H0: &mu;<sub>1</sub> - &mu;<sub>2</sub> = 0  vs HA: &mu;<sub>1</sub> - &mu;<sub>2</sub> > 0 , y da tu conclusión. 
+ [5pt] 
+
+
+<br /><br /></li> 
+<li>(02B02t05) Una universidad quiere evaluar la efecitividad de 4 diferentes metodos de enseñanza para incrementar los resultados de un examen. Se aprovecha la división de alumnos en 4 salones diferentes como la variable de bloqueo, y dentro de cada salón a cada alumno se le asigna un metodo diferente de enseñanza. Despues de un mes, se evaluó la mejora de cada estudiante mediante un examen. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodo de enseñanza 
+  </li><li> B (Bloque): Salón 
+  </li><li> Y: Incremento en el resultado del examen
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 32.71 </td>
+   <td style="text-align:right;"> 21.68 </td>
+   <td style="text-align:right;"> 34.65 </td>
+   <td style="text-align:right;"> 23.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 28.77 </td>
+   <td style="text-align:right;"> 30.37 </td>
+   <td style="text-align:right;"> 31.35 </td>
+   <td style="text-align:right;"> 16.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 19.75 </td>
+   <td style="text-align:right;"> 27.04 </td>
+   <td style="text-align:right;"> 23.83 </td>
+   <td style="text-align:right;"> 13.55 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 239.745 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 79.915 </td>
+   <td style="text-align:right;"> 3.714 </td>
+   <td style="text-align:right;"> 0.080 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 114.688 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 57.344 </td>
+   <td style="text-align:right;"> 2.665 </td>
+   <td style="text-align:right;"> 0.149 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 129.111 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 21.519 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 483.544 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 43.959 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 4.757  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 4.066  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.896  </p>
+ [10pt] 
+
+<p>Contesta lo siguiente:</p><ol style="list-style-type: lower-alpha;">  <li> Reporta la suma de cuadrados del factor (SSa), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li>  <li> Reporta la media de cuadrados del factor (MSa), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li> <li> Reporta tu estadístico de prueba, F0 (1pt)</li>  <li> A partir del F0 calculado y el Fcritico (revisa el enunciado del problema), para una confianza del 95%, considerando una hipótesis nula donde ninguno de los niveles del factor A afectan a la variable de respuesta, y una hipótesis alternativa donde al menos uno de los niveles tiene un efecto significativo. </br> ¿Puedes concluir en que la hipótesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas. (1pt)</li>  <li> Vuelve a realizar tu análisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad que lo requieran. El valor de F critico a utilizar se encuentra en el enunciado de este problema. </br> ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? (2pt)</li>  <li> Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadístico q de Tukey a utilizar para la prueba) (2pt)</li></ol>
+
+
+<br /><br /></li> 
+<li>(01k07t02) Un laboratorio de desarrollo vegetal está estudiando el impapcto de diferentes fertilizantes sobre el crecimiento de las plantas cultivadas. Para esto, deciden investigar como 3 variables pueden influenciar la velocidad de crecimiento. El experimento se diseñó con las siguientes variables: 
+  </p> <li>  A: Tipo de fertilizante (Sintetico, Bioestimulante) 
+  </li><li> B: Exposición a la luz (Bajo, Alto) 
+  </li><li> C: Frecuencia de riego (Infrecuente, Frecuente) 
+  </li><li> Y: Altura de las plantas
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 3 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+   <th style="text-align:right;"> Y.2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 29.63 </td>
+   <td style="text-align:right;"> 26.13 </td>
+   <td style="text-align:right;"> 34.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 31.21 </td>
+   <td style="text-align:right;"> 33.64 </td>
+   <td style="text-align:right;"> 31.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 30.16 </td>
+   <td style="text-align:right;"> 30.35 </td>
+   <td style="text-align:right;"> 26.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 34.68 </td>
+   <td style="text-align:right;"> 33.33 </td>
+   <td style="text-align:right;"> 33.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 32.46 </td>
+   <td style="text-align:right;"> 33.80 </td>
+   <td style="text-align:right;"> 30.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 30.56 </td>
+   <td style="text-align:right;"> 35.78 </td>
+   <td style="text-align:right;"> 32.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 31.30 </td>
+   <td style="text-align:right;"> 32.23 </td>
+   <td style="text-align:right;"> 30.94 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 34.84 </td>
+   <td style="text-align:right;"> 37.76 </td>
+   <td style="text-align:right;"> 33.36 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 4.494  </p>
+ [10pt] 
+
+
+<p>Contesta lo siguiente:</p><ol style="list-style-type: lower-alpha;">  <li> Calcula y reporta los efectos de los factores principales y las interacciones. (2pt)</li>  <li> En tu hoja de respuestas, dibuja las gráficas de Efectos Principales para los 3 factores. Explica si, a partir de las gráficas, pudiera identificar si uno de los factores pareciera tener un efecto significativo, di cuáles, y explica por qué. (2pt)</li>  <li> Realiza un análisis ANOVA y reporta cuales factores e interacciones son significativos.  Utiliza un alfa de 0.05 (el valor de F critico a utilizar en las comparaciones está dado en el enunciado del problema) (3pt)</li>  <li> A partir de los factores e interacciones que resultaron significativos, da el Modelo de Regresión Abreviado (únicamente con los coeficientes de los factores e interacciones que resultaron significativos – de la forma: y&#770; = &beta; <sub>0</sub> + &beta; <sub>i</sub> X<sub>i</sub> + &beta; <sub>ij</sub> X<sub>i</sub> X<sub>j</sub>…)(1pt)</li>  <li> Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta: (2pt) <ul><li> ¿Cuál es el valor mínimo de la variable respuesta predicho por el modelo abreviado? </li> <li> ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para minimizar la respuesta? </li></ul></li>  <li> Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta: (2pt) <ul>  <li> ¿Cuál es el valor máximo de la variable respuesta predicho por el modelo abreviado? </li><li> ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para maximizar la respuesta? </li></ul></li></ol>
+
+
+<br /><br /></li> 
+</ol>

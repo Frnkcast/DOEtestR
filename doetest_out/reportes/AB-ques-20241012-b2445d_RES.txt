@@ -1,0 +1,378 @@
+Inicializando.... Base de datos de Preguntas 
+   id:  b2445d 
+   id:  unread_bohemian_lucario 
+- Elaborado en:  1728789446 
+- Utilizando datos de la tabla:  AB-data-20241012-40a5c6 
+- Para el tema:  Anova 1F + Bloque 
+- Lista de problemas generados:  01B02t05, 02B01t03, 03B01t01, 04B02t02, 05B02t02 
+
+
+-----------------------------------------------------------
+ Entrada  1 B --   01B02t05 
+-----------------------------------------------------------
+
+   # Niveles de A:  4 
+   # Niveles de B (Bloque):  5 
+ 
+  Enunciado:::  
+(2) Una universidad quiere evaluar la efecitividad de %a% diferentes metodos de enseñanza para incrementar los resultados de un examen. Se aprovecha la división de alumnos en %b% salones diferentes como la variable de bloqueo, y dentro de cada salón a cada alumno se le asigna un metodo diferente de enseñanza. Despues de un mes, se evaluó la mejora de cada estudiante mediante un examen. Las variables involucradas en el experimento: %V%  A: Metodo de enseñanza %O% B (Bloque): Salón %O% Y: Incremento en el resultado del examen
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ %T% 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ %A% 
+
+  Datos::  
+|B  |    A1|    A2|    A3|    A4|
+|:--|-----:|-----:|-----:|-----:|
+|B1 | 58.75| 58.72| 59.37| 59.52|
+|B2 | 58.54| 59.11| 61.04| 58.63|
+|B3 | 58.55| 58.00| 58.80| 58.77|
+|B4 | 59.02| 57.93| 61.45| 58.95|
+|B5 | 58.39| 58.90| 60.22| 58.44| 
+
+  Preguntas y sus respuestas:: 
+
+- A1 (2 pts) Reporta la suma de cuadrados de los tratamientos (SSt), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual 
+- A2 (2 pts) Reporta la media de cuadrados de los tratamientos (MSt), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. 
+- A3 (1 pts) Reporta tu estadistico de prueba, F0 
+Res: 
+|Fuente    |    SS_| Df|   MS_|    F0|  Pval|
+|:---------|------:|--:|-----:|-----:|-----:|
+|X         |  8.657|  3| 2.886| 6.615| 0.007|
+|B         |  1.747|  4| 0.437| 1.001| 0.444|
+|Residuals |  5.235| 12| 0.436|    NA|    NA|
+|Total     | 15.640| 19| 0.823|    NA|    NA| 
+
+- A4 (1 pts) A partir del F0 calculado, y el Fcritico (revisa el enunciado del problema) para una confianza del 95%, considerando una hipotesis nula donde ninguno de los niveles del factor afectan a la variable de respuesta, y una hipotesis alternativa donde al menos uno de los niveles tiene un efecto significativo. ¿Puedes concluir en que la hipotesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas.  
+Res: 
+     Se rechaza H0. El factor A es significativo. 
+
+- A5 (2 pts) Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadistico q de Tukey a utilizar para la prueba) 
+Res: 
+|   MSerror| Df|   Mean|      CV| StudRange|     HSD|
+|---------:|--:|------:|-------:|---------:|-------:|
+| 0.4362608| 12| 59.055| 1.11845|   4.19866| 1.24022| 
+
+|X   |      Y|groups |
+|:---|------:|:------|
+|X   | 58.650|b      |
+|X.1 | 58.532|b      |
+|X.2 | 60.176|a      |
+|X.3 | 58.862|b      | 
+
+|   |A1 |A2    |A3   |A4    |
+|:--|:--|:-----|:----|:-----|
+|A1 |NA |FALSE |TRUE |FALSE |
+|A2 |NA |NA    |TRUE |FALSE |
+|A3 |NA |NA    |NA   |TRUE  |
+|A4 |NA |NA    |NA   |NA    |
+
+- A6 (2 pts)  Vuelve a realizar tu analisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad apropiados. El valor de F critico a utilizar se encuentra en el enunciado de este problema. ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? 
+Res:
+|Fuente    |    SS_| Df|   MS_|    F0|  Pval|
+|:---------|------:|--:|-----:|-----:|-----:|
+|X         |  8.657|  3| 2.886| 6.613| 0.004|
+|Residuals |  6.982| 16| 0.436|    NA|    NA|
+|Total     | 15.640| 19| 0.823|    NA|    NA| 
+     Se rechaza H0. El factor A es significativo 
+     Quitar el bloque no cambia la conclusion sobre H0 
+
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  2 B --   02B01t03 
+-----------------------------------------------------------
+
+   # Niveles de A:  5 
+   # Niveles de B (Bloque):  5 
+ 
+  Enunciado:::  
+(1) Una compañia farmaceutica quiere comparar la eficiencia de %a% diferentes tratamientos para un padecimiento especifico. A los pacientes se les dividió en %b% bloques debido a su edad (eg. 20-30, 31-30, etc), asignandoseles uno de los tratamientos de forma aleatoria. Al final de la duración del tratamiento se evaluó la severidad de los sintomas. El experimento se diseñó con las siguientes variables: %V%  A: Tratamiento médico %O% B (Bloque): Rango de edad %O% Y: Severidad de los sintomas al final del tratamiento
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ %T% 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ %A% 
+
+  Datos::  
+|B  |    A1|    A2|    A3|    A4|    A5|
+|:--|-----:|-----:|-----:|-----:|-----:|
+|B1 | 82.30| 83.16| 81.64| 81.61| 81.70|
+|B2 | 82.25| 82.16| 82.33| 81.64| 81.67|
+|B3 | 82.24| 82.21| 81.87| 81.63| 82.04|
+|B4 | 82.46| 82.43| 81.83| 81.46| 81.75|
+|B5 | 82.37| 82.72| 81.49| 81.86| 82.22| 
+
+  Preguntas y sus respuestas:: 
+
+- A1 (2 pts) Reporta la suma de cuadrados de los tratamientos (SSt), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual 
+- A2 (2 pts) Reporta la media de cuadrados de los tratamientos (MSt), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. 
+- A3 (1 pts) Reporta tu estadistico de prueba, F0 
+Res: 
+|Fuente    |   SS_| Df|   MS_|    F0|  Pval|
+|:---------|-----:|--:|-----:|-----:|-----:|
+|X         | 2.784|  4| 0.696| 8.210| 0.001|
+|B         | 0.079|  4| 0.020| 0.233| 0.916|
+|Residuals | 1.356| 16| 0.085|    NA|    NA|
+|Total     | 4.220| 24| 0.176|    NA|    NA| 
+
+- A4 (1 pts) A partir del F0 calculado, y el Fcritico (revisa el enunciado del problema) para una confianza del 95%, considerando una hipotesis nula donde ninguno de los niveles del factor afectan a la variable de respuesta, y una hipotesis alternativa donde al menos uno de los niveles tiene un efecto significativo. ¿Puedes concluir en que la hipotesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas.  
+Res: 
+     Se rechaza H0. El factor A es significativo. 
+
+- A5 (2 pts) Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadistico q de Tukey a utilizar para la prueba) 
+Res: 
+|  MSerror| Df|    Mean|        CV| StudRange|       HSD|
+|--------:|--:|-------:|---------:|---------:|---------:|
+| 0.084779| 16| 82.0416| 0.3549033|  4.332688| 0.5641785| 
+
+|X   |      Y|groups |
+|:---|------:|:------|
+|X   | 82.324|ab     |
+|X.1 | 82.536|a      |
+|X.2 | 81.832|bc     |
+|X.3 | 81.640|c      |
+|X.4 | 81.876|bc     | 
+
+|   |A1 |A2    |A3    |A4    |A5    |
+|:--|:--|:-----|:-----|:-----|:-----|
+|A1 |NA |FALSE |FALSE |TRUE  |FALSE |
+|A2 |NA |NA    |TRUE  |TRUE  |TRUE  |
+|A3 |NA |NA    |NA    |FALSE |FALSE |
+|A4 |NA |NA    |NA    |NA    |FALSE |
+|A5 |NA |NA    |NA    |NA    |NA    |
+
+- A6 (2 pts)  Vuelve a realizar tu analisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad apropiados. El valor de F critico a utilizar se encuentra en el enunciado de este problema. ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? 
+Res:
+|Fuente    |   SS_| Df|   MS_|    F0| Pval|
+|:---------|-----:|--:|-----:|-----:|----:|
+|X         | 2.784|  4| 0.696| 9.698|    0|
+|Residuals | 1.435| 20| 0.072|    NA|   NA|
+|Total     | 4.220| 24| 0.176|    NA|   NA| 
+     Se rechaza H0. El factor A es significativo 
+     Quitar el bloque no cambia la conclusion sobre H0 
+
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  3 B --   03B01t01 
+-----------------------------------------------------------
+
+   # Niveles de A:  4 
+   # Niveles de B (Bloque):  4 
+ 
+  Enunciado:::  
+(1) Una compañia farmaceutica quiere comparar la eficiencia de %a% diferentes tratamientos para un padecimiento especifico. A los pacientes se les dividió en %b% bloques debido a su edad (eg. 20-30, 31-30, etc), asignandoseles uno de los tratamientos de forma aleatoria. Al final de la duración del tratamiento se evaluó la severidad de los sintomas. El experimento se diseñó con las siguientes variables: %V%  A: Tratamiento médico %O% B (Bloque): Rango de edad %O% Y: Severidad de los sintomas al final del tratamiento
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ %T% 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ %A% 
+
+  Datos::  
+|B  |    A1|    A2|    A3|    A4|
+|:--|-----:|-----:|-----:|-----:|
+|B1 | 98.15| 98.16| 98.56| 98.96|
+|B2 | 98.66| 96.33| 99.70| 98.53|
+|B3 | 99.35| 97.51| 98.16| 98.76|
+|B4 | 97.73| 96.18| 97.59| 99.16| 
+
+  Preguntas y sus respuestas:: 
+
+- A1 (2 pts) Reporta la suma de cuadrados de los tratamientos (SSt), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual 
+- A2 (2 pts) Reporta la media de cuadrados de los tratamientos (MSt), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. 
+- A3 (1 pts) Reporta tu estadistico de prueba, F0 
+Res: 
+|Fuente    |    SS_| Df|   MS_|    F0|  Pval|
+|:---------|------:|--:|-----:|-----:|-----:|
+|X         |  7.697|  3| 2.566| 4.531| 0.034|
+|B         |  1.689|  3| 0.563| 0.994| 0.439|
+|Residuals |  5.096|  9| 0.566|    NA|    NA|
+|Total     | 14.482| 15| 0.965|    NA|    NA| 
+
+- A4 (1 pts) A partir del F0 calculado, y el Fcritico (revisa el enunciado del problema) para una confianza del 95%, considerando una hipotesis nula donde ninguno de los niveles del factor afectan a la variable de respuesta, y una hipotesis alternativa donde al menos uno de los niveles tiene un efecto significativo. ¿Puedes concluir en que la hipotesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas.  
+Res: 
+     Se rechaza H0. El factor A es significativo. 
+
+- A5 (2 pts) Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadistico q de Tukey a utilizar para la prueba) 
+Res: 
+|   MSerror| Df|     Mean|        CV| StudRange|      HSD|
+|---------:|--:|--------:|---------:|---------:|--------:|
+| 0.5662507|  9| 98.21813| 0.7661481|   4.41489| 1.661094| 
+
+|X   |       Y|groups |
+|:---|-------:|:------|
+|X   | 98.4725|ab     |
+|X.1 | 97.0450|b      |
+|X.2 | 98.5025|ab     |
+|X.3 | 98.8525|a      | 
+
+|   |A1 |A2    |A3    |A4    |
+|:--|:--|:-----|:-----|:-----|
+|A1 |NA |FALSE |FALSE |FALSE |
+|A2 |NA |NA    |FALSE |TRUE  |
+|A3 |NA |NA    |NA    |FALSE |
+|A4 |NA |NA    |NA    |NA    |
+
+- A6 (2 pts)  Vuelve a realizar tu analisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad apropiados. El valor de F critico a utilizar se encuentra en el enunciado de este problema. ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? 
+Res:
+|Fuente    |    SS_| Df|   MS_|    F0|  Pval|
+|:---------|------:|--:|-----:|-----:|-----:|
+|X         |  7.697|  3| 2.566| 4.537| 0.024|
+|Residuals |  6.785| 12| 0.565|    NA|    NA|
+|Total     | 14.482| 15| 0.965|    NA|    NA| 
+     Se rechaza H0. El factor A es significativo 
+     Quitar el bloque no cambia la conclusion sobre H0 
+
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  4 B --   04B02t02 
+-----------------------------------------------------------
+
+   # Niveles de A:  4 
+   # Niveles de B (Bloque):  4 
+ 
+  Enunciado:::  
+(2) Una universidad quiere evaluar la efecitividad de %a% diferentes metodos de enseñanza para incrementar los resultados de un examen. Se aprovecha la división de alumnos en %b% salones diferentes como la variable de bloqueo, y dentro de cada salón a cada alumno se le asigna un metodo diferente de enseñanza. Despues de un mes, se evaluó la mejora de cada estudiante mediante un examen. Las variables involucradas en el experimento: %V%  A: Metodo de enseñanza %O% B (Bloque): Salón %O% Y: Incremento en el resultado del examen
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ %T% 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ %A% 
+
+  Datos::  
+|B  |    A1|    A2|    A3|    A4|
+|:--|-----:|-----:|-----:|-----:|
+|B1 | 77.27| 74.93| 80.83| 77.26|
+|B2 | 76.77| 74.84| 78.54| 77.41|
+|B3 | 74.46| 72.40| 77.38| 75.45|
+|B4 | 76.04| 77.07| 77.94| 77.82| 
+
+  Preguntas y sus respuestas:: 
+
+- A1 (2 pts) Reporta la suma de cuadrados de los tratamientos (SSt), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual 
+- A2 (2 pts) Reporta la media de cuadrados de los tratamientos (MSt), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. 
+- A3 (1 pts) Reporta tu estadistico de prueba, F0 
+Res: 
+|Fuente    |    SS_| Df|    MS_|    F0|  Pval|
+|:---------|------:|--:|------:|-----:|-----:|
+|X         | 31.414|  3| 10.471| 10.75| 0.002|
+|B         | 16.860|  3|  5.620|  5.77| 0.018|
+|Residuals |  8.767|  9|  0.974|    NA|    NA|
+|Total     | 57.040| 15|  3.803|    NA|    NA| 
+
+- A4 (1 pts) A partir del F0 calculado, y el Fcritico (revisa el enunciado del problema) para una confianza del 95%, considerando una hipotesis nula donde ninguno de los niveles del factor afectan a la variable de respuesta, y una hipotesis alternativa donde al menos uno de los niveles tiene un efecto significativo. ¿Puedes concluir en que la hipotesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas.  
+Res: 
+     Se rechaza H0. El factor A es significativo. 
+
+- A5 (2 pts) Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadistico q de Tukey a utilizar para la prueba) 
+Res: 
+|   MSerror| Df|     Mean|       CV| StudRange|      HSD|
+|---------:|--:|--------:|--------:|---------:|--------:|
+| 0.9740674|  9| 76.65063| 1.287594|   4.41489| 2.178635| 
+
+|X   |       Y|groups |
+|:---|-------:|:------|
+|X   | 76.1350|b      |
+|X.1 | 74.8100|b      |
+|X.2 | 78.6725|a      |
+|X.3 | 76.9850|ab     | 
+
+|   |A1 |A2    |A3   |A4    |
+|:--|:--|:-----|:----|:-----|
+|A1 |NA |FALSE |TRUE |FALSE |
+|A2 |NA |NA    |TRUE |FALSE |
+|A3 |NA |NA    |NA   |FALSE |
+|A4 |NA |NA    |NA   |NA    |
+
+- A6 (2 pts)  Vuelve a realizar tu analisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad apropiados. El valor de F critico a utilizar se encuentra en el enunciado de este problema. ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? 
+Res:
+|Fuente    |    SS_| Df|    MS_|    F0|  Pval|
+|:---------|------:|--:|------:|-----:|-----:|
+|X         | 31.414|  3| 10.471| 4.903| 0.019|
+|Residuals | 25.626| 12|  2.136|    NA|    NA|
+|Total     | 57.040| 15|  3.803|    NA|    NA| 
+     Se rechaza H0. El factor A es significativo 
+     Quitar el bloque no cambia la conclusion sobre H0 
+
+
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  5 B --   05B02t02 
+-----------------------------------------------------------
+
+   # Niveles de A:  4 
+   # Niveles de B (Bloque):  4 
+ 
+  Enunciado:::  
+(2) Una universidad quiere evaluar la efecitividad de %a% diferentes metodos de enseñanza para incrementar los resultados de un examen. Se aprovecha la división de alumnos en %b% salones diferentes como la variable de bloqueo, y dentro de cada salón a cada alumno se le asigna un metodo diferente de enseñanza. Despues de un mes, se evaluó la mejora de cada estudiante mediante un examen. Las variables involucradas en el experimento: %V%  A: Metodo de enseñanza %O% B (Bloque): Salón %O% Y: Incremento en el resultado del examen
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ %T% 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ %A% 
+
+  Datos::  
+|B  |    A1|    A2|    A3|    A4|
+|:--|-----:|-----:|-----:|-----:|
+|B1 | 77.27| 74.93| 80.83| 77.26|
+|B2 | 76.77| 74.84| 78.54| 77.41|
+|B3 | 74.46| 72.40| 77.38| 75.45|
+|B4 | 76.04| 77.07| 77.94| 77.82| 
+
+  Preguntas y sus respuestas:: 
+
+- A1 (2 pts) Reporta la suma de cuadrados de los tratamientos (SSt), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual 
+- A2 (2 pts) Reporta la media de cuadrados de los tratamientos (MSt), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. 
+- A3 (1 pts) Reporta tu estadistico de prueba, F0 
+Res: 
+|Fuente    |    SS_| Df|    MS_|    F0|  Pval|
+|:---------|------:|--:|------:|-----:|-----:|
+|X         | 31.414|  3| 10.471| 10.75| 0.002|
+|B         | 16.860|  3|  5.620|  5.77| 0.018|
+|Residuals |  8.767|  9|  0.974|    NA|    NA|
+|Total     | 57.040| 15|  3.803|    NA|    NA| 
+
+- A4 (1 pts) A partir del F0 calculado, y el Fcritico (revisa el enunciado del problema) para una confianza del 95%, considerando una hipotesis nula donde ninguno de los niveles del factor afectan a la variable de respuesta, y una hipotesis alternativa donde al menos uno de los niveles tiene un efecto significativo. ¿Puedes concluir en que la hipotesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas.  
+Res: 
+     Se rechaza H0. El factor A es significativo. 
+
+- A5 (2 pts) Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadistico q de Tukey a utilizar para la prueba) 
+Res: 
+|   MSerror| Df|     Mean|       CV| StudRange|      HSD|
+|---------:|--:|--------:|--------:|---------:|--------:|
+| 0.9740674|  9| 76.65063| 1.287594|   4.41489| 2.178635| 
+
+|X   |       Y|groups |
+|:---|-------:|:------|
+|X   | 76.1350|b      |
+|X.1 | 74.8100|b      |
+|X.2 | 78.6725|a      |
+|X.3 | 76.9850|ab     | 
+
+|   |A1 |A2    |A3   |A4    |
+|:--|:--|:-----|:----|:-----|
+|A1 |NA |FALSE |TRUE |FALSE |
+|A2 |NA |NA    |TRUE |FALSE |
+|A3 |NA |NA    |NA   |FALSE |
+|A4 |NA |NA    |NA   |NA    |
+
+- A6 (2 pts)  Vuelve a realizar tu analisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad apropiados. El valor de F critico a utilizar se encuentra en el enunciado de este problema. ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? 
+Res:
+|Fuente    |    SS_| Df|    MS_|    F0|  Pval|
+|:---------|------:|--:|------:|-----:|-----:|
+|X         | 31.414|  3| 10.471| 4.903| 0.019|
+|Residuals | 25.626| 12|  2.136|    NA|    NA|
+|Total     | 57.040| 15|  3.803|    NA|    NA| 
+     Se rechaza H0. El factor A es significativo 
+     Quitar el bloque no cambia la conclusion sobre H0 
+
+
+-----------------------------------------------------------
+

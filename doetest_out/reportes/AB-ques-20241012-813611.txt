@@ -1,0 +1,981 @@
+
+
+ <p> 
+(01B04t02) Un chef quiere determinar el efecto que tienen diferentes metodos de cocción sobre la textura de la carne. Se eligieron 4 metodos de cocción a probar, y para controlar la variación que hay en la calidad de la carne, se establecieron 4 bloques para el corte de carne utilizado. Cada metodo de cocción fue asignado aleatoreamente a los cortes de cada bloque, y la textura fue determinada con un panel de degustadores. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodos de cocción 
+  </li><li> B (Bloque): Corte de la carne 
+  </li><li> Y: Textura de la carne
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 61.07 </td>
+   <td style="text-align:right;"> 61.22 </td>
+   <td style="text-align:right;"> 61.49 </td>
+   <td style="text-align:right;"> 62.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 61.51 </td>
+   <td style="text-align:right;"> 61.01 </td>
+   <td style="text-align:right;"> 61.74 </td>
+   <td style="text-align:right;"> 61.88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 61.71 </td>
+   <td style="text-align:right;"> 61.27 </td>
+   <td style="text-align:right;"> 61.63 </td>
+   <td style="text-align:right;"> 61.50 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.846 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.282 </td>
+   <td style="text-align:right;"> 2.804 </td>
+   <td style="text-align:right;"> 0.131 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 0.002 </td>
+   <td style="text-align:right;"> 0.998 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 0.604 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0.101 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1.450 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 0.132 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 4.757  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 4.066  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.896  </p>
+
+
+
+ <p> 
+(02B04t05) Un chef quiere determinar el efecto que tienen diferentes metodos de cocción sobre la textura de la carne. Se eligieron 3 metodos de cocción a probar, y para controlar la variación que hay en la calidad de la carne, se establecieron 3 bloques para el corte de carne utilizado. Cada metodo de cocción fue asignado aleatoreamente a los cortes de cada bloque, y la textura fue determinada con un panel de degustadores. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodos de cocción 
+  </li><li> B (Bloque): Corte de la carne 
+  </li><li> Y: Textura de la carne
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 29.70 </td>
+   <td style="text-align:right;"> 29.35 </td>
+   <td style="text-align:right;"> 27.25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 28.68 </td>
+   <td style="text-align:right;"> 29.91 </td>
+   <td style="text-align:right;"> 29.44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 31.63 </td>
+   <td style="text-align:right;"> 28.24 </td>
+   <td style="text-align:right;"> 29.49 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 2.523 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 1.262 </td>
+   <td style="text-align:right;"> 0.661 </td>
+   <td style="text-align:right;"> 0.565 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1.569 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.785 </td>
+   <td style="text-align:right;"> 0.411 </td>
+   <td style="text-align:right;"> 0.688 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 7.637 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1.909 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 11.730 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 1.466 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 6.944  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 5.143  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 5.04  </p>
+
+
+
+ <p> 
+(03B04t08) Un chef quiere determinar el efecto que tienen diferentes metodos de cocción sobre la textura de la carne. Se eligieron 3 metodos de cocción a probar, y para controlar la variación que hay en la calidad de la carne, se establecieron 3 bloques para el corte de carne utilizado. Cada metodo de cocción fue asignado aleatoreamente a los cortes de cada bloque, y la textura fue determinada con un panel de degustadores. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodos de cocción 
+  </li><li> B (Bloque): Corte de la carne 
+  </li><li> Y: Textura de la carne
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 64.46 </td>
+   <td style="text-align:right;"> 63.70 </td>
+   <td style="text-align:right;"> 62.18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 61.68 </td>
+   <td style="text-align:right;"> 62.49 </td>
+   <td style="text-align:right;"> 63.62 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 62.27 </td>
+   <td style="text-align:right;"> 63.38 </td>
+   <td style="text-align:right;"> 63.24 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.225 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.112 </td>
+   <td style="text-align:right;"> 0.088 </td>
+   <td style="text-align:right;"> 0.917 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 1.091 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.545 </td>
+   <td style="text-align:right;"> 0.428 </td>
+   <td style="text-align:right;"> 0.679 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 5.100 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1.275 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 6.416 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 0.802 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 6.944  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 5.143  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 5.04  </p>
+
+
+
+ <p> 
+(04B04t03) Un chef quiere determinar el efecto que tienen diferentes metodos de cocción sobre la textura de la carne. Se eligieron 4 metodos de cocción a probar, y para controlar la variación que hay en la calidad de la carne, se establecieron 4 bloques para el corte de carne utilizado. Cada metodo de cocción fue asignado aleatoreamente a los cortes de cada bloque, y la textura fue determinada con un panel de degustadores. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodos de cocción 
+  </li><li> B (Bloque): Corte de la carne 
+  </li><li> Y: Textura de la carne
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 39.22 </td>
+   <td style="text-align:right;"> 9.81 </td>
+   <td style="text-align:right;"> 88.07 </td>
+   <td style="text-align:right;"> 37.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 43.39 </td>
+   <td style="text-align:right;"> 17.21 </td>
+   <td style="text-align:right;"> 35.89 </td>
+   <td style="text-align:right;"> 33.36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 11.73 </td>
+   <td style="text-align:right;"> 5.52 </td>
+   <td style="text-align:right;"> 21.09 </td>
+   <td style="text-align:right;"> 28.57 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B4 </td>
+   <td style="text-align:right;"> 65.00 </td>
+   <td style="text-align:right;"> 44.88 </td>
+   <td style="text-align:right;"> 52.37 </td>
+   <td style="text-align:right;"> 48.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B5 </td>
+   <td style="text-align:right;"> 0.16 </td>
+   <td style="text-align:right;"> 34.71 </td>
+   <td style="text-align:right;"> 50.81 </td>
+   <td style="text-align:right;"> 32.72 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 1917.365 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 639.122 </td>
+   <td style="text-align:right;"> 2.181 </td>
+   <td style="text-align:right;"> 0.143 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 3028.463 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 757.116 </td>
+   <td style="text-align:right;"> 2.584 </td>
+   <td style="text-align:right;"> 0.091 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 3516.220 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 293.018 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 8462.048 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 445.371 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 3.49  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 3.239  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.199  </p>
+
+
+
+ <p> 
+(05B03t01) Un investigador quiere conocer el efecto de 4 diferentes fertilizantes sobre el crecimiento de plantas de tomate. Dentro de un invernadero, se divide el espacio disponible en 4 diferentes bloques segun el tipo de tierra a utilizar, cada uno con cuatro plantas de tomate. Al final de cuatro semanas, se evalua la altura de las plantas. Las variables involucradas en el experimento: 
+  </p> <li>  A: Fertilizante empleado 
+  </li><li> B (Bloque): Tipo de tierra 
+  </li><li> Y: Altura de la planta
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 46.37 </td>
+   <td style="text-align:right;"> 45.65 </td>
+   <td style="text-align:right;"> 45.91 </td>
+   <td style="text-align:right;"> 45.65 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 45.97 </td>
+   <td style="text-align:right;"> 45.73 </td>
+   <td style="text-align:right;"> 46.18 </td>
+   <td style="text-align:right;"> 45.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 45.92 </td>
+   <td style="text-align:right;"> 46.04 </td>
+   <td style="text-align:right;"> 46.48 </td>
+   <td style="text-align:right;"> 45.34 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B4 </td>
+   <td style="text-align:right;"> 45.53 </td>
+   <td style="text-align:right;"> 46.16 </td>
+   <td style="text-align:right;"> 46.00 </td>
+   <td style="text-align:right;"> 45.69 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.792 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.264 </td>
+   <td style="text-align:right;"> 3.066 </td>
+   <td style="text-align:right;"> 0.084 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.034 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.011 </td>
+   <td style="text-align:right;"> 0.130 </td>
+   <td style="text-align:right;"> 0.940 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 0.775 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 0.086 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1.600 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 0.107 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 3.863  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 3.49  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.415  </p>
+
+
+
+ <p> 
+(06B04t06) Un chef quiere determinar el efecto que tienen diferentes metodos de cocción sobre la textura de la carne. Se eligieron 3 metodos de cocción a probar, y para controlar la variación que hay en la calidad de la carne, se establecieron 3 bloques para el corte de carne utilizado. Cada metodo de cocción fue asignado aleatoreamente a los cortes de cada bloque, y la textura fue determinada con un panel de degustadores. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodos de cocción 
+  </li><li> B (Bloque): Corte de la carne 
+  </li><li> Y: Textura de la carne
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 37.85 </td>
+   <td style="text-align:right;"> 38.19 </td>
+   <td style="text-align:right;"> 38.12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 38.17 </td>
+   <td style="text-align:right;"> 38.26 </td>
+   <td style="text-align:right;"> 37.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 38.20 </td>
+   <td style="text-align:right;"> 38.26 </td>
+   <td style="text-align:right;"> 37.83 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B4 </td>
+   <td style="text-align:right;"> 37.93 </td>
+   <td style="text-align:right;"> 38.37 </td>
+   <td style="text-align:right;"> 38.05 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.191 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.095 </td>
+   <td style="text-align:right;"> 3.781 </td>
+   <td style="text-align:right;"> 0.087 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.008 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.003 </td>
+   <td style="text-align:right;"> 0.101 </td>
+   <td style="text-align:right;"> 0.957 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 0.152 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0.025 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 0.350 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 0.032 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 5.143  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 4.256  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.339  </p>
+
+
+
+ <p> 
+(07B02t02) Una universidad quiere evaluar la efecitividad de 4 diferentes metodos de enseñanza para incrementar los resultados de un examen. Se aprovecha la división de alumnos en 4 salones diferentes como la variable de bloqueo, y dentro de cada salón a cada alumno se le asigna un metodo diferente de enseñanza. Despues de un mes, se evaluó la mejora de cada estudiante mediante un examen. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodo de enseñanza 
+  </li><li> B (Bloque): Salón 
+  </li><li> Y: Incremento en el resultado del examen
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 61.07 </td>
+   <td style="text-align:right;"> 61.22 </td>
+   <td style="text-align:right;"> 61.49 </td>
+   <td style="text-align:right;"> 62.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 61.51 </td>
+   <td style="text-align:right;"> 61.01 </td>
+   <td style="text-align:right;"> 61.74 </td>
+   <td style="text-align:right;"> 61.88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 61.71 </td>
+   <td style="text-align:right;"> 61.27 </td>
+   <td style="text-align:right;"> 61.63 </td>
+   <td style="text-align:right;"> 61.50 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.846 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.282 </td>
+   <td style="text-align:right;"> 2.804 </td>
+   <td style="text-align:right;"> 0.131 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.000 </td>
+   <td style="text-align:right;"> 0.002 </td>
+   <td style="text-align:right;"> 0.998 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 0.604 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 0.101 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1.450 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 0.132 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 4.757  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 4.066  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.896  </p>
+
+
+
+ <p> 
+(08B03t03) Un investigador quiere conocer el efecto de 4 diferentes fertilizantes sobre el crecimiento de plantas de tomate. Dentro de un invernadero, se divide el espacio disponible en 4 diferentes bloques segun el tipo de tierra a utilizar, cada uno con cuatro plantas de tomate. Al final de cuatro semanas, se evalua la altura de las plantas. Las variables involucradas en el experimento: 
+  </p> <li>  A: Fertilizante empleado 
+  </li><li> B (Bloque): Tipo de tierra 
+  </li><li> Y: Altura de la planta
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 39.22 </td>
+   <td style="text-align:right;"> 9.81 </td>
+   <td style="text-align:right;"> 88.07 </td>
+   <td style="text-align:right;"> 37.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 43.39 </td>
+   <td style="text-align:right;"> 17.21 </td>
+   <td style="text-align:right;"> 35.89 </td>
+   <td style="text-align:right;"> 33.36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 11.73 </td>
+   <td style="text-align:right;"> 5.52 </td>
+   <td style="text-align:right;"> 21.09 </td>
+   <td style="text-align:right;"> 28.57 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B4 </td>
+   <td style="text-align:right;"> 65.00 </td>
+   <td style="text-align:right;"> 44.88 </td>
+   <td style="text-align:right;"> 52.37 </td>
+   <td style="text-align:right;"> 48.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B5 </td>
+   <td style="text-align:right;"> 0.16 </td>
+   <td style="text-align:right;"> 34.71 </td>
+   <td style="text-align:right;"> 50.81 </td>
+   <td style="text-align:right;"> 32.72 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 1917.365 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 639.122 </td>
+   <td style="text-align:right;"> 2.181 </td>
+   <td style="text-align:right;"> 0.143 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 3028.463 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 757.116 </td>
+   <td style="text-align:right;"> 2.584 </td>
+   <td style="text-align:right;"> 0.091 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 3516.220 </td>
+   <td style="text-align:right;"> 12 </td>
+   <td style="text-align:right;"> 293.018 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 8462.048 </td>
+   <td style="text-align:right;"> 19 </td>
+   <td style="text-align:right;"> 445.371 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 3.49  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 3.239  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.199  </p>
+

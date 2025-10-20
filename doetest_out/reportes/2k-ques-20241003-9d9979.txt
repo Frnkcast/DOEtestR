@@ -1,0 +1,501 @@
+
+
+ <p> (01k03t01) Una barista con gusto por la estadistica quiere identificar los factores que influyen en el perfil de sabores del café espresso que ella prepara. Decide armar una escala para calificar el sabor del café y establece un diseño 2^3 con las siguientes variables y factores: 
+  </p> <li>  A: Tipo de molido (Fino, Medio) 
+  </li><li> B: Tipo de tostado (Medio, Oscuro) 
+  </li><li> C: Temperatura del agua (85°C, 92°C) 
+  </li><li> Y: Calificación dada por un panel de catadores
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 4 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+   <th style="text-align:right;"> Y.2 </th>
+   <th style="text-align:right;"> Y.3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 53.67 </td>
+   <td style="text-align:right;"> 53.47 </td>
+   <td style="text-align:right;"> 53.25 </td>
+   <td style="text-align:right;"> 53.70 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 55.98 </td>
+   <td style="text-align:right;"> 56.66 </td>
+   <td style="text-align:right;"> 57.21 </td>
+   <td style="text-align:right;"> 56.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.12 </td>
+   <td style="text-align:right;"> 54.71 </td>
+   <td style="text-align:right;"> 54.77 </td>
+   <td style="text-align:right;"> 54.29 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.75 </td>
+   <td style="text-align:right;"> 54.73 </td>
+   <td style="text-align:right;"> 53.50 </td>
+   <td style="text-align:right;"> 53.78 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 55.57 </td>
+   <td style="text-align:right;"> 55.41 </td>
+   <td style="text-align:right;"> 55.85 </td>
+   <td style="text-align:right;"> 54.38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.17 </td>
+   <td style="text-align:right;"> 53.76 </td>
+   <td style="text-align:right;"> 54.53 </td>
+   <td style="text-align:right;"> 54.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.72 </td>
+   <td style="text-align:right;"> 56.11 </td>
+   <td style="text-align:right;"> 54.93 </td>
+   <td style="text-align:right;"> 53.96 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.49 </td>
+   <td style="text-align:right;"> 54.34 </td>
+   <td style="text-align:right;"> 54.74 </td>
+   <td style="text-align:right;"> 55.00 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 4.26  </p>
+
+
+
+
+ <p> (02k03t05) Una barista con gusto por la estadistica quiere identificar los factores que influyen en el perfil de sabores del café espresso que ella prepara. Decide armar una escala para calificar el sabor del café y establece un diseño 2^3 con las siguientes variables y factores: 
+  </p> <li>  A: Tipo de molido (Fino, Medio) 
+  </li><li> B: Tipo de tostado (Medio, Oscuro) 
+  </li><li> C: Temperatura del agua (85°C, 92°C) 
+  </li><li> Y: Calificación dada por un panel de catadores
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 2 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.42 </td>
+   <td style="text-align:right;"> 54.64 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 56.19 </td>
+   <td style="text-align:right;"> 55.88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.08 </td>
+   <td style="text-align:right;"> 53.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 53.48 </td>
+   <td style="text-align:right;"> 51.99 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 53.73 </td>
+   <td style="text-align:right;"> 52.99 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.32 </td>
+   <td style="text-align:right;"> 55.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 53.57 </td>
+   <td style="text-align:right;"> 54.57 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 55.04 </td>
+   <td style="text-align:right;"> 54.73 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 5.318  </p>
+
+
+
+
+ <p> (03k06t01) Los alumnos de la clase de Soluciones Integrales tienen como objetivo mejorar la remoción de metales pesados en muestras de agua. Para ello, deciden utilizar una estrategia basada en adsorción con zeolitos. El experimento se diseñó con las siguientes variables: 
+  </p> <li>  A: Tipo de zeolito (CLTA, MLTA) 
+  </li><li> B: pH de la solución (8, 10) 
+  </li><li> C: Temperatura (293K, 313K) 
+  </li><li> Y: Metales pesados en agua tras tratamiento
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 4 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+   <th style="text-align:right;"> Y.2 </th>
+   <th style="text-align:right;"> Y.3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 53.67 </td>
+   <td style="text-align:right;"> 53.47 </td>
+   <td style="text-align:right;"> 53.25 </td>
+   <td style="text-align:right;"> 53.70 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 55.98 </td>
+   <td style="text-align:right;"> 56.66 </td>
+   <td style="text-align:right;"> 57.21 </td>
+   <td style="text-align:right;"> 56.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.12 </td>
+   <td style="text-align:right;"> 54.71 </td>
+   <td style="text-align:right;"> 54.77 </td>
+   <td style="text-align:right;"> 54.29 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.75 </td>
+   <td style="text-align:right;"> 54.73 </td>
+   <td style="text-align:right;"> 53.50 </td>
+   <td style="text-align:right;"> 53.78 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 55.57 </td>
+   <td style="text-align:right;"> 55.41 </td>
+   <td style="text-align:right;"> 55.85 </td>
+   <td style="text-align:right;"> 54.38 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.17 </td>
+   <td style="text-align:right;"> 53.76 </td>
+   <td style="text-align:right;"> 54.53 </td>
+   <td style="text-align:right;"> 54.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.72 </td>
+   <td style="text-align:right;"> 56.11 </td>
+   <td style="text-align:right;"> 54.93 </td>
+   <td style="text-align:right;"> 53.96 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.49 </td>
+   <td style="text-align:right;"> 54.34 </td>
+   <td style="text-align:right;"> 54.74 </td>
+   <td style="text-align:right;"> 55.00 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 4.26  </p>
+
+
+
+
+ <p> (04k04t04) Un equipo de emprendedores decide instalar una fabrica de cerveza. Sin embargo, el contenido de aire en las botellas de cerveza presenta fluctuaciones erraticas que hacen que el proceso esté fuera de control. Se desea establecer cuales condiciones de operación influyen sobre el contenido de aire en las botellas para estabilizar este parametro. Las variables y niveles seleccionados para el experimento fueron: 
+  </p> <li>  A: Posición del espumador (1, 2) 
+  </li><li> B: Velocidad de llenado (600, 650 botellas por minuto) 
+  </li><li> C: Presión del espumador (7.00, 8.00 kg/cm2) 
+  </li><li> Y: Cantidad de aire por botella
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 2 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 28.28 </td>
+   <td style="text-align:right;"> 30.31 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 27.30 </td>
+   <td style="text-align:right;"> 26.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 27.48 </td>
+   <td style="text-align:right;"> 26.75 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 28.66 </td>
+   <td style="text-align:right;"> 29.18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 26.68 </td>
+   <td style="text-align:right;"> 27.56 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 29.17 </td>
+   <td style="text-align:right;"> 28.56 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 28.11 </td>
+   <td style="text-align:right;"> 28.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 28.56 </td>
+   <td style="text-align:right;"> 28.85 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 5.318  </p>
+
+
+
+
+ <p> (05k01t05) Se tiene una maquina de inyección de plástico que produce botellas de plastico. Sin embargo, se desconoce que parametros de operación tienen un efecto sobre la resistencia mecanica de las botellas producidas. Para identificar esto y establecer limites de control, se diseña el siguiente experimento 2^k: 
+  </p> <li> A: Temperatura del barril (160, 180) °C 
+  </li><li> B: Presión de inyección (30, 50) lb/pulg2 
+  </li><li> C: Tiempo de inyección (7, 8) segundos 
+  </li><li> Y: Resistencia mecanica
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 2 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.42 </td>
+   <td style="text-align:right;"> 54.64 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 56.19 </td>
+   <td style="text-align:right;"> 55.88 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 54.08 </td>
+   <td style="text-align:right;"> 53.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 53.48 </td>
+   <td style="text-align:right;"> 51.99 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 53.73 </td>
+   <td style="text-align:right;"> 52.99 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 54.32 </td>
+   <td style="text-align:right;"> 55.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 53.57 </td>
+   <td style="text-align:right;"> 54.57 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 55.04 </td>
+   <td style="text-align:right;"> 54.73 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 5.318  </p>
+
+

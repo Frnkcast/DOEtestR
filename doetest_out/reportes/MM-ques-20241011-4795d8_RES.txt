@@ -1,0 +1,154 @@
+Inicializando.... Base de datos de Preguntas 
+   id:  4795d8 
+   id:  blooded_biochemical_venomoth 
+- Elaborado en:  1728690828 
+- Utilizando datos de la tabla:  MM-data-20241011-3e731c 
+- Para el tema:  Media Muestral 
+- Lista de problemas generados:  01M01m05, 02M01m02, 03M01m02, 04M01m01, 05M01q03 
+
+
+-----------------------------------------------------------
+ Entrada #:  01M01m05 
+-----------------------------------------------------------
+Población::: 
+   Mu =  21.578 
+   Sig =  desconocido 
+
+Muestra:: 
+   n:   11 
+   Media muestal =  23.196 
+   Desv. Muestral(S) =  6.311 
+
+Probabilidades:: 
+   Distribución:  t 
+   Valor de query:  24.466 
+   Valor de query(Critico):  1.51789799238776 
+   P(X  < 24.466  ) =  0.92 
+
+Enunciado:: 
+    [01M01m05] A partir de una población normal con las siguientes caracteristicas: "X &sim; N( &mu;  = ?) , se obtuvo una muestra de tamaño 11 con una desviación muestral de S = 6.311. Dado que P(X&#772; <24.466) = 0.92. 
+Encuentra el valor de &mu;. 
+ ....... 
+   Buscando:  m 
+   Respuesta:  21.578 
+   Rango aceptable:  19.95965  -  23.19635 
+
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  02M01m02 
+-----------------------------------------------------------
+Población::: 
+   Mu =  98.917 
+   Sig =  desconocido 
+
+Muestra:: 
+   n:   24 
+   Media muestal =  99.093 
+   Desv. Muestral(S) =  1.934 
+
+Probabilidades:: 
+   Distribución:  t 
+   Valor de query:  99.505 
+   Valor de query(Critico):  1.48927689709798 
+   P(X  > 99.505  ) =  0.075 
+
+Enunciado:: 
+    [02M01m02] A partir de una población normal con las siguientes caracteristicas: "X &sim; N( &mu;  = ?) , se obtuvo una muestra de tamaño 24 con una desviación muestral de S = 1.934. Dado que P(X&#772; >99.505) = 0.075. 
+Encuentra el valor de &mu;. 
+ ....... 
+   Buscando:  m 
+   Respuesta:  98.917 
+   Rango aceptable:  91.498225  -  106.335775 
+
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  03M01m02 
+-----------------------------------------------------------
+Población::: 
+   Mu =  98.917 
+   Sig =  desconocido 
+
+Muestra:: 
+   n:   24 
+   Media muestal =  99.093 
+   Desv. Muestral(S) =  1.934 
+
+Probabilidades:: 
+   Distribución:  t 
+   Valor de query:  99.505 
+   Valor de query(Critico):  1.48927689709798 
+   P(X  > 99.505  ) =  0.075 
+
+Enunciado:: 
+    [03M01m02] A partir de una población normal con las siguientes caracteristicas: "X &sim; N( &mu;  = ?) , se obtuvo una muestra de tamaño 24 con una desviación muestral de S = 1.934. Dado que P(X&#772; >99.505) = 0.075. 
+Encuentra el valor de &mu;. 
+ ....... 
+   Buscando:  m 
+   Respuesta:  98.917 
+   Rango aceptable:  91.498225  -  106.335775 
+
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  04M01m01 
+-----------------------------------------------------------
+Población::: 
+   Mu =  1.645 
+   Sig =  desconocido 
+
+Muestra:: 
+   n:   6 
+   Media muestal =  4.507 
+   Desv. Muestral(S) =  23.847 
+
+Probabilidades:: 
+   Distribución:  t 
+   Valor de query:  -17.972 
+   Valor de query(Critico):  -2.01504837333302 
+   P(X  < -17.972  ) =  0.05 
+
+Enunciado:: 
+    [04M01m01] A partir de una población normal con las siguientes caracteristicas: "X &sim; N( &mu;  = ?) , se obtuvo una muestra de tamaño 6 con una desviación muestral de S = 23.847. Dado que P(X&#772; <-17.972) = 0.05. 
+Encuentra el valor de &mu;. 
+ ....... 
+   Buscando:  m 
+   Respuesta:  1.645 
+   Rango aceptable:  1.521625  -  1.768375 
+
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada #:  05M01q03 
+-----------------------------------------------------------
+Población::: 
+   Mu =  89.021 
+   Sig =  1.089 
+
+Muestra:: 
+   n:   37 
+   Media muestal =  89.137 
+   Desv. Muestral(S) =  1.323 
+
+Probabilidades:: 
+   Distribución:  z 
+   Valor de query:  B 
+   Valor de query(Critico):  -0.0931170238181949 
+   P(X  > B  ) =  0.537 
+
+Enunciado:: 
+    [05M01q03] A partir de una población normal con las siguientes caracteristicas: "X &sim; N( &mu;  = 89.021, σ  = 1.089) , se obtuvo una muestra de tamaño 37 con una desviación muestral de S = 1.323. Dado que P(X&#772; >B) = 0.537. 
+Encuentra el valor de B. 
+ ....... 
+   Buscando:  q 
+   Respuesta:  89.004 
+   Rango aceptable:  87.66894  -  90.33906 
+
+ 
+-----------------------------------------------------------
+

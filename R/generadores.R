@@ -209,7 +209,7 @@ questionMediaMuestral <- function(Data,Q,format="HTML",silent=T){
 
       ## y[i]: Enunciado probabilidad
       #y[i] <- paste0("P( x̄ ", ans$cola[i], ans$q[i],") = ", ans$p[i],". \n")
-      y[i] <- paste0("P(X&#772; ", ans$cola[i], ans$q[i],") = ", ans$p[i],". \n")
+      y[i] <- paste0("P(X&#772; ", ans$cola[i], ans$q[i]," ) = ", ans$p[i],". \n")
       ## z[i]: Enunciado final
       z[i] <- paste0("[", ans$Code[i],"] ",
               "A partir de una población normal con las siguientes caracteristicas: ",
@@ -760,7 +760,7 @@ gen1Anova <- function(r){ # r = Cuantos problemas a generar
     }else if(a == 5){
       names <- c("A","B","C","D","E")}
 
-    df <- df %>% dplyr::mutate_if(is.numeric,round,digits=1) #Redondear numeros, pero no quitar indice
+    df <- df %>% dplyr::mutate_if(is.numeric,round,digits=2) #Redondear numeros, pero no quitar indice
 
     ####--------------- Genera ANOVA
     df_reorder <- df %>%

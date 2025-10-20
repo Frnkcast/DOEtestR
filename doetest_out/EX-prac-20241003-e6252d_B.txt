@@ -1,0 +1,130 @@
+------------Examen----------------
+- Alias::  inking_ensconced_kabuto 
+Problemas recopilados::: 
+- Usando las bases de datos::  AB-ques-20241003-9cc880 
+----------------------------------
+<p><strong><span class="fontstyle0">Instrucciones: </span></strong><span class="fontstyle2">Lee detenidamente las preguntas. Contesta ya sea en el espacio en Canvas, o en la hoja de respuestas, marcando claramente cu&aacute;l pregunta se est&aacute; contestando.</span> Ignora el c&oacute;digo entre corchetes (eg. 01M01a01), pues esto es solo para la revisi&oacute;n de tu examen. <span style="background-color: #000000;">Código del examen: inking_ensconced_kabuto</span>.</p> 
+
+<ol style="list-style-type: decimal;"> 
+<li>(02B03t05) Un investigador quiere conocer el efecto de 5 diferentes fertilizantes sobre el crecimiento de plantas de tomate. Dentro de un invernadero, se divide el espacio disponible en 5 diferentes bloques segun el tipo de tierra a utilizar, cada uno con cuatro plantas de tomate. Al final de cuatro semanas, se evalua la altura de las plantas. Las variables involucradas en el experimento: 
+  </p> <li>  A: Fertilizante empleado 
+  </li><li> B (Bloque): Tipo de tierra 
+  </li><li> Y: Altura de la planta
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+   <th style="text-align:right;"> A5 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 63.50 </td>
+   <td style="text-align:right;"> 63.80 </td>
+   <td style="text-align:right;"> 63.38 </td>
+   <td style="text-align:right;"> 63.14 </td>
+   <td style="text-align:right;"> 63.92 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 63.55 </td>
+   <td style="text-align:right;"> 63.47 </td>
+   <td style="text-align:right;"> 63.68 </td>
+   <td style="text-align:right;"> 63.59 </td>
+   <td style="text-align:right;"> 64.40 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 63.56 </td>
+   <td style="text-align:right;"> 64.42 </td>
+   <td style="text-align:right;"> 63.31 </td>
+   <td style="text-align:right;"> 64.00 </td>
+   <td style="text-align:right;"> 63.79 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.759 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 0.190 </td>
+   <td style="text-align:right;"> 1.631 </td>
+   <td style="text-align:right;"> 0.257 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.190 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 0.095 </td>
+   <td style="text-align:right;"> 0.816 </td>
+   <td style="text-align:right;"> 0.476 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 0.931 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 0.116 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1.880 </td>
+   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:right;"> 0.134 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 3.838  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 3.478  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.886  </p>
+ [10pt] 
+
+

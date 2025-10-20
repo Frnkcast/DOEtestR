@@ -1,0 +1,406 @@
+------------Examen----------------
+- Alias::  spineless_sleepless_shelmet 
+Problemas recopilados::: 05k01t02, 04k03t01 
+- Usando las bases de datos::  2k-ques-20241012-d95c4a 
+----------------------------------
+<p><strong><span class="fontstyle0">Instructions: </span></strong><span class="fontstyle2">Read carefully each question. Give your answers in the allotted space here in Canvas, or mark them in your worksheet. </span> Ignore the alphanumeric code (eg. 01M01a01), as its only purpose is for helping me grade your exam. <span style="background-color: #000000;">Exam code: spineless_sleepless_shelmet</span>.</p> 
+
+<ol style="list-style-type: decimal;"> 
+<li>(05k01t02) A plastic inyection machine produces plastic bottles for which the manufacturer wants to identify which operation parameters have an effect on the mechanical resistance of the produced bottles. In order to identify the variables and later on establish quality control limits, a 2^k experiment is established with the following variables: 
+  </p> <li> A: Nozzle temperature (160, 180) °C 
+  </li><li> B: Inyection pressure (30, 50) lb/in2 
+  </li><li> C: Inyección time (7, 8) seconds 
+  </li><li> Y: Mechanical resistance
+
+ </li> <p> Below, the design matrix for the experiment (in codified units) and the results of 3 replicates: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Dataset</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+   <th style="text-align:right;"> Y.2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 43.26 </td>
+   <td style="text-align:right;"> 43.53 </td>
+   <td style="text-align:right;"> 43.32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 42.86 </td>
+   <td style="text-align:right;"> 42.12 </td>
+   <td style="text-align:right;"> 43.46 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 44.17 </td>
+   <td style="text-align:right;"> 44.02 </td>
+   <td style="text-align:right;"> 44.26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 43.15 </td>
+   <td style="text-align:right;"> 43.67 </td>
+   <td style="text-align:right;"> 43.28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 42.81 </td>
+   <td style="text-align:right;"> 43.23 </td>
+   <td style="text-align:right;"> 42.77 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 42.66 </td>
+   <td style="text-align:right;"> 42.67 </td>
+   <td style="text-align:right;"> 42.19 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 43.41 </td>
+   <td style="text-align:right;"> 44.09 </td>
+   <td style="text-align:right;"> 43.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 42.83 </td>
+   <td style="text-align:right;"> 43.46 </td>
+   <td style="text-align:right;"> 43.16 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ Below, you're presented with a partial ANOVA table generated from the data. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Anova Table</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> A </td>
+   <td style="text-align:right;"> 1.799 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1.799 </td>
+   <td style="text-align:right;"> 14.234 </td>
+   <td style="text-align:right;"> 0.002 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 2.555 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2.555 </td>
+   <td style="text-align:right;"> 20.217 </td>
+   <td style="text-align:right;"> 0.000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> C </td>
+   <td style="text-align:right;"> 0.886 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.886 </td>
+   <td style="text-align:right;"> 7.008 </td>
+   <td style="text-align:right;"> 0.018 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A:B </td>
+   <td style="text-align:right;"> 0.018 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.018 </td>
+   <td style="text-align:right;"> 0.139 </td>
+   <td style="text-align:right;"> 0.714 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A:C </td>
+   <td style="text-align:right;"> 0.090 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.090 </td>
+   <td style="text-align:right;"> 0.713 </td>
+   <td style="text-align:right;"> 0.411 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B:C </td>
+   <td style="text-align:right;"> 0.001 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.001 </td>
+   <td style="text-align:right;"> 0.010 </td>
+   <td style="text-align:right;"> 0.923 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A:B:C </td>
+   <td style="text-align:right;"> 0.021 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.021 </td>
+   <td style="text-align:right;"> 0.166 </td>
+   <td style="text-align:right;"> 0.689 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 2.022 </td>
+   <td style="text-align:right;"> 16 </td>
+   <td style="text-align:right;"> 0.126 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 7.390 </td>
+   <td style="text-align:right;"> 23 </td>
+   <td style="text-align:right;"> 0.321 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> For a test with 95% confidence, consider a critical F value of 4.494  </p>
+ [10pt] 
+
+
+<p>Answer the following:</p><ol style="list-style-type: lower-alpha;">  <li> Calculate and report the effects of the main factors and their interactions. (2pt)</li>  <li> On your answer sheet, draw the Main Effects plots for the 3 factors. Explain whether, from the graphs, you could identify if one of the factors seems to have a significant effect, say which ones, and explain why. (2pt)</li>  <li> Perform an ANOVA analysis and report which factors and interactions are significant.  Use an alpha of 0.05 (the critical F value to use is given in the problem statement) (3pt)</li>  <li> From the factors and interactions that were significant, give an Abbreviated Regression Model (only with the coefficients of the factors and interactions that were significant – as follows: y&#770; = &beta; <sub>0</sub> + &beta; <sub>i</sub> X<sub>i</sub> + &beta; <sub>ij</sub> X<sub>i</sub> X<sub>j</sub>…)(1pt)</li>  <li> Using the formula of the abbreviated regression model, from the previous question, answer: (2pt) <ul><li> What is the minimum value of the response variable predicted by the abbreviated model? </li> <li> What combination of levels in original units (i.e., NOT like -1 and +1) of the variables would you suggest to minimize the response? </li></ul></li>  <li> Using the formula of the abbreviated regression model, from the previous question, answer: (2pt) <ul>  <li> What is the maximum value of the response variable predicted by the abbreviated model? </li><li> What combination of levels in original units (i.e., NOT like -1 and +1) of the variables would you suggest to maximize response? </li></ul></li></ol>
+
+
+<br /><br /></li> 
+<li>(04k03t01) A barista taking a statistics course wants to identify the factors that influence the flavor profile of her espressos. She designs a 2^k exeriment with the following factors and variables: 
+  </p> <li> A: Coffee grounds size (Fine, coarse) 
+  </li><li> B: Coffee bean roasting (Low, Dark) 
+  </li><li> C: Temperature of water (85°C, 92°C) 
+  </li><li> Y: Score from a tasting panel
+
+ </li> <p> Below, the design matrix for the experiment (in codified units) and the results of 2 replicates: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Dataset</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 44.35 </td>
+   <td style="text-align:right;"> 45.20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 44.14 </td>
+   <td style="text-align:right;"> 43.98 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 42.08 </td>
+   <td style="text-align:right;"> 43.67 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 46.40 </td>
+   <td style="text-align:right;"> 45.28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 44.72 </td>
+   <td style="text-align:right;"> 43.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 44.28 </td>
+   <td style="text-align:right;"> 43.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 44.29 </td>
+   <td style="text-align:right;"> 43.97 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 44.76 </td>
+   <td style="text-align:right;"> 43.18 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ Below, you're presented with a partial ANOVA table generated from the data. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Anova Table</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> A </td>
+   <td style="text-align:right;"> 0.727 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.727 </td>
+   <td style="text-align:right;"> 1.203 </td>
+   <td style="text-align:right;"> 0.305 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.003 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.003 </td>
+   <td style="text-align:right;"> 0.005 </td>
+   <td style="text-align:right;"> 0.948 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> C </td>
+   <td style="text-align:right;"> 0.620 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.620 </td>
+   <td style="text-align:right;"> 1.026 </td>
+   <td style="text-align:right;"> 0.341 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A:B </td>
+   <td style="text-align:right;"> 3.812 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 3.812 </td>
+   <td style="text-align:right;"> 6.310 </td>
+   <td style="text-align:right;"> 0.036 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A:C </td>
+   <td style="text-align:right;"> 1.953 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1.953 </td>
+   <td style="text-align:right;"> 3.233 </td>
+   <td style="text-align:right;"> 0.110 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B:C </td>
+   <td style="text-align:right;"> 0.030 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.030 </td>
+   <td style="text-align:right;"> 0.049 </td>
+   <td style="text-align:right;"> 0.830 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> A:B:C </td>
+   <td style="text-align:right;"> 2.984 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 2.984 </td>
+   <td style="text-align:right;"> 4.939 </td>
+   <td style="text-align:right;"> 0.057 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 4.833 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 0.604 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 14.962 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 0.997 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> For a test with 95% confidence, consider a critical F value of 5.318  </p>
+ [10pt] 
+
+
+<p>Answer the following:</p><ol style="list-style-type: lower-alpha;">  <li> Calculate and report the effects of the main factors and their interactions. (2pt)</li>  <li> On your answer sheet, draw the Main Effects plots for the 3 factors. Explain whether, from the graphs, you could identify if one of the factors seems to have a significant effect, say which ones, and explain why. (2pt)</li>  <li> Perform an ANOVA analysis and report which factors and interactions are significant.  Use an alpha of 0.05 (the critical F value to use is given in the problem statement) (3pt)</li>  <li> From the factors and interactions that were significant, give an Abbreviated Regression Model (only with the coefficients of the factors and interactions that were significant – as follows: y&#770; = &beta; <sub>0</sub> + &beta; <sub>i</sub> X<sub>i</sub> + &beta; <sub>ij</sub> X<sub>i</sub> X<sub>j</sub>…)(1pt)</li>  <li> Using the formula of the abbreviated regression model, from the previous question, answer: (2pt) <ul><li> What is the minimum value of the response variable predicted by the abbreviated model? </li> <li> What combination of levels in original units (i.e., NOT like -1 and +1) of the variables would you suggest to minimize the response? </li></ul></li>  <li> Using the formula of the abbreviated regression model, from the previous question, answer: (2pt) <ul>  <li> What is the maximum value of the response variable predicted by the abbreviated model? </li><li> What combination of levels in original units (i.e., NOT like -1 and +1) of the variables would you suggest to maximize response? </li></ul></li></ol>
+
+
+<br /><br /></li> 
+</ol>

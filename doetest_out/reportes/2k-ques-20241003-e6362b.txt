@@ -1,0 +1,492 @@
+
+
+ <p> (01k07t02) Un laboratorio de desarrollo vegetal está estudiando el impapcto de diferentes fertilizantes sobre el crecimiento de las plantas cultivadas. Para esto, deciden investigar como 3 variables pueden influenciar la velocidad de crecimiento. El experimento se diseñó con las siguientes variables: 
+  </p> <li>  A: Tipo de fertilizante (Sintetico, Bioestimulante) 
+  </li><li> B: Exposición a la luz (Bajo, Alto) 
+  </li><li> C: Frecuencia de riego (Infrecuente, Frecuente) 
+  </li><li> Y: Altura de las plantas
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 3 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+   <th style="text-align:right;"> Y.2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 29.63 </td>
+   <td style="text-align:right;"> 26.13 </td>
+   <td style="text-align:right;"> 34.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 31.21 </td>
+   <td style="text-align:right;"> 33.64 </td>
+   <td style="text-align:right;"> 31.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 30.16 </td>
+   <td style="text-align:right;"> 30.35 </td>
+   <td style="text-align:right;"> 26.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 34.68 </td>
+   <td style="text-align:right;"> 33.33 </td>
+   <td style="text-align:right;"> 33.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 32.46 </td>
+   <td style="text-align:right;"> 33.80 </td>
+   <td style="text-align:right;"> 30.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 30.56 </td>
+   <td style="text-align:right;"> 35.78 </td>
+   <td style="text-align:right;"> 32.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 31.30 </td>
+   <td style="text-align:right;"> 32.23 </td>
+   <td style="text-align:right;"> 30.94 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 34.84 </td>
+   <td style="text-align:right;"> 37.76 </td>
+   <td style="text-align:right;"> 33.36 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 4.494  </p>
+
+
+
+
+ <p> (02k06t04) Los alumnos de la clase de Soluciones Integrales tienen como objetivo mejorar la remoción de metales pesados en muestras de agua. Para ello, deciden utilizar una estrategia basada en adsorción con zeolitos. El experimento se diseñó con las siguientes variables: 
+  </p> <li>  A: Tipo de zeolito (CLTA, MLTA) 
+  </li><li> B: pH de la solución (8, 10) 
+  </li><li> C: Temperatura (293K, 313K) 
+  </li><li> Y: Metales pesados en agua tras tratamiento
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 2 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.40 </td>
+   <td style="text-align:right;"> 94.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.30 </td>
+   <td style="text-align:right;"> 94.24 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.27 </td>
+   <td style="text-align:right;"> 94.28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.28 </td>
+   <td style="text-align:right;"> 94.32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.22 </td>
+   <td style="text-align:right;"> 94.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.24 </td>
+   <td style="text-align:right;"> 94.25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.30 </td>
+   <td style="text-align:right;"> 94.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.27 </td>
+   <td style="text-align:right;"> 94.30 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 5.318  </p>
+
+
+
+
+ <p> (03k07t02) Un laboratorio de desarrollo vegetal está estudiando el impapcto de diferentes fertilizantes sobre el crecimiento de las plantas cultivadas. Para esto, deciden investigar como 3 variables pueden influenciar la velocidad de crecimiento. El experimento se diseñó con las siguientes variables: 
+  </p> <li>  A: Tipo de fertilizante (Sintetico, Bioestimulante) 
+  </li><li> B: Exposición a la luz (Bajo, Alto) 
+  </li><li> C: Frecuencia de riego (Infrecuente, Frecuente) 
+  </li><li> Y: Altura de las plantas
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 3 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+   <th style="text-align:right;"> Y.2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 29.63 </td>
+   <td style="text-align:right;"> 26.13 </td>
+   <td style="text-align:right;"> 34.47 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 31.21 </td>
+   <td style="text-align:right;"> 33.64 </td>
+   <td style="text-align:right;"> 31.54 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 30.16 </td>
+   <td style="text-align:right;"> 30.35 </td>
+   <td style="text-align:right;"> 26.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 34.68 </td>
+   <td style="text-align:right;"> 33.33 </td>
+   <td style="text-align:right;"> 33.91 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 32.46 </td>
+   <td style="text-align:right;"> 33.80 </td>
+   <td style="text-align:right;"> 30.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 30.56 </td>
+   <td style="text-align:right;"> 35.78 </td>
+   <td style="text-align:right;"> 32.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 31.30 </td>
+   <td style="text-align:right;"> 32.23 </td>
+   <td style="text-align:right;"> 30.94 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 34.84 </td>
+   <td style="text-align:right;"> 37.76 </td>
+   <td style="text-align:right;"> 33.36 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 4.494  </p>
+
+
+
+
+ <p> (04k01t04) Se tiene una maquina de inyección de plástico que produce botellas de plastico. Sin embargo, se desconoce que parametros de operación tienen un efecto sobre la resistencia mecanica de las botellas producidas. Para identificar esto y establecer limites de control, se diseña el siguiente experimento 2^k: 
+  </p> <li> A: Temperatura del barril (160, 180) °C 
+  </li><li> B: Presión de inyección (30, 50) lb/pulg2 
+  </li><li> C: Tiempo de inyección (7, 8) segundos 
+  </li><li> Y: Resistencia mecanica
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 2 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.40 </td>
+   <td style="text-align:right;"> 94.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.30 </td>
+   <td style="text-align:right;"> 94.24 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.27 </td>
+   <td style="text-align:right;"> 94.28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 94.28 </td>
+   <td style="text-align:right;"> 94.32 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.22 </td>
+   <td style="text-align:right;"> 94.21 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.24 </td>
+   <td style="text-align:right;"> 94.25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.30 </td>
+   <td style="text-align:right;"> 94.41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 94.27 </td>
+   <td style="text-align:right;"> 94.30 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 5.318  </p>
+
+
+
+
+ <p> (05k05t05) Un equipo del laboratorio de bioprocesos quiere mejorar el rendimiento en la producción de una enzima de interes industrial utilizando un hongo filamentoso. Para ello, diseñan un experimento 2^k, con las siguientes variables: 
+  </p> <li>  A: Fuente de carbono (1, 2) 
+  </li><li> B: Temperatura de incubación (32°C, 37°C) 
+  </li><li> C: Velocidad de agitación (100 RPM, 150 RPM) 
+  </li><li> Y: Rendimiento del producto
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de 3 réplicas: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> A </th>
+   <th style="text-align:right;"> B </th>
+   <th style="text-align:right;"> C </th>
+   <th style="text-align:right;"> Y </th>
+   <th style="text-align:right;"> Y.1 </th>
+   <th style="text-align:right;"> Y.2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 7.51 </td>
+   <td style="text-align:right;"> 5.19 </td>
+   <td style="text-align:right;"> 14.80 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 19.81 </td>
+   <td style="text-align:right;"> 32.35 </td>
+   <td style="text-align:right;"> 18.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 18.95 </td>
+   <td style="text-align:right;"> 20.06 </td>
+   <td style="text-align:right;"> 16.90 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 12.94 </td>
+   <td style="text-align:right;"> 18.36 </td>
+   <td style="text-align:right;"> 12.57 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 6.18 </td>
+   <td style="text-align:right;"> 11.13 </td>
+   <td style="text-align:right;"> 0.28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 21.28 </td>
+   <td style="text-align:right;"> 27.47 </td>
+   <td style="text-align:right;"> 23.98 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> -1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 21.32 </td>
+   <td style="text-align:right;"> 30.99 </td>
+   <td style="text-align:right;"> 34.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 10.49 </td>
+   <td style="text-align:right;"> 3.88 </td>
+   <td style="text-align:right;"> 2.01 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+
+ <p> Para un 95% de confianza, considera un valor de F critico de 4.494  </p>
+
+

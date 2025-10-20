@@ -1,0 +1,535 @@
+Inicializando.... Base de datos de Preguntas 
+   id:  20671c 
+   id:  brethren_speedy_sableye 
+- Elaborado en:  1728690868 
+- Utilizando datos de la tabla:  2k-data-20241011-031efd 
+- Para el tema:  Diseño factorial 2^k 
+- Lista de problemas generados:  01k04t05, 02k02t04, 03k01t05, 04k02t05, 05k02t04 
+
+
+-----------------------------------------------------------
+ Entrada  1 #: --  01k04t05 
+-----------------------------------------------------------
+   # Factores:  3 
+   Replicas:  2 
+ 
+  Enunciado:::  
+(4) Un equipo de emprendedores decide instalar una fabrica de cerveza. Sin embargo, el contenido de aire en las botellas de cerveza presenta fluctuaciones erraticas que hacen que el proceso esté fuera de control. Se desea establecer cuales condiciones de operación influyen sobre el contenido de aire en las botellas para estabilizar este parametro. Las variables y niveles seleccionados para el experimento fueron: %V%  A: Posición del espumador (1, 2) %O% B: Velocidad de llenado (600, 650 botellas por minuto) %O% C: Presión del espumador (7.00, 8.00 kg/cm2) %O% Y: Cantidad de aire por botella
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de %n% réplicas: </p> 
+ %T%  
+
+  Datos::  
+|  A|  B|  C|     Y|   Y.1|
+|--:|--:|--:|-----:|-----:|
+| -1| -1| -1| 32.49| 32.60|
+|  1| -1| -1| 29.08| 31.66|
+| -1|  1| -1| 28.46| 30.40|
+|  1|  1| -1| 32.41| 33.68|
+| -1| -1|  1| 31.56| 28.88|
+|  1| -1|  1| 30.35| 31.36|
+| -1|  1|  1| 28.95| 27.83|
+|  1|  1|  1| 29.62| 29.53| 
+
+  Preguntas y sus respuestas:: 
+
+- B1 (2 pts) Calcula y reporta los efectos de los factores principales y las interacciones. 
+Res: 
+|Factor      | Efecto|   Coef|
+|:-----------|------:|------:|
+|(Intercept) | 61.108| 30.554|
+|A           |  0.815|  0.407|
+|B           | -0.888| -0.444|
+|C           | -1.588| -0.794|
+|A:B         |  1.585|  0.793|
+|A:C         |  0.095|  0.048|
+|B:C         | -0.667| -0.334|
+|A:B:C       | -1.310| -0.655|
+
+- B2 (2 pts) En tu hoja de respuestas, dibuja las gráficas de Efectos Principales para los 3 factores. En el espacio a continuación (aqui en Canvas) explica si, a partir de las gráficas, pudiera identificar si uno de los factores pareciera tener un efecto significativo, y explica por qué. 
+Res: NA 
+ 
+
+- B3 (3 pts) Realiza un analisis de varianza Anova y reporta cuales factores e interacciones son significativos. Utiliza un alfa de 0.05 (el valor de F critico a utilizar en las comparaciones está dado en el enunciado del problema) 
+Res: 
+|Fuente    |    SS_| Df|    MS_|    F0|  Pval|
+|:---------|------:|--:|------:|-----:|-----:|
+|A         |  2.657|  1|  2.657| 1.976| 0.197|
+|B         |  3.151|  1|  3.151| 2.344| 0.164|
+|C         | 10.081|  1| 10.081| 7.498| 0.026|
+|A:B       | 10.049|  1| 10.049| 7.475| 0.026|
+|A:C       |  0.036|  1|  0.036| 0.027| 0.874|
+|B:C       |  1.782|  1|  1.782| 1.326| 0.283|
+|A:B:C     |  6.864|  1|  6.864| 5.106| 0.054|
+|Residuals | 10.755|  8|  1.344|    NA|    NA|
+|Total     | 45.375| 15|  3.025|    NA|    NA| 
+Significativos:  C
+
+- B4 (1 pts) A partir de los factores e interacciones que resultaron significativos, da el Modelo de Regresión Abreviado (unicamente con los coeficientes de los  factores e interacciones que resultaron significativos) 
+Res: 
+Ecuacion de regresion abreviada  y = 30.554 + -0.794 C + 0.793 A:B
+
+Predicción de la respuesta con el mejor modelo: 
+|  A|  B|  C|     Y|   Y_fit|
+|--:|--:|--:|-----:|-------:|
+| -1| -1| -1| 32.49| 32.1400|
+|  1| -1| -1| 29.08| 30.5550|
+| -1|  1| -1| 28.46| 30.5550|
+|  1|  1| -1| 32.41| 32.1400|
+| -1| -1|  1| 31.56| 30.5525|
+|  1| -1|  1| 30.35| 28.9675|
+| -1|  1|  1| 28.95| 28.9675|
+|  1|  1|  1| 29.62| 30.5525|
+| -1| -1| -1| 32.60| 32.1400|
+|  1| -1| -1| 31.66| 30.5550|
+| -1|  1| -1| 30.40| 30.5550|
+|  1|  1| -1| 33.68| 32.1400|
+| -1| -1|  1| 28.88| 30.5525|
+|  1| -1|  1| 31.36| 28.9675|
+| -1|  1|  1| 27.83| 28.9675|
+|  1|  1|  1| 29.53| 30.5525| 
+
+- B5 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor minimo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para minimizar la respuesta? 
+Res: 
+   - Minimizar: 
+|  A|  B|  C|     Y| Y_fit|
+|--:|--:|--:|-----:|-----:|
+|  1|  1| -1| 32.41| 32.14| 
+
+- B6 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor maximo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para maximizar la respuesta? 
+Res: 
+   - Maximizar: 
+|  A|  B|  C|     Y|   Y_fit|
+|--:|--:|--:|-----:|-------:|
+|  1| -1|  1| 30.35| 28.9675|
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  2 #: --  02k02t04 
+-----------------------------------------------------------
+   # Factores:  3 
+   Replicas:  3 
+ 
+  Enunciado:::  
+(2) En un proceso de fabricación de latas de aluminio, se desea el efecto de los parametros de operación sobre el desgaste de una maquina. Se diseña  un experimento 2^k considerando las siguientes variables %V% A: Aceite de lubricación de lámina (1 y 2) %O% B: Presión de manga (25, 35) lb/pulg2 %O% C: Velocidad de linea (500, 800) latas por minuto %O% Y: Tiempo de vida util
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de %n% réplicas: </p> 
+ %T%  
+
+  Datos::  
+|  A|  B|  C|     Y|   Y.1|   Y.2|
+|--:|--:|--:|-----:|-----:|-----:|
+| -1| -1| -1| 91.26| 90.24| 90.83|
+|  1| -1| -1| 92.21| 92.21| 91.50|
+| -1|  1| -1| 91.23| 91.02| 91.30|
+|  1|  1| -1| 91.63| 91.48| 91.23|
+| -1| -1|  1| 91.91| 91.71| 92.27|
+|  1| -1|  1| 92.13| 92.86| 92.87|
+| -1|  1|  1| 91.24| 90.24| 91.29|
+|  1|  1|  1| 92.65| 92.15| 92.01| 
+
+  Preguntas y sus respuestas:: 
+
+- B1 (2 pts) Calcula y reporta los efectos de los factores principales y las interacciones. 
+Res: 
+|Factor      |  Efecto|   Coef|
+|:-----------|-------:|------:|
+|(Intercept) | 183.289| 91.645|
+|A           |   0.866|  0.433|
+|B           |  -0.377| -0.189|
+|C           |   0.599|  0.300|
+|A:B         |  -0.061| -0.030|
+|A:C         |   0.136|  0.068|
+|B:C         |  -0.317| -0.159|
+|A:B:C       |   0.406|  0.203|
+
+- B2 (2 pts) En tu hoja de respuestas, dibuja las gráficas de Efectos Principales para los 3 factores. En el espacio a continuación (aqui en Canvas) explica si, a partir de las gráficas, pudiera identificar si uno de los factores pareciera tener un efecto significativo, y explica por qué. 
+Res: NA 
+ 
+
+- B3 (3 pts) Realiza un analisis de varianza Anova y reporta cuales factores e interacciones son significativos. Utiliza un alfa de 0.05 (el valor de F critico a utilizar en las comparaciones está dado en el enunciado del problema) 
+Res: 
+|Fuente    |    SS_| Df|   MS_|     F0|  Pval|
+|:---------|------:|--:|-----:|------:|-----:|
+|A         |  4.498|  1| 4.498| 29.568| 0.000|
+|B         |  0.855|  1| 0.855|  5.621| 0.031|
+|C         |  2.154|  1| 2.154| 14.159| 0.002|
+|A:B       |  0.022|  1| 0.022|  0.146| 0.707|
+|A:C       |  0.111|  1| 0.111|  0.728| 0.406|
+|B:C       |  0.605|  1| 0.605|  3.976| 0.063|
+|A:B:C     |  0.988|  1| 0.988|  6.496| 0.021|
+|Residuals |  2.434| 16| 0.152|     NA|    NA|
+|Total     | 11.667| 23| 0.507|     NA|    NA| 
+Significativos:  A
+
+- B4 (1 pts) A partir de los factores e interacciones que resultaron significativos, da el Modelo de Regresión Abreviado (unicamente con los coeficientes de los  factores e interacciones que resultaron significativos) 
+Res: 
+Ecuacion de regresion abreviada  y = 91.645 + 0.433 A + -0.189 B + 0.3 C + 0.203 A:B:C
+
+Predicción de la respuesta con el mejor modelo: 
+|  A|  B|  C|     Y|    Y_fit|
+|--:|--:|--:|-----:|--------:|
+| -1| -1| -1| 91.26| 90.89792|
+|  1| -1| -1| 92.21| 92.16958|
+| -1|  1| -1| 91.23| 90.92625|
+|  1|  1| -1| 91.63| 91.38625|
+| -1| -1|  1| 91.91| 91.90292|
+|  1| -1|  1| 92.13| 92.36292|
+| -1|  1|  1| 91.24| 91.11958|
+|  1|  1|  1| 92.65| 92.39125|
+| -1| -1| -1| 90.24| 90.89792|
+|  1| -1| -1| 92.21| 92.16958|
+| -1|  1| -1| 91.02| 90.92625|
+|  1|  1| -1| 91.48| 91.38625|
+| -1| -1|  1| 91.71| 91.90292|
+|  1| -1|  1| 92.86| 92.36292|
+| -1|  1|  1| 90.24| 91.11958|
+|  1|  1|  1| 92.15| 92.39125|
+| -1| -1| -1| 90.83| 90.89792|
+|  1| -1| -1| 91.50| 92.16958|
+| -1|  1| -1| 91.30| 90.92625|
+|  1|  1| -1| 91.23| 91.38625|
+| -1| -1|  1| 92.27| 91.90292|
+|  1| -1|  1| 92.87| 92.36292|
+| -1|  1|  1| 91.29| 91.11958|
+|  1|  1|  1| 92.01| 92.39125| 
+
+- B5 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor minimo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para minimizar la respuesta? 
+Res: 
+   - Minimizar: 
+|  A|  B|  C|     Y|    Y_fit|
+|--:|--:|--:|-----:|--------:|
+|  1|  1|  1| 92.65| 92.39125| 
+
+- B6 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor maximo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para maximizar la respuesta? 
+Res: 
+   - Maximizar: 
+|  A|  B|  C|     Y|    Y_fit|
+|--:|--:|--:|-----:|--------:|
+| -1| -1| -1| 91.26| 90.89792|
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  3 #: --  03k01t05 
+-----------------------------------------------------------
+   # Factores:  3 
+   Replicas:  2 
+ 
+  Enunciado:::  
+(1) Se tiene una maquina de inyección de plástico que produce botellas de plastico. Sin embargo, se desconoce que parametros de operación tienen un efecto sobre la resistencia mecanica de las botellas producidas. Para identificar esto y establecer limites de control, se diseña el siguiente experimento 2^k: %V% A: Temperatura del barril (160, 180) °C %O% B: Presión de inyección (30, 50) lb/pulg2 %O% C: Tiempo de inyección (7, 8) segundos %O% Y: Resistencia mecanica
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de %n% réplicas: </p> 
+ %T%  
+
+  Datos::  
+|  A|  B|  C|     Y|   Y.1|
+|--:|--:|--:|-----:|-----:|
+| -1| -1| -1| 32.49| 32.60|
+|  1| -1| -1| 29.08| 31.66|
+| -1|  1| -1| 28.46| 30.40|
+|  1|  1| -1| 32.41| 33.68|
+| -1| -1|  1| 31.56| 28.88|
+|  1| -1|  1| 30.35| 31.36|
+| -1|  1|  1| 28.95| 27.83|
+|  1|  1|  1| 29.62| 29.53| 
+
+  Preguntas y sus respuestas:: 
+
+- B1 (2 pts) Calcula y reporta los efectos de los factores principales y las interacciones. 
+Res: 
+|Factor      | Efecto|   Coef|
+|:-----------|------:|------:|
+|(Intercept) | 61.108| 30.554|
+|A           |  0.815|  0.407|
+|B           | -0.888| -0.444|
+|C           | -1.588| -0.794|
+|A:B         |  1.585|  0.793|
+|A:C         |  0.095|  0.048|
+|B:C         | -0.667| -0.334|
+|A:B:C       | -1.310| -0.655|
+
+- B2 (2 pts) En tu hoja de respuestas, dibuja las gráficas de Efectos Principales para los 3 factores. En el espacio a continuación (aqui en Canvas) explica si, a partir de las gráficas, pudiera identificar si uno de los factores pareciera tener un efecto significativo, y explica por qué. 
+Res: NA 
+ 
+
+- B3 (3 pts) Realiza un analisis de varianza Anova y reporta cuales factores e interacciones son significativos. Utiliza un alfa de 0.05 (el valor de F critico a utilizar en las comparaciones está dado en el enunciado del problema) 
+Res: 
+|Fuente    |    SS_| Df|    MS_|    F0|  Pval|
+|:---------|------:|--:|------:|-----:|-----:|
+|A         |  2.657|  1|  2.657| 1.976| 0.197|
+|B         |  3.151|  1|  3.151| 2.344| 0.164|
+|C         | 10.081|  1| 10.081| 7.498| 0.026|
+|A:B       | 10.049|  1| 10.049| 7.475| 0.026|
+|A:C       |  0.036|  1|  0.036| 0.027| 0.874|
+|B:C       |  1.782|  1|  1.782| 1.326| 0.283|
+|A:B:C     |  6.864|  1|  6.864| 5.106| 0.054|
+|Residuals | 10.755|  8|  1.344|    NA|    NA|
+|Total     | 45.375| 15|  3.025|    NA|    NA| 
+Significativos:  C
+
+- B4 (1 pts) A partir de los factores e interacciones que resultaron significativos, da el Modelo de Regresión Abreviado (unicamente con los coeficientes de los  factores e interacciones que resultaron significativos) 
+Res: 
+Ecuacion de regresion abreviada  y = 30.554 + -0.794 C + 0.793 A:B
+
+Predicción de la respuesta con el mejor modelo: 
+|  A|  B|  C|     Y|   Y_fit|
+|--:|--:|--:|-----:|-------:|
+| -1| -1| -1| 32.49| 32.1400|
+|  1| -1| -1| 29.08| 30.5550|
+| -1|  1| -1| 28.46| 30.5550|
+|  1|  1| -1| 32.41| 32.1400|
+| -1| -1|  1| 31.56| 30.5525|
+|  1| -1|  1| 30.35| 28.9675|
+| -1|  1|  1| 28.95| 28.9675|
+|  1|  1|  1| 29.62| 30.5525|
+| -1| -1| -1| 32.60| 32.1400|
+|  1| -1| -1| 31.66| 30.5550|
+| -1|  1| -1| 30.40| 30.5550|
+|  1|  1| -1| 33.68| 32.1400|
+| -1| -1|  1| 28.88| 30.5525|
+|  1| -1|  1| 31.36| 28.9675|
+| -1|  1|  1| 27.83| 28.9675|
+|  1|  1|  1| 29.53| 30.5525| 
+
+- B5 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor minimo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para minimizar la respuesta? 
+Res: 
+   - Minimizar: 
+|  A|  B|  C|     Y| Y_fit|
+|--:|--:|--:|-----:|-----:|
+|  1|  1| -1| 32.41| 32.14| 
+
+- B6 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor maximo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para maximizar la respuesta? 
+Res: 
+   - Maximizar: 
+|  A|  B|  C|     Y|   Y_fit|
+|--:|--:|--:|-----:|-------:|
+|  1| -1|  1| 30.35| 28.9675|
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  4 #: --  04k02t05 
+-----------------------------------------------------------
+   # Factores:  3 
+   Replicas:  2 
+ 
+  Enunciado:::  
+(2) En un proceso de fabricación de latas de aluminio, se desea el efecto de los parametros de operación sobre el desgaste de una maquina. Se diseña  un experimento 2^k considerando las siguientes variables %V% A: Aceite de lubricación de lámina (1 y 2) %O% B: Presión de manga (25, 35) lb/pulg2 %O% C: Velocidad de linea (500, 800) latas por minuto %O% Y: Tiempo de vida util
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de %n% réplicas: </p> 
+ %T%  
+
+  Datos::  
+|  A|  B|  C|     Y|   Y.1|
+|--:|--:|--:|-----:|-----:|
+| -1| -1| -1| 32.49| 32.60|
+|  1| -1| -1| 29.08| 31.66|
+| -1|  1| -1| 28.46| 30.40|
+|  1|  1| -1| 32.41| 33.68|
+| -1| -1|  1| 31.56| 28.88|
+|  1| -1|  1| 30.35| 31.36|
+| -1|  1|  1| 28.95| 27.83|
+|  1|  1|  1| 29.62| 29.53| 
+
+  Preguntas y sus respuestas:: 
+
+- B1 (2 pts) Calcula y reporta los efectos de los factores principales y las interacciones. 
+Res: 
+|Factor      | Efecto|   Coef|
+|:-----------|------:|------:|
+|(Intercept) | 61.108| 30.554|
+|A           |  0.815|  0.407|
+|B           | -0.888| -0.444|
+|C           | -1.588| -0.794|
+|A:B         |  1.585|  0.793|
+|A:C         |  0.095|  0.048|
+|B:C         | -0.667| -0.334|
+|A:B:C       | -1.310| -0.655|
+
+- B2 (2 pts) En tu hoja de respuestas, dibuja las gráficas de Efectos Principales para los 3 factores. En el espacio a continuación (aqui en Canvas) explica si, a partir de las gráficas, pudiera identificar si uno de los factores pareciera tener un efecto significativo, y explica por qué. 
+Res: NA 
+ 
+
+- B3 (3 pts) Realiza un analisis de varianza Anova y reporta cuales factores e interacciones son significativos. Utiliza un alfa de 0.05 (el valor de F critico a utilizar en las comparaciones está dado en el enunciado del problema) 
+Res: 
+|Fuente    |    SS_| Df|    MS_|    F0|  Pval|
+|:---------|------:|--:|------:|-----:|-----:|
+|A         |  2.657|  1|  2.657| 1.976| 0.197|
+|B         |  3.151|  1|  3.151| 2.344| 0.164|
+|C         | 10.081|  1| 10.081| 7.498| 0.026|
+|A:B       | 10.049|  1| 10.049| 7.475| 0.026|
+|A:C       |  0.036|  1|  0.036| 0.027| 0.874|
+|B:C       |  1.782|  1|  1.782| 1.326| 0.283|
+|A:B:C     |  6.864|  1|  6.864| 5.106| 0.054|
+|Residuals | 10.755|  8|  1.344|    NA|    NA|
+|Total     | 45.375| 15|  3.025|    NA|    NA| 
+Significativos:  C
+
+- B4 (1 pts) A partir de los factores e interacciones que resultaron significativos, da el Modelo de Regresión Abreviado (unicamente con los coeficientes de los  factores e interacciones que resultaron significativos) 
+Res: 
+Ecuacion de regresion abreviada  y = 30.554 + -0.794 C + 0.793 A:B
+
+Predicción de la respuesta con el mejor modelo: 
+|  A|  B|  C|     Y|   Y_fit|
+|--:|--:|--:|-----:|-------:|
+| -1| -1| -1| 32.49| 32.1400|
+|  1| -1| -1| 29.08| 30.5550|
+| -1|  1| -1| 28.46| 30.5550|
+|  1|  1| -1| 32.41| 32.1400|
+| -1| -1|  1| 31.56| 30.5525|
+|  1| -1|  1| 30.35| 28.9675|
+| -1|  1|  1| 28.95| 28.9675|
+|  1|  1|  1| 29.62| 30.5525|
+| -1| -1| -1| 32.60| 32.1400|
+|  1| -1| -1| 31.66| 30.5550|
+| -1|  1| -1| 30.40| 30.5550|
+|  1|  1| -1| 33.68| 32.1400|
+| -1| -1|  1| 28.88| 30.5525|
+|  1| -1|  1| 31.36| 28.9675|
+| -1|  1|  1| 27.83| 28.9675|
+|  1|  1|  1| 29.53| 30.5525| 
+
+- B5 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor minimo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para minimizar la respuesta? 
+Res: 
+   - Minimizar: 
+|  A|  B|  C|     Y| Y_fit|
+|--:|--:|--:|-----:|-----:|
+|  1|  1| -1| 32.41| 32.14| 
+
+- B6 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor maximo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para maximizar la respuesta? 
+Res: 
+   - Maximizar: 
+|  A|  B|  C|     Y|   Y_fit|
+|--:|--:|--:|-----:|-------:|
+|  1| -1|  1| 30.35| 28.9675|
+ 
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+ Entrada  5 #: --  05k02t04 
+-----------------------------------------------------------
+   # Factores:  3 
+   Replicas:  3 
+ 
+  Enunciado:::  
+(2) En un proceso de fabricación de latas de aluminio, se desea el efecto de los parametros de operación sobre el desgaste de una maquina. Se diseña  un experimento 2^k considerando las siguientes variables %V% A: Aceite de lubricación de lámina (1 y 2) %O% B: Presión de manga (25, 35) lb/pulg2 %O% C: Velocidad de linea (500, 800) latas por minuto %O% Y: Tiempo de vida util
+
+ </li> <p> A continuación se presentan la matriz de diseño (en unidades codificadas) y los resultados de %n% réplicas: </p> 
+ %T%  
+
+  Datos::  
+|  A|  B|  C|     Y|   Y.1|   Y.2|
+|--:|--:|--:|-----:|-----:|-----:|
+| -1| -1| -1| 91.26| 90.24| 90.83|
+|  1| -1| -1| 92.21| 92.21| 91.50|
+| -1|  1| -1| 91.23| 91.02| 91.30|
+|  1|  1| -1| 91.63| 91.48| 91.23|
+| -1| -1|  1| 91.91| 91.71| 92.27|
+|  1| -1|  1| 92.13| 92.86| 92.87|
+| -1|  1|  1| 91.24| 90.24| 91.29|
+|  1|  1|  1| 92.65| 92.15| 92.01| 
+
+  Preguntas y sus respuestas:: 
+
+- B1 (2 pts) Calcula y reporta los efectos de los factores principales y las interacciones. 
+Res: 
+|Factor      |  Efecto|   Coef|
+|:-----------|-------:|------:|
+|(Intercept) | 183.289| 91.645|
+|A           |   0.866|  0.433|
+|B           |  -0.377| -0.189|
+|C           |   0.599|  0.300|
+|A:B         |  -0.061| -0.030|
+|A:C         |   0.136|  0.068|
+|B:C         |  -0.317| -0.159|
+|A:B:C       |   0.406|  0.203|
+
+- B2 (2 pts) En tu hoja de respuestas, dibuja las gráficas de Efectos Principales para los 3 factores. En el espacio a continuación (aqui en Canvas) explica si, a partir de las gráficas, pudiera identificar si uno de los factores pareciera tener un efecto significativo, y explica por qué. 
+Res: NA 
+ 
+
+- B3 (3 pts) Realiza un analisis de varianza Anova y reporta cuales factores e interacciones son significativos. Utiliza un alfa de 0.05 (el valor de F critico a utilizar en las comparaciones está dado en el enunciado del problema) 
+Res: 
+|Fuente    |    SS_| Df|   MS_|     F0|  Pval|
+|:---------|------:|--:|-----:|------:|-----:|
+|A         |  4.498|  1| 4.498| 29.568| 0.000|
+|B         |  0.855|  1| 0.855|  5.621| 0.031|
+|C         |  2.154|  1| 2.154| 14.159| 0.002|
+|A:B       |  0.022|  1| 0.022|  0.146| 0.707|
+|A:C       |  0.111|  1| 0.111|  0.728| 0.406|
+|B:C       |  0.605|  1| 0.605|  3.976| 0.063|
+|A:B:C     |  0.988|  1| 0.988|  6.496| 0.021|
+|Residuals |  2.434| 16| 0.152|     NA|    NA|
+|Total     | 11.667| 23| 0.507|     NA|    NA| 
+Significativos:  A
+
+- B4 (1 pts) A partir de los factores e interacciones que resultaron significativos, da el Modelo de Regresión Abreviado (unicamente con los coeficientes de los  factores e interacciones que resultaron significativos) 
+Res: 
+Ecuacion de regresion abreviada  y = 91.645 + 0.433 A + -0.189 B + 0.3 C + 0.203 A:B:C
+
+Predicción de la respuesta con el mejor modelo: 
+|  A|  B|  C|     Y|    Y_fit|
+|--:|--:|--:|-----:|--------:|
+| -1| -1| -1| 91.26| 90.89792|
+|  1| -1| -1| 92.21| 92.16958|
+| -1|  1| -1| 91.23| 90.92625|
+|  1|  1| -1| 91.63| 91.38625|
+| -1| -1|  1| 91.91| 91.90292|
+|  1| -1|  1| 92.13| 92.36292|
+| -1|  1|  1| 91.24| 91.11958|
+|  1|  1|  1| 92.65| 92.39125|
+| -1| -1| -1| 90.24| 90.89792|
+|  1| -1| -1| 92.21| 92.16958|
+| -1|  1| -1| 91.02| 90.92625|
+|  1|  1| -1| 91.48| 91.38625|
+| -1| -1|  1| 91.71| 91.90292|
+|  1| -1|  1| 92.86| 92.36292|
+| -1|  1|  1| 90.24| 91.11958|
+|  1|  1|  1| 92.15| 92.39125|
+| -1| -1| -1| 90.83| 90.89792|
+|  1| -1| -1| 91.50| 92.16958|
+| -1|  1| -1| 91.30| 90.92625|
+|  1|  1| -1| 91.23| 91.38625|
+| -1| -1|  1| 92.27| 91.90292|
+|  1| -1|  1| 92.87| 92.36292|
+| -1|  1|  1| 91.29| 91.11958|
+|  1|  1|  1| 92.01| 92.39125| 
+
+- B5 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor minimo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para minimizar la respuesta? 
+Res: 
+   - Minimizar: 
+|  A|  B|  C|     Y|    Y_fit|
+|--:|--:|--:|-----:|--------:|
+|  1|  1|  1| 92.65| 92.39125| 
+
+- B6 (2 pts) Utilizando la formula del modelo de regresión abreviada, de la pregunta anterior, contesta:
+        a) ¿Cuál es el valor maximo de la variable respuesta predicho por el modelo abreviado
+        b) ¿Qué combinación de niveles en unidades originales (es decir, NO como -1 y +1) de las variables sugerirías para maximizar la respuesta? 
+Res: 
+   - Maximizar: 
+|  A|  B|  C|     Y|    Y_fit|
+|--:|--:|--:|-----:|--------:|
+| -1| -1| -1| 91.26| 90.89792|
+ 
+-----------------------------------------------------------
+

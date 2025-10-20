@@ -1,0 +1,514 @@
+------------Examen----------------
+- Alias::  spanking_tyrannical_bellsprout 
+Problemas recopilados::: 01B03t02, 02B02t05, 04B03t02, 05B02t04 
+- Usando las bases de datos::  AB-ques-20241003-e3e17a 
+----------------------------------
+<p><strong><span class="fontstyle0">Instrucciones: </span></strong><span class="fontstyle2">Lee detenidamente las preguntas. Contesta ya sea en el espacio en Canvas, o en la hoja de respuestas, marcando claramente cu&aacute;l pregunta se est&aacute; contestando.</span> Ignora el c&oacute;digo entre corchetes (eg. 01M01a01), pues esto es solo para la revisi&oacute;n de tu examen. <span style="background-color: #000000;">Código del examen: spanking_tyrannical_bellsprout</span>.</p> 
+
+<ol style="list-style-type: decimal;"> 
+<li>(01B03t02) Un investigador quiere conocer el efecto de 4 diferentes fertilizantes sobre el crecimiento de plantas de tomate. Dentro de un invernadero, se divide el espacio disponible en 4 diferentes bloques segun el tipo de tierra a utilizar, cada uno con cuatro plantas de tomate. Al final de cuatro semanas, se evalua la altura de las plantas. Las variables involucradas en el experimento: 
+  </p> <li>  A: Fertilizante empleado 
+  </li><li> B (Bloque): Tipo de tierra 
+  </li><li> Y: Altura de la planta
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 80.59 </td>
+   <td style="text-align:right;"> 80.37 </td>
+   <td style="text-align:right;"> 79.76 </td>
+   <td style="text-align:right;"> 80.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 79.90 </td>
+   <td style="text-align:right;"> 80.14 </td>
+   <td style="text-align:right;"> 80.58 </td>
+   <td style="text-align:right;"> 80.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 80.12 </td>
+   <td style="text-align:right;"> 80.13 </td>
+   <td style="text-align:right;"> 80.44 </td>
+   <td style="text-align:right;"> 80.44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B4 </td>
+   <td style="text-align:right;"> 79.92 </td>
+   <td style="text-align:right;"> 80.00 </td>
+   <td style="text-align:right;"> 80.04 </td>
+   <td style="text-align:right;"> 79.98 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.018 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.006 </td>
+   <td style="text-align:right;"> 0.070 </td>
+   <td style="text-align:right;"> 0.975 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.221 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.074 </td>
+   <td style="text-align:right;"> 0.858 </td>
+   <td style="text-align:right;"> 0.497 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 0.774 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 0.086 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1.013 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 0.068 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 3.863  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 3.49  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.415  </p>
+ [10pt] 
+
+<p>Contesta lo siguiente:</p><ol style="list-style-type: lower-alpha;">  <li> Reporta la suma de cuadrados del factor (SSa), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li>  <li> Reporta la media de cuadrados del factor (MSa), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li> <li> Reporta tu estadístico de prueba, F0 (1pt)</li>  <li> A partir del F0 calculado y el Fcritico (revisa el enunciado del problema), para una confianza del 95%, considerando una hipótesis nula donde ninguno de los niveles del factor A afectan a la variable de respuesta, y una hipótesis alternativa donde al menos uno de los niveles tiene un efecto significativo. </br> ¿Puedes concluir en que la hipótesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas. (1pt)</li>  <li> Vuelve a realizar tu análisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad que lo requieran. El valor de F critico a utilizar se encuentra en el enunciado de este problema. </br> ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? (2pt)</li>  <li> Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadístico q de Tukey a utilizar para la prueba) (2pt)</li></ol>
+
+
+<br /><br /></li> 
+<li>(02B02t05) Una universidad quiere evaluar la efecitividad de 4 diferentes metodos de enseñanza para incrementar los resultados de un examen. Se aprovecha la división de alumnos en 4 salones diferentes como la variable de bloqueo, y dentro de cada salón a cada alumno se le asigna un metodo diferente de enseñanza. Despues de un mes, se evaluó la mejora de cada estudiante mediante un examen. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodo de enseñanza 
+  </li><li> B (Bloque): Salón 
+  </li><li> Y: Incremento en el resultado del examen
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 32.71 </td>
+   <td style="text-align:right;"> 21.68 </td>
+   <td style="text-align:right;"> 34.65 </td>
+   <td style="text-align:right;"> 23.79 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 28.77 </td>
+   <td style="text-align:right;"> 30.37 </td>
+   <td style="text-align:right;"> 31.35 </td>
+   <td style="text-align:right;"> 16.50 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 19.75 </td>
+   <td style="text-align:right;"> 27.04 </td>
+   <td style="text-align:right;"> 23.83 </td>
+   <td style="text-align:right;"> 13.55 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 239.745 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 79.915 </td>
+   <td style="text-align:right;"> 3.714 </td>
+   <td style="text-align:right;"> 0.080 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 114.688 </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 57.344 </td>
+   <td style="text-align:right;"> 2.665 </td>
+   <td style="text-align:right;"> 0.149 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 129.111 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 21.519 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 483.544 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 43.959 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 4.757  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 4.066  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.896  </p>
+ [10pt] 
+
+<p>Contesta lo siguiente:</p><ol style="list-style-type: lower-alpha;">  <li> Reporta la suma de cuadrados del factor (SSa), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li>  <li> Reporta la media de cuadrados del factor (MSa), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li> <li> Reporta tu estadístico de prueba, F0 (1pt)</li>  <li> A partir del F0 calculado y el Fcritico (revisa el enunciado del problema), para una confianza del 95%, considerando una hipótesis nula donde ninguno de los niveles del factor A afectan a la variable de respuesta, y una hipótesis alternativa donde al menos uno de los niveles tiene un efecto significativo. </br> ¿Puedes concluir en que la hipótesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas. (1pt)</li>  <li> Vuelve a realizar tu análisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad que lo requieran. El valor de F critico a utilizar se encuentra en el enunciado de este problema. </br> ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? (2pt)</li>  <li> Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadístico q de Tukey a utilizar para la prueba) (2pt)</li></ol>
+
+
+<br /><br /></li> 
+<li>(04B03t02) Un investigador quiere conocer el efecto de 4 diferentes fertilizantes sobre el crecimiento de plantas de tomate. Dentro de un invernadero, se divide el espacio disponible en 4 diferentes bloques segun el tipo de tierra a utilizar, cada uno con cuatro plantas de tomate. Al final de cuatro semanas, se evalua la altura de las plantas. Las variables involucradas en el experimento: 
+  </p> <li>  A: Fertilizante empleado 
+  </li><li> B (Bloque): Tipo de tierra 
+  </li><li> Y: Altura de la planta
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 80.59 </td>
+   <td style="text-align:right;"> 80.37 </td>
+   <td style="text-align:right;"> 79.76 </td>
+   <td style="text-align:right;"> 80.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 79.90 </td>
+   <td style="text-align:right;"> 80.14 </td>
+   <td style="text-align:right;"> 80.58 </td>
+   <td style="text-align:right;"> 80.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 80.12 </td>
+   <td style="text-align:right;"> 80.13 </td>
+   <td style="text-align:right;"> 80.44 </td>
+   <td style="text-align:right;"> 80.44 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B4 </td>
+   <td style="text-align:right;"> 79.92 </td>
+   <td style="text-align:right;"> 80.00 </td>
+   <td style="text-align:right;"> 80.04 </td>
+   <td style="text-align:right;"> 79.98 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 0.018 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.006 </td>
+   <td style="text-align:right;"> 0.070 </td>
+   <td style="text-align:right;"> 0.975 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 0.221 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 0.074 </td>
+   <td style="text-align:right;"> 0.858 </td>
+   <td style="text-align:right;"> 0.497 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 0.774 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 0.086 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1.013 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 0.068 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 3.863  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 3.49  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.415  </p>
+ [10pt] 
+
+<p>Contesta lo siguiente:</p><ol style="list-style-type: lower-alpha;">  <li> Reporta la suma de cuadrados del factor (SSa), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li>  <li> Reporta la media de cuadrados del factor (MSa), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li> <li> Reporta tu estadístico de prueba, F0 (1pt)</li>  <li> A partir del F0 calculado y el Fcritico (revisa el enunciado del problema), para una confianza del 95%, considerando una hipótesis nula donde ninguno de los niveles del factor A afectan a la variable de respuesta, y una hipótesis alternativa donde al menos uno de los niveles tiene un efecto significativo. </br> ¿Puedes concluir en que la hipótesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas. (1pt)</li>  <li> Vuelve a realizar tu análisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad que lo requieran. El valor de F critico a utilizar se encuentra en el enunciado de este problema. </br> ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? (2pt)</li>  <li> Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadístico q de Tukey a utilizar para la prueba) (2pt)</li></ol>
+
+
+<br /><br /></li> 
+<li>(05B02t04) Una universidad quiere evaluar la efecitividad de 4 diferentes metodos de enseñanza para incrementar los resultados de un examen. Se aprovecha la división de alumnos en 4 salones diferentes como la variable de bloqueo, y dentro de cada salón a cada alumno se le asigna un metodo diferente de enseñanza. Despues de un mes, se evaluó la mejora de cada estudiante mediante un examen. Las variables involucradas en el experimento: 
+  </p> <li>  A: Metodo de enseñanza 
+  </li><li> B (Bloque): Salón 
+  </li><li> Y: Incremento en el resultado del examen
+
+ </li> <p> A continuación se presentan la tabla con los datos del exerimento: </p> 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de datos</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> B </th>
+   <th style="text-align:right;"> A1 </th>
+   <th style="text-align:right;"> A2 </th>
+   <th style="text-align:right;"> A3 </th>
+   <th style="text-align:right;"> A4 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> B1 </td>
+   <td style="text-align:right;"> 12.36 </td>
+   <td style="text-align:right;"> 14.56 </td>
+   <td style="text-align:right;"> 10.09 </td>
+   <td style="text-align:right;"> 5.83 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B2 </td>
+   <td style="text-align:right;"> 29.87 </td>
+   <td style="text-align:right;"> 21.36 </td>
+   <td style="text-align:right;"> 20.35 </td>
+   <td style="text-align:right;"> 13.99 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B3 </td>
+   <td style="text-align:right;"> 34.02 </td>
+   <td style="text-align:right;"> 30.87 </td>
+   <td style="text-align:right;"> 22.97 </td>
+   <td style="text-align:right;"> 2.58 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B4 </td>
+   <td style="text-align:right;"> 13.79 </td>
+   <td style="text-align:right;"> 25.92 </td>
+   <td style="text-align:right;"> 4.77 </td>
+   <td style="text-align:right;"> 14.50 </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table> 
+ A continuación, se presenta parcialmente la tabla de ANOVA generada con los datos. 
+ <table class="kable_wrapper lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<caption>Tabla de Anova</caption>
+<tbody>
+  <tr>
+   <td> 
+
+<table class="ic-Table ic-Table--condensed ic-Table--striped ic-Table--hover-row" style=" width: 400px; ">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Fuente </th>
+   <th style="text-align:right;"> SS_ </th>
+   <th style="text-align:right;"> Df </th>
+   <th style="text-align:right;"> MS_ </th>
+   <th style="text-align:right;"> F0 </th>
+   <th style="text-align:right;"> Pval </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:right;"> 537.873 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 179.291 </td>
+   <td style="text-align:right;"> 3.533 </td>
+   <td style="text-align:right;"> 0.061 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> B </td>
+   <td style="text-align:right;"> 379.537 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 126.512 </td>
+   <td style="text-align:right;"> 2.493 </td>
+   <td style="text-align:right;"> 0.126 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Residuals </td>
+   <td style="text-align:right;"> 456.723 </td>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:right;"> 50.747 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Total </td>
+   <td style="text-align:right;"> 1374.133 </td>
+   <td style="text-align:right;"> 15 </td>
+   <td style="text-align:right;"> 91.609 </td>
+   <td style="text-align:right;"> NA </td>
+   <td style="text-align:right;"> NA </td>
+  </tr>
+</tbody>
+</table>
+
+ </td>
+  </tr>
+</tbody>
+</table>
+
+ <p> Para una prueba con 95% de confianza, con un modelo que  incorpora los bloques en el Anova, usa un valor de F critico de 3.863  </p>
+
+<p> Para realizar un analisis a un modelo donde no se consideren los bloques, usa un valor de F critico de 3.49  </p>
+
+<p> Para realizar la prueba de Tukey, considera un valor de la distribución Tukey(q) de 4.415  </p>
+ [10pt] 
+
+<p>Contesta lo siguiente:</p><ol style="list-style-type: lower-alpha;">  <li> Reporta la suma de cuadrados del factor (SSa), del bloque (SSb) y del error (SSE), redondeando a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li>  <li> Reporta la media de cuadrados del factor (MSa), del bloque (MSb) y del error (MSE) a 3 cifras significativas. Importante: indica en tu respuesta cual es cual. (2pt)</li> <li> Reporta tu estadístico de prueba, F0 (1pt)</li>  <li> A partir del F0 calculado y el Fcritico (revisa el enunciado del problema), para una confianza del 95%, considerando una hipótesis nula donde ninguno de los niveles del factor A afectan a la variable de respuesta, y una hipótesis alternativa donde al menos uno de los niveles tiene un efecto significativo. </br> ¿Puedes concluir en que la hipótesis nula se rechaza o no? Escribe el enunciado completo de la conclusión, usando la definición de las variables involucradas. (1pt)</li>  <li> Vuelve a realizar tu análisis ANOVA, pero ahora sin considerar la variable Bloque, recordando ajustar las sumas de cuadrados y grados de libertad que lo requieran. El valor de F critico a utilizar se encuentra en el enunciado de este problema. </br> ¿Identificas alguna diferencia con respecto a tu conclusión anterior? ¿Qué puedes concluir con respecto al bloque incorporado en este experimento? (2pt)</li>  <li> Realiza una Prueba de Tukey de Comparaciones Múltiples para identificar cual (o cuales) de los niveles del factor A es (o son) significativamente diferente del resto. (En el enunciado del problema está el valor del estadístico q de Tukey a utilizar para la prueba) (2pt)</li></ol>
+
+
+<br /><br /></li> 
+</ol>

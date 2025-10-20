@@ -1,11 +1,13 @@
 #### INTERFAZ DE USUARIO PARA GENERAR EXAMENES ---------------------------
 #' Interfaz de usuario: Generador de Examenes de Diseño de Experimentos
 #'
+#' Ver 1.4.1 - Se pueden generar ls reportes de respuesta en formato word (con un archivo markdown intermedio, y un template ya incluido en el paquete)
+#' Ver 1.4.0 - Se empieza el retrabajo para el formato de respuestas. Hay una nueva pregunta en la interfaz, y nuevas funciones internas a llamar.
 #' Ver 1.3.1 - Ajustado, ahora examen 2 incluye preguntas de M, H, B y K.
 #' Ver 1.3.0 - Se incorporan el framework para trabajar con los temas B y K, falta probarlo
 #' Ver 1.2.0 - poblarDirectorio cambio, ahora se debe llamar cada vez que se use un tema nuevo. Los temas son definidos por el parcial
 #' Ver 1.1.0 - Correccion para los casos donde el directorio existe, pero esta vacio
-#' Ver 1.0.2 -
+#' Ver 1.0.2 
 #'
 #' @return
 #' @export
@@ -25,7 +27,7 @@ doeExam <- function(){
   ###---------------- PRIMERA PARTE: SET-UP DE LAS CARPETAS
   cli::cli_h1(paste0("Generador de Examenes: ", cli::col_green("Diseño de Experimentos")))
   cli::cli_text(s.note("Paquete creado por: Fco.C-E. ", "{{zzz}}°°°( -_-)>c[_]"))
-  cli::cli_text(s.note("Version:  1.0.2"))
+  cli::cli_text(s.note("Version:  1.4.0"))
   ## Preguntar por la carpeta:
   cli::cli_h2("PARTE 1: Set-Up")
   cli::cli_text("La carpeta de trabajo de esta aplicación esta ubicada en: \n {.path {here::here('doetest_out')}}\n")
@@ -144,11 +146,13 @@ doeExam <- function(){
 
   oplang <- menu(c("Español", "Ingles"), title = s.note("¿Idioma?"))
   opformat <- menu(c("HTML", "LaTeX"), title = s.note("¿Formato de salida?"))
+  oprformat <- menu(c("txt", "Word"), title = s.note("¿Formato para el reporte de respuestas/solucionario?"))
 
   lang <- dplyr::case_when(oplang == 1 ~ "Esp", oplang == 2 ~ "Eng")
   format <- dplyr::case_when(opformat == 1 ~ "HTML", opformat == 2 ~ "LaTeX")
+  rformat <- dplyr::case_when(oprformat == 1 ~ "txt", oprformat == 2 ~ "Rmd")
 
-  Examen <- genExamen(parcial = opparcial, lang = lang, format = format)
+  Examen <- genExamen(parcial = opparcial, lang = lang, format = format, rformat = rformat)
   cli::cat_line()
   cli::cli_alert_success(s.succ("Se generó el examen con éxito. Saliendo de la applicación."))
 

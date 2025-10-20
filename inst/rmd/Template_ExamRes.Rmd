@@ -1,0 +1,57 @@
+---
+title: "Solucionario de Examen"
+output: word_document
+params: 
+  Q:
+    value: x
+  E:
+    value: x
+---
+
+```{r setup, include=FALSE}
+library(DOEtestR)
+library(here)
+knitr::opts_chunk$set(echo = FALSE)
+#wd_images <- here::here("restrmap","figures")
+#wd_output <- here::here("restrmap","output")
+Name <- attr(params$E, "DBname")
+id_pokemon <- attr(params$E, "id_pokemon")
+Fecha <- attr(params$E, "Fecha")
+Origin <- attr(params$E, "DBorigin")
+
+```
+
+
+# Respuestas de Examen
+
+A continuación, se presenta un solucionario para el examen `r Name`, con alias `r id_pokemon`. Este examen:
+
+-   Se elaboró el `r Fecha`
+-   Se usaron los datos de las tablas `r Origin`
+```{r, results='asis'}
+cat("-   Contiene las preguntas: ",attr(params$E, "Elementos"))
+```
+
+
+## Construccion de elementos
+```{r, results='asis'}
+
+## Se recibe como parametro Q, una lista de tablas, con las filas de las preguntas usadas en el examen, por tema. Esto toma el lugar de las tablas de preguntas - se debe llamar una por una.
+
+for (i in 1:length(params$Q)){
+  ## Se llama a la función una vez por pregunta, no por tema. 
+  cat("# ", attr(params$Q[[i]], "Tema"), "\n")
+  cat("\n")
+  rep_name <- rep_select(params$Q[[i]], "Rmd")
+  data_name <- attr(params$Q[[i]], "DBorigin")
+  data <- importDB(data_name)
+  for (j in 1:nrow(params$Q[[i]])){
+    do.call(rep_name, list(data,params$Q[[i]],j)) 
+  }
+}
+
+
+
+
+```
+
